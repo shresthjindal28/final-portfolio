@@ -1,10 +1,6 @@
 'use client';
 import { useState, useEffect, useRef } from 'react';
 
-interface SkillCategory {
-	category: string;
-	skills: string[];
-}
 
 interface TechBadge {
 	name: string;
@@ -12,35 +8,15 @@ interface TechBadge {
 	categoryName: string;
 }
 
-const skillCategories: SkillCategory[] = [
-	{
-		category: 'Frontend',
-		skills: ['React/Next.js', 'JavaScript/TypeScript', 'Tailwind CSS', 'HTML/CSS']
-	},
-	{
-		category: 'Backend',
-		skills: ['Node.js', 'Python', 'Express.js', 'RESTful APIs']
-	},
-	{
-		category: 'Database & Tools',
-		skills: ['MongoDB', 'PostgreSQL', 'Git/GitHub', 'Docker']
-	}
-];
+
 
 const techBadges: TechBadge[] = [
 	// Frontend
 	{ name: 'React', category: '⚛️', categoryName: 'Frontend' },
-	{ name: 'JavaScript', category: '📝', categoryName: 'Languages' },
-	{ name: 'HTML5', category: '🌐', categoryName: 'Frontend' },
-	{ name: 'CSS3', category: '🎨', categoryName: 'Frontend' },
 	{ name: 'TypeScript', category: '📝', categoryName: 'Languages' },
 	{ name: 'Next.js', category: '⚛️', categoryName: 'Frontend' },
-	{ name: 'Redux', category: '⚛️', categoryName: 'Frontend' },
-	{ name: 'SASS', category: '🎨', categoryName: 'Frontend' },
 	{ name: 'Tailwind CSS', category: '🎨', categoryName: 'Frontend' },
 	{ name: 'GSAP', category: '✨', categoryName: 'Frontend' },
-	{ name: 'Framer Motion', category: '✨', categoryName: 'Frontend' },
-	{ name: 'Axios', category: '🔗', categoryName: 'Frontend' },
 
 	// Backend
 	{ name: 'Node.js', category: '🟢', categoryName: 'Backend' },
@@ -58,9 +34,6 @@ const techBadges: TechBadge[] = [
 	// DevOps & Tools
 	{ name: 'Git', category: '📚', categoryName: 'DevOps' },
 	{ name: 'Docker', category: '🐳', categoryName: 'DevOps' },
-	{ name: 'Husky', category: '🐕', categoryName: 'DevOps' },
-	{ name: 'ESLint', category: '🔧', categoryName: 'Tools' },
-	{ name: 'Thunder Client', category: '⚡', categoryName: 'Tools' },
   
 	// Design
 	{ name: 'Figma', category: '🎨', categoryName: 'Design' },
