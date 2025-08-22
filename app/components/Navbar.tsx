@@ -1,40 +1,51 @@
+
 'use client';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef, useCallback } from 'react';
 
 interface NavItem {
 	name: string;
 	id: string;
 }
 
+// Move nav items outside the component to avoid re-creating the array on each render
+const NAV_ITEMS: NavItem[] = [
+	{ name: 'Home', id: 'hero' },
+	{ name: 'About', id: 'about' },
+	{ name: 'Skills', id: 'skills' },
+	{ name: 'Experience', id: 'experience' },
+	{ name: 'Projects', id: 'projects' },
+	{ name: 'Contact', id: 'contact' },
+];
+
 export default function Navbar() {
 	const [isScrolled, setIsScrolled] = useState<boolean>(false);
 	const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
+	const ticking = useRef(false);
 
 	useEffect(() => {
 		const handleScroll = () => {
-			setIsScrolled(window.scrollY > 50);
+			// Batch scroll updates with requestAnimationFrame to avoid thrashing React state
+			if (!ticking.current) {
+				ticking.current = true;
+				window.requestAnimationFrame(() => {
+					setIsScrolled(window.scrollY > 50);
+					ticking.current = false;
+				});
+			}
 		};
 
-		window.addEventListener('scroll', handleScroll);
+		// Use passive listener for better scrolling performance
+		window.addEventListener('scroll', handleScroll, { passive: true });
 		return () => window.removeEventListener('scroll', handleScroll);
 	}, []);
 
-	const scrollToSection = (sectionId: string): void => {
+	const scrollToSection = useCallback((sectionId: string): void => {
 		const element = document.getElementById(sectionId);
 		if (element) {
 			element.scrollIntoView({ behavior: 'smooth' });
 		}
 		setIsMobileMenuOpen(false);
-	};
-
-	const navItems: NavItem[] = [
-		{ name: 'Home', id: 'hero' },
-		{ name: 'About', id: 'about' },
-		{ name: 'Skills', id: 'skills' },
-		{ name: 'Experience', id: 'experience' },
-		{ name: 'Projects', id: 'projects' },
-		{ name: 'Contact', id: 'contact' },
-	];
+	}, []);
 
 	return (
 		<nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
@@ -49,7 +60,7 @@ export default function Navbar() {
 
 					{/* Desktop Navigation */}
 					<div className="hidden md:flex items-center space-x-8">
-						{navItems.map((item) => (
+						{NAV_ITEMS.map((item) => (
 							<button
 								key={item.name}
 								onClick={() => scrollToSection(item.id)}
@@ -82,7 +93,7 @@ export default function Navbar() {
 				{isMobileMenuOpen && (
 					<div className="md:hidden mt-4 pb-4">
 						<div className="flex flex-col space-y-4">
-							{navItems.map((item) => (
+							{NAV_ITEMS.map((item) => (
 								<button
 									key={item.name}
 									onClick={() => scrollToSection(item.id)}

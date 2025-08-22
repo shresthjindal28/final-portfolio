@@ -1,26 +1,19 @@
+
 'use client';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 
 export default function Hero() {
 	const [isVisible, setIsVisible] = useState<boolean>(false);
 
 	useEffect(() => {
+		// Trigger entrance animation on mount only once
 		setIsVisible(true);
 	}, []);
 
-	const scrollToProjects = (): void => {
-		const element = document.getElementById('projects');
-		if (element) {
-			element.scrollIntoView({ behavior: 'smooth' });
-		}
-	};
-
-	const scrollToContact = (): void => {
-		const element = document.getElementById('contact');
-		if (element) {
-			element.scrollIntoView({ behavior: 'smooth' });
-		}
-	};
+	const scrollTo = useCallback((id: string) => {
+		const element = document.getElementById(id);
+		if (element) element.scrollIntoView({ behavior: 'smooth' });
+	}, []);
 
 	return (
 		<section id="hero" className="min-h-screen flex items-center justify-center px-4 relative">
@@ -41,21 +34,21 @@ export default function Hero() {
 						Full Stack Developer
 					</h2>
 				</div>
-        
+
 				<p className="text-xl text-gray-300 mb-12 leading-relaxed max-w-2xl mx-auto">
 					I create exceptional digital experiences through clean code and thoughtful design. 
 					Passionate about building scalable web applications with modern technologies.
 				</p>
-        
+
 				<div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-16">
 					<button 
-						onClick={scrollToProjects}
+						onClick={() => scrollTo('projects')}
 						className="px-8 py-4 bg-blue-500 text-white font-medium rounded-lg hover:bg-blue-600 transition-all duration-300 transform hover:scale-105"
 					>
 						View My Work
 					</button>
 					<button 
-						onClick={scrollToContact}
+						onClick={() => scrollTo('contact')}
 						className="px-8 py-4 border border-blue-500 text-blue-400 font-medium rounded-lg hover:bg-blue-500 hover:text-white transition-all duration-300"
 					>
 						Get In Touch

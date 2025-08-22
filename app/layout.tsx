@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { Analytics } from '@vercel/analytics/next';
 import "./globals.css";
 
 // NOTE: Update `siteUrl` below to your production URL if it's different.
@@ -112,6 +113,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(siteSchema) }}
         />
         {children}
+        <Analytics />
       </body>
     </html>
   );
