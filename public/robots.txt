@@ -1,0 +1,11 @@
+# robots.txt for https://shresthjindal.dev
+# NOTE: Update the Host/Sitemap entries if your production URL is different.
+
+User-agent: *
+Allow: /
+
+# Crawl-delay can be added for aggressive bots, but keep it commented until needed
+# Crawl-delay: 10
+
+Sitemap: https://shresthjindal.dev/sitemap.xml
+Host: https://shresthjindal.dev
