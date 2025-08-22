@@ -97,7 +97,7 @@ export default function Contact() {
 		<section
 			id="contact"
 			ref={sectionRef}
-			className="py-20 px-4 bg-gray-900/30"
+			className="py-12 md:py-20 px-4 bg-gray-900/30"
 		>
 			<div className="max-w-6xl mx-auto">
 				<div
@@ -105,17 +105,13 @@ export default function Contact() {
 						isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
 					}`}
 				>
-					<div className="text-center mb-16">
-						<h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
-							Contact Information
-						</h2>
-						<div className="w-20 h-1 bg-blue-400 mx-auto mb-4"></div>
-						<p className="text-xl text-gray-400 max-w-2xl mx-auto">
-							Let&apos;s connect! You can reach me through any of the following channels.
-						</p>
+					<div className="text-center mb-12 md:mb-16">
+						<h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4">Contact Information</h2>
+						<div role="presentation" className="w-20 h-1 bg-blue-400 mx-auto mb-4"></div>
+						<p className="text-lg sm:text-xl text-gray-300 max-w-2xl mx-auto px-4">Let&apos;s connect! You can reach me through any of the following channels.</p>
 					</div>
 
-					<div className="grid lg:grid-cols-1 gap-12 max-w-3xl mx-auto">
+					<div className="grid lg:grid-cols-1 gap-8 md:gap-12 max-w-4xl mx-auto px-4">
 						{/* Contact Info */}
 						<div
 							className={`transition-all duration-700 ${
@@ -126,23 +122,24 @@ export default function Contact() {
 						>
 							
 
-							<div className="flex items-center justify-center gap-8 mb-8">
+							<div className="grid sm:grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mb-8">
 								{contactInfo.map((item) => (
-									<div key={item.title} className="flex items-center space-x-4">
-										<div className="w-12 h-12 bg-blue-500/10 border border-blue-400/20 rounded-lg flex items-center justify-center text-blue-400">
+									<div key={item.title} className="flex flex-col sm:flex-row items-center sm:items-start space-y-2 sm:space-y-0 sm:space-x-4 p-4 bg-gray-800/30 rounded-lg border border-gray-700/30 hover:border-blue-400/30 transition-colors duration-200">
+										<div className="w-12 h-12 bg-blue-500/10 border border-blue-400/20 rounded-lg flex items-center justify-center text-blue-400 flex-shrink-0">
 											{item.icon}
 										</div>
-										<div>
-											<h4 className="text-white font-semibold">{item.title}</h4>
+										<div className="text-center sm:text-left">
+											<h4 className="text-white font-semibold text-sm md:text-base">{item.title}</h4>
 											{item.link ? (
 												<a
 													href={item.link}
-													className="text-gray-300 hover:text-blue-400 transition-colors duration-200"
+													className="text-gray-200 hover:text-blue-300 transition-colors duration-200 text-sm md:text-base break-all"
+													aria-label={item.title}
 												>
 													{item.info}
 												</a>
 											) : (
-												<p className="text-gray-300">{item.info}</p>
+												<p className="text-gray-300 text-sm md:text-base">{item.info}</p>
 											)}
 										</div>
 									</div>
@@ -150,16 +147,16 @@ export default function Contact() {
 							</div>
 
 							{/* Social Links */}
-							<div className="flex justify-center space-x-6">
+							<div className="flex justify-center space-x-4 sm:space-x-6 mb-6 md:mb-8">
 								<a
 									href="https://github.com/shresthjindal28"
 									aria-label="GitHub"
 									target="_blank"
 									rel="noopener noreferrer"
-									className="text-gray-400 hover:text-white transition-colors duration-200"
+									className="text-gray-400 hover:text-white transition-colors duration-200 p-2 rounded-lg hover:bg-gray-800/50"
 								>
 									<svg
-										className="w-6 h-6"
+										className="w-5 h-5 sm:w-6 sm:h-6"
 										viewBox="0 0 24 24"
 										fill="currentColor"
 										aria-hidden
@@ -173,15 +170,15 @@ export default function Contact() {
 									aria-label="LinkedIn"
 									target="_blank"
 									rel="noopener noreferrer"
-									className="text-gray-400 hover:text-blue-400 transition-colors duration-200"
+									className="text-gray-400 hover:text-blue-400 transition-colors duration-200 p-2 rounded-lg hover:bg-gray-800/50"
 								>
 									<svg
-										className="w-6 h-6"
+										className="w-5 h-5 sm:w-6 sm:h-6"
 										viewBox="0 0 24 24"
 										fill="currentColor"
 										aria-hidden
 									>
-										<path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11 19h-3v-10h3v10zm-1.5-11.3c-.966 0-1.75-.784-1.75-1.75s.784-1.75 1.75-1.75 1.75.784 1.75 1.75-.784 1.75-1.75 1.75zm13.5 11.3h-3v-5.5c0-1.38-.03-3.16-1.93-3.16-1.93 0-2.23 1.5-2.23 3.05v5.61h-3v-10h2.88v1.36h.04c.4-.75 1.37-1.54 2.82-1.54 3.02 0 3.58 1.99 3.58 4.58v5.6z" />
+										<path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5 5v-14c0-2.76-2.24-5-5-5zm-11 19h-3v-10h3v10zm-1.5-11.3c-.966 0-1.75-.784-1.75-1.75s.784-1.75 1.75-1.75 1.75.784 1.75 1.75-.784 1.75-1.75 1.75zm13.5 11.3h-3v-5.5c0-1.38-.03-3.16-1.93-3.16-1.93 0-2.23 1.5-2.23 3.05v5.61h-3v-10h2.88v1.36h.04c.4-.75 1.37-1.54 2.82-1.54 3.02 0 3.58 1.99 3.58 4.58v5.6z" />
 									</svg>
 								</a>
 
@@ -190,10 +187,10 @@ export default function Contact() {
 									aria-label="Twitter"
 									target="_blank"
 									rel="noopener noreferrer"
-									className="text-gray-400 hover:text-blue-400 transition-colors duration-200"
+									className="text-gray-400 hover:text-blue-400 transition-colors duration-200 p-2 rounded-lg hover:bg-gray-800/50"
 								>
 									<svg
-										className="w-6 h-6"
+										className="w-5 h-5 sm:w-6 sm:h-6"
 										viewBox="0 0 24 24"
 										fill="currentColor"
 										aria-hidden
@@ -204,20 +201,18 @@ export default function Contact() {
 							</div>
 
 							{/* Additional CTA */}
-							<div className="mt-8 p-6 bg-blue-500/5 border border-blue-400/20 rounded-xl">
-								<h4 className="text-white font-semibold mb-2">
-									Ready to start a project?
-								</h4>
-								<p className="text-gray-300 text-sm mb-4">
-									I&apos;m always open to discussing new opportunities and
-									interesting projects.
-								</p>
-								<a
-									href="mailto:shresth.jindal@example.com"
-									className="inline-flex items-center text-blue-400 hover:text-blue-300 font-medium text-sm"
-								>
-									Send me an email →
-								</a>
+							<div className="mt-6 md:mt-8 p-4 md:p-6 bg-blue-500/5 border border-blue-400/20 rounded-xl mx-4 md:mx-0">
+								<h3 className="text-white font-semibold mb-2 text-center md:text-left">Ready to start a project?</h3>
+								<p className="text-gray-300 text-sm mb-4 text-center md:text-left">I&apos;m always open to discussing new opportunities and interesting projects.</p>
+								<div className="text-center md:text-left">
+									<a
+										href="mailto:shresthjindal28@gmail.com"
+										className="inline-flex items-center text-blue-400 hover:text-blue-300 font-medium text-sm"
+										aria-label="Send email to Shresth Jindal"
+									>
+										Send me an email ↗
+									</a>
+								</div>
 							</div>
 						</div>
 					</div>

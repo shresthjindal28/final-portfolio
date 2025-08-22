@@ -41,18 +41,30 @@ export default function Hero() {
 				</p>
 
 				<div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-16">
-					<button 
-						onClick={() => scrollTo('projects')}
-						className="px-8 py-4 bg-blue-500 text-white font-medium rounded-lg hover:bg-blue-600 transition-all duration-300 transform hover:scale-105"
+					<a
+						href="#projects"
+						onClick={(e) => {
+							e.preventDefault();
+							scrollTo('projects');
+						}}
+						className="px-8 py-4 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-all duration-300 transform hover:scale-105"
+						role="button"
+						aria-label="View my projects"
 					>
 						View My Work
-					</button>
-					<button 
-						onClick={() => scrollTo('contact')}
-						className="px-8 py-4 border border-blue-500 text-blue-400 font-medium rounded-lg hover:bg-blue-500 hover:text-white transition-all duration-300"
+					</a>
+					<a
+						href="#contact"
+						onClick={(e) => {
+							e.preventDefault();
+							scrollTo('contact');
+						}}
+						className="px-8 py-4 border border-blue-500 text-blue-200 font-medium rounded-lg bg-transparent hover:bg-blue-500 hover:text-white transition-all duration-300"
+						role="button"
+						aria-label="Get in touch"
 					>
 						Get In Touch
-					</button>
+					</a>
 				</div>
 
 				{/* Social Links */}

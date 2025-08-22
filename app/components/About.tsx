@@ -32,18 +32,14 @@ export default function About() {
 					}`}
 				>
 					<div className="text-center mb-16">
-						<h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
-							About Me
-						</h2>
-						<div className="w-20 h-1 bg-blue-400 mx-auto"></div>
+						<h2 className="text-4xl md:text-5xl font-bold text-white mb-4">About Me</h2>
+						<div role="presentation" className="w-20 h-1 bg-blue-400 mx-auto"></div>
 					</div>
 
 					<div className="max-w-4xl mx-auto">
 						{/* About Content */}
 						<div className="text-center">
-							<h3 className="text-3xl font-bold text-white mb-8">
-								Passionate Developer & Problem Solver
-							</h3>
+							<h3 className="text-3xl font-bold text-white mb-8">Passionate Developer & Problem Solver</h3>
 
 							<div className="space-y-6 text-gray-300 leading-relaxed text-lg">
 								<p>

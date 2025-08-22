@@ -46,7 +46,7 @@ export default function Footer() {
 				<div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
 					{/* Brand section */}
 					<div className="md:col-span-1">
-						<h3 className="text-xl font-bold text-white mb-3">Shresth Jindal</h3>
+						<h2 className="text-xl font-bold text-white mb-3">Shresth Jindal</h2>
 						<p className="text-gray-400 text-sm leading-relaxed">
 							Full-stack developer passionate about creating 
 							exceptional digital experiences and innovative solutions.
@@ -55,9 +55,9 @@ export default function Footer() {
 
 					{/* Quick links */}
 					<div className="md:col-span-1">
-						<h4 className="text-sm font-semibold text-white uppercase tracking-wider mb-4">
+						<h3 className="text-sm font-semibold text-white uppercase tracking-wider mb-4">
 							Quick Links
-						</h4>
+						</h3>
 						<div className="space-y-2">
 							<a
 								href="#about"
@@ -88,9 +88,9 @@ export default function Footer() {
 
 					{/* Contact & Social */}
 					<div className="md:col-span-1">
-						<h4 className="text-sm font-semibold text-white uppercase tracking-wider mb-4">
+						<h3 className="text-sm font-semibold text-white uppercase tracking-wider mb-4">
 							Get In Touch
-						</h4>
+						</h3>
 						<div className="space-y-3">
 							<a
 								href="mailto:shresthjindal28@gmail.com"
@@ -126,14 +126,15 @@ export default function Footer() {
 				<div className="border-t border-gray-700 pt-6">
 					<div className="flex flex-col sm:flex-row items-center justify-between gap-4">
 						{/* Copyright */}
-						<div className="text-gray-400 text-sm">
+						<div className="text-gray-300 text-sm">
 							© {year} Shresth Jindal. All rights reserved.
 						</div>
 
 						{/* Back to top button */}
 						<button
+							type="button"
 							onClick={scrollToTop}
-							className="group flex items-center space-x-2 text-gray-400 hover:text-white transition-all duration-200 text-sm px-4 py-2 rounded-full hover:bg-gray-800/50"
+							className="group flex items-center space-x-2 text-gray-200 hover:text-white transition-all duration-200 text-sm px-4 py-2 rounded-full hover:bg-gray-800/50"
 							aria-label="Back to top"
 						>
 							<svg className="w-4 h-4 group-hover:-translate-y-0.5 transition-transform duration-200" fill="currentColor" viewBox="0 0 20 20">

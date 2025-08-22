@@ -54,31 +54,39 @@ export default function Navbar() {
 			<div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 				<div className="flex items-center justify-between">
 					{/* Logo */}
-					<div className="text-2xl font-bold text-white">
+					<a href="#hero" aria-label="Home" className="text-2xl font-bold text-white">
 						<span className="text-blue-400">Shresth</span>Jindal
-					</div>
+					</a>
 
 					{/* Desktop Navigation */}
 					<div className="hidden md:flex items-center space-x-8">
 						{NAV_ITEMS.map((item) => (
-							<button
+							<a
 								key={item.name}
-								onClick={() => scrollToSection(item.id)}
+								href={`#${item.id}`}
+								onClick={(e) => {
+									e.preventDefault();
+									scrollToSection(item.id);
+								}}
 								className="text-gray-300 hover:text-white transition-colors duration-200 relative group"
 							>
 								{item.name}
-								<span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-400 transition-all duration-300 group-hover:w-full"></span>
-							</button>
+								<span aria-hidden className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-400 transition-all duration-300 group-hover:w-full"></span>
+							</a>
 						))}
 					</div>
 
 					{/* Mobile menu button */}
 					<div className="md:hidden">
 						<button
+							type="button"
 							onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+							aria-label={isMobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+							aria-expanded={isMobileMenuOpen}
+							aria-controls="mobile-navigation"
 							className="text-white p-2"
 						>
-							<svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+							<svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden>
 								{isMobileMenuOpen ? (
 									<path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" />
 								) : (
@@ -91,16 +99,20 @@ export default function Navbar() {
 
 				{/* Mobile Navigation */}
 				{isMobileMenuOpen && (
-					<div className="md:hidden mt-4 pb-4">
-						<div className="flex flex-col space-y-4">
+					<div id="mobile-navigation" className="md:hidden mt-4 pb-4">
+						<div className="flex flex-col space-y-4 bg-black/80 backdrop-blur-md rounded-lg p-4">
 							{NAV_ITEMS.map((item) => (
-								<button
+								<a
 									key={item.name}
-									onClick={() => scrollToSection(item.id)}
+									href={`#${item.id}`}
+									onClick={(e) => {
+										e.preventDefault();
+										scrollToSection(item.id);
+									}}
 									className="text-gray-300 hover:text-white transition-colors duration-200 text-left"
 								>
 									{item.name}
-								</button>
+								</a>
 							))}
 						</div>
 					</div>
