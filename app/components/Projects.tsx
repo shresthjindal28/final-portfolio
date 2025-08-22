@@ -46,6 +46,28 @@ const projects: Project[] = [
     githubUrl: "https://github.com/shresthjindal28/Note-app",
     featured: false,
     category: "Web Application"
+  },
+  {
+    title: "D0LT",
+    description:
+      "A comprehensive service provider platform connecting clients with professional service providers. Features secure authentication, service listings, and streamlined booking management.",
+	image: "/d0lt.png",
+    technologies: ["React", "Tailwind CSS", "JWT", "MongoDB"],
+    liveUrl: "https://d0lt.com/",
+    githubUrl: "https://github.com/shresthjindal28/Doit-mainwebsite",
+    featured: false,
+    category: "Service Platform"
+  },
+    {
+    title: "Joeaf Fruit",
+    description:
+      "A platform connecting customers with local fruit vendors, offering fresh produce delivered to your doorstep.",
+	image: "/joeaf-fruit.png",
+    technologies: ["React", "Tailwind CSS", "JWT", "MongoDB"],
+    liveUrl: "https://www.joeaffruits.com/",
+    githubUrl: "https://github.com/shresthjindal28/joeaf_fruits",
+    featured: false,
+    category: "Service Platform"
   }
 	
 ];
