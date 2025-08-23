@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Analytics } from '@vercel/analytics/next';
 import { ThemeProvider } from "@/app/components/theme-provider";
+import LenisProvider from "@/app/components/lenis-provider";
 import "./globals.css";
 
 // NOTE: Update `siteUrl` below to your production URL if it's different.
@@ -119,7 +120,9 @@ export default function RootLayout({
             enableSystem
             disableTransitionOnChange
           >
-            {children}
+            <LenisProvider>
+              {children}
+            </LenisProvider>
           </ThemeProvider>
         <Analytics />
       </body>
