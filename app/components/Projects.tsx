@@ -112,7 +112,7 @@ export default function Projects() {
 						<h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
 							Featured Projects
 						</h2>
-						<div className="w-20 h-1 bg-blue-400 mx-auto mb-4"></div>
+						<div className="w-20 h-1 bg-emerald-400 mx-auto mb-4"></div>
 						<p className="text-xl text-muted-foreground mb-8">
 							Some of my recent work and side projects
 						</p>
@@ -130,7 +130,7 @@ export default function Projects() {
 										isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
 									}`}
 								>
-									<div className="bg-card/60 backdrop-blur-sm rounded-xl overflow-hidden border border-border">
+									<div className="bg-card/60 backdrop-blur-sm rounded-xl overflow-hidden border border-border shadow-lg hover:shadow-xl transition-shadow duration-300">
 										<div className="h-48 bg-muted/40 animate-pulse"></div>
 										<div className="p-6">
 											<div className="h-4 w-32 bg-muted/40 rounded animate-pulse mb-4"></div>
@@ -154,7 +154,7 @@ export default function Projects() {
 										isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
 									}`}
 								>
-									<div className="bg-card/60 backdrop-blur-sm rounded-xl overflow-hidden border border-border hover:border-blue-400/30 transition-all duration-300 hover:transform hover:-translate-y-2">
+									<div className="bg-card/60 backdrop-blur-sm rounded-xl overflow-hidden border border-border shadow-lg hover:shadow-xl hover:border-emerald-400/30 transition-all duration-300 hover:transform hover:-translate-y-2">
 										{/* Project image */}
 										<div className="h-48 relative overflow-hidden">
 											<Image
@@ -168,7 +168,7 @@ export default function Projects() {
 												<div className="flex items-center justify-between">
 													<span className="text-foreground font-bold text-lg">{project.title}</span>
 													{project.featured && (
-														<span className="bg-blue-500 text-white px-2 py-1 rounded-full text-xs font-bold">
+														<span className="bg-emerald-500 text-white px-2 py-1 rounded-full text-xs font-bold">
 															Featured
 														</span>
 													)}
@@ -176,12 +176,12 @@ export default function Projects() {
 											</div>
 
 											{/* Hover overlay */}
-											<div className="absolute inset-0 bg-blue-600/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+											<div className="absolute inset-0 bg-emerald-600/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
 										</div>
 
 										<div className="p-6">
 											<div className="flex items-center justify-between mb-3">
-												<span className="text-blue-400 text-sm font-medium bg-blue-400/10 px-3 py-1 rounded-full">
+												<span className="text-emerald-400 text-sm font-medium bg-emerald-400/10 px-3 py-1 rounded-full">
 													{project.category}
 												</span>
 											</div>
@@ -211,7 +211,7 @@ export default function Projects() {
 													href={project.liveUrl}
 													target="_blank"
 													rel="noopener noreferrer"
-													className="flex-1 bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded-lg text-center transition-all duration-300 text-sm"
+													className="flex-1 bg-emerald-500 hover:bg-emerald-600 text-white font-medium py-2 px-4 rounded-lg text-center transition-all duration-300 text-sm"
 												>
 													Live Demo
 												</a>
@@ -219,7 +219,7 @@ export default function Projects() {
 													href={project.githubUrl}
 													target="_blank"
 													rel="noopener noreferrer"
-													className="flex-1 border border-border text-muted-foreground hover:border-blue-400 hover:text-blue-400 font-medium py-2 px-4 rounded-lg text-center transition-all duration-300 text-sm"
+													className="flex-1 border border-border text-muted-foreground hover:border-emerald-400 hover:text-emerald-400 font-medium py-2 px-4 rounded-lg text-center transition-all duration-300 text-sm"
 												>
 													GitHub
 												</a>

@@ -23,7 +23,7 @@ export default function Hero() {
 				isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
 			}`}>
 				<div className="mb-6">
-					<p className="text-blue-400 text-lg mb-2 font-medium">Hello, I&apos;m</p>
+					<p className="text-emerald-400 text-lg mb-2 font-medium">Hello, I&apos;m</p>
 					<h1 className="text-5xl md:text-7xl font-bold text-foreground mb-4 tracking-tight">
 						Shresth Jindal
 					</h1>
@@ -44,7 +44,7 @@ export default function Hero() {
 							e.preventDefault();
 							scrollTo('projects');
 						}}
-						className="px-8 py-4 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-all duration-300 transform hover:scale-105"
+						className="px-8 py-4 bg-emerald-600 text-white font-medium rounded-lg hover:bg-emerald-700 transition-all duration-300 transform hover:scale-105"
 						role="button"
 						aria-label="View my projects"
 					>
@@ -56,7 +56,7 @@ export default function Hero() {
 							e.preventDefault();
 							scrollTo('contact');
 						}}
-						className="px-8 py-4 border border-blue-500 text-blue-400 font-medium rounded-lg bg-transparent hover:bg-blue-500 hover:text-white transition-all duration-300"
+						className="px-8 py-4 border border-emerald-500 text-emerald-400 font-medium rounded-lg bg-transparent hover:bg-emerald-500 hover:text-white transition-all duration-300"
 						role="button"
 						aria-label="Get in touch"
 					>
@@ -83,7 +83,7 @@ export default function Hero() {
 						aria-label="LinkedIn"
 						target="_blank"
 						rel="noopener noreferrer"
-						className="text-muted-foreground hover:text-blue-400 transition-colors duration-200"
+						className="text-muted-foreground hover:text-emerald-400 transition-colors duration-200"
 					>
 						<svg className="w-6 h-6" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
 							<path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5-5v-14c0-2.76-2.24-5-5-5zm-11 19h-3v-10h3v10zm-1.5-11.3c-.966 0-1.75-.784-1.75-1.75s.784-1.75 1.75-1.75 1.75.784 1.75 1.75-.784 1.75-1.75 1.75zm13.5 11.3h-3v-5.5c0-1.38-.03-3.16-1.93-3.16-1.93 0-2.23 1.5-2.23 3.05v5.61h-3v-10h2.88v1.36h.04c.4-.75 1.37-1.54 2.82-1.54 3.02 0 3.58 1.99 3.58 4.58v5.6z" />
@@ -95,7 +95,7 @@ export default function Hero() {
 						aria-label="Twitter"
 						target="_blank"
 						rel="noopener noreferrer"
-						className="text-muted-foreground hover:text-blue-400 transition-colors duration-200"
+						className="text-muted-foreground hover:text-emerald-400 transition-colors duration-200"
 					>
 						<svg className="w-6 h-6" viewBox="0 0 24 24" fill="currentColor" aria-hidden>
 							<path d="M23 3a10.9 10.9 0 01-3.14 1.53A4.48 4.48 0 0012.09 8v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z" />

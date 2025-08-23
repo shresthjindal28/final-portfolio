@@ -71,7 +71,7 @@ export default function Skills() {
 						<h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
 							Skills & Technologies
 						</h2>
-						<div className="w-20 h-1 bg-blue-400 mx-auto mb-4"></div>
+						<div className="w-20 h-1 bg-emerald-400 mx-auto mb-4"></div>
 						<p className="text-xl text-muted-foreground max-w-2xl mx-auto">
 							Technologies and tools I work with
 						</p>

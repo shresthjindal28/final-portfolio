@@ -97,7 +97,7 @@ export default function Contact() {
 		<section
 			id="contact"
 			ref={sectionRef}
-			className="py-12 md:py-20 px-4 bg-muted/30"
+			className="py-12 md:py-20 px-4 "
 		>
 			<div className="max-w-6xl mx-auto">
 				<div
@@ -107,7 +107,7 @@ export default function Contact() {
 				>
 					<div className="text-center mb-12 md:mb-16">
 						<h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-4">Contact Information</h2>
-						<div role="presentation" className="w-20 h-1 bg-blue-400 mx-auto mb-4"></div>
+						<div role="presentation" className="w-20 h-1 bg-emerald-400 mx-auto mb-4"></div>
 						<p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto px-4">Let&apos;s connect! You can reach me through any of the following channels.</p>
 					</div>
 
@@ -124,8 +124,8 @@ export default function Contact() {
 
 							<div className="grid sm:grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mb-8">
 								{contactInfo.map((item) => (
-									<div key={item.title} className="flex flex-col sm:flex-row items-center sm:items-start space-y-2 sm:space-y-0 sm:space-x-4 p-4 bg-card/50 rounded-lg border border-border hover:border-blue-400/30 transition-colors duration-200">
-										<div className="w-12 h-12 bg-blue-500/10 border border-blue-400/20 rounded-lg flex items-center justify-center text-blue-400 flex-shrink-0">
+									<div key={item.title} className="flex flex-col sm:flex-row items-center sm:items-start space-y-2 sm:space-y-0 sm:space-x-4 p-4 bg-card/50 rounded-lg border border-border hover:border-emerald-400/30 transition-colors duration-200">
+										<div className="w-12 h-12 bg-emerald-500/10 border border-emerald-400/20 rounded-lg flex items-center justify-center text-emerald-400 flex-shrink-0">
 											{item.icon}
 										</div>
 										<div className="text-center sm:text-left">
@@ -133,7 +133,7 @@ export default function Contact() {
 											{item.link ? (
 												<a
 													href={item.link}
-													className="text-muted-foreground hover:text-blue-400 transition-colors duration-200 text-sm md:text-base break-all"
+													className="text-muted-foreground hover:text-emerald-400 transition-colors duration-200 text-sm md:text-base break-all"
 													aria-label={item.title}
 												>
 													{item.info}
@@ -170,7 +170,7 @@ export default function Contact() {
 									aria-label="LinkedIn"
 									target="_blank"
 									rel="noopener noreferrer"
-									className="text-muted-foreground hover:text-blue-400 transition-colors duration-200 p-2 rounded-lg hover:bg-muted/50"
+									className="text-muted-foreground hover:text-emerald-400 transition-colors duration-200 p-2 rounded-lg hover:bg-muted/50"
 								>
 									<svg
 										className="w-5 h-5 sm:w-6 sm:h-6"
@@ -187,7 +187,7 @@ export default function Contact() {
 									aria-label="Twitter"
 									target="_blank"
 									rel="noopener noreferrer"
-									className="text-muted-foreground hover:text-blue-400 transition-colors duration-200 p-2 rounded-lg hover:bg-muted/50"
+									className="text-muted-foreground hover:text-emerald-400 transition-colors duration-200 p-2 rounded-lg hover:bg-muted/50"
 								>
 									<svg
 										className="w-5 h-5 sm:w-6 sm:h-6"
@@ -201,13 +201,13 @@ export default function Contact() {
 							</div>
 
 							{/* Additional CTA */}
-							<div className="mt-6 md:mt-8 p-4 md:p-6 bg-blue-500/5 border border-blue-400/20 rounded-xl mx-4 md:mx-0">
+							<div className="mt-6 md:mt-8 p-4 md:p-6 bg-emerald-500/5 border border-emerald-400/20 rounded-xl mx-4 md:mx-0">
 								<h3 className="text-foreground font-semibold mb-2 text-center md:text-left">Ready to start a project?</h3>
 								<p className="text-muted-foreground text-sm mb-4 text-center md:text-left">I&apos;m always open to discussing new opportunities and interesting projects.</p>
 								<div className="text-center md:text-left">
 									<a
 										href="mailto:shresthjindal28@gmail.com"
-										className="inline-flex items-center text-blue-400 hover:text-blue-300 font-medium text-sm"
+										className="inline-flex items-center text-emerald-400 hover:text-emerald-300 font-medium text-sm"
 										aria-label="Send email to Shresth Jindal"
 									>
 										Send me an email ↗

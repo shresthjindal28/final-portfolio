@@ -54,7 +54,7 @@ export default function Experience() {
 	}, []);
 
 	return (
-		<section id="experience" ref={sectionRef} className="py-20 px-4 bg-muted/30">
+		<section id="experience" ref={sectionRef} className="py-20 px-4">
 			<div className="max-w-4xl mx-auto">
 				<div className={`transition-all duration-1000 ${
 					isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
@@ -63,7 +63,7 @@ export default function Experience() {
 						<h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
 							Work Experience
 						</h2>
-						<div className="w-20 h-1 bg-blue-400 mx-auto mb-4"></div>
+						<div className="w-20 h-1 bg-emerald-400 mx-auto mb-4"></div>
 						<p className="text-xl text-muted-foreground">
 							My professional journey and key achievements
 						</p>
@@ -71,7 +71,7 @@ export default function Experience() {
 
 					<div className="relative">
 						{/* Timeline line */}
-						<div className="absolute left-8 md:left-1/2 transform md:-translate-x-1/2 w-0.5 bg-blue-400/30 h-full"></div>
+						<div className="absolute left-8 md:left-1/2 transform md:-translate-x-1/2 w-0.5 bg-emerald-400/30 h-full"></div>
 
 						{experiences.map((exp, index) => (
 							<div
@@ -81,21 +81,21 @@ export default function Experience() {
 								}`}
 							>
 								{/* Timeline dot */}
-								<div className="absolute left-6 md:left-1/2 transform md:-translate-x-1/2 w-4 h-4 bg-blue-400 rounded-full border-4 border-black z-10"></div>
+								<div className="absolute left-6 md:left-1/2 transform md:-translate-x-1/2 w-4 h-4 bg-emerald-400 rounded-full border-4 border-black z-10"></div>
 
 								{/* Content */}
 								<div className={`ml-16 md:ml-0 md:w-5/12 ${
 									index % 2 === 0 ? 'md:mr-auto md:pr-8' : 'md:ml-auto md:pl-8'
 								}`}>
-									<div className="bg-card backdrop-blur-sm rounded-xl p-6 border border-border hover:border-blue-400/30 transition-all duration-300">
+									<div className="bg-card backdrop-blur-sm rounded-xl p-6 border border-border hover:border-emerald-400/30 transition-all duration-300">
 										<div className="flex flex-col md:flex-row md:justify-between md:items-start mb-2">
 											<h3 className="text-xl font-bold text-foreground">{exp.position}</h3>
-											<span className="text-blue-400 font-medium text-sm bg-blue-400/10 px-3 py-1 rounded-full">
+											<span className="text-emerald-400 font-medium text-sm bg-emerald-400/10 px-3 py-1 rounded-full">
 												{exp.duration}
 											</span>
 										</div>
                     
-										<h4 className="text-blue-300 font-semibold mb-1">{exp.company}</h4>
+										<h4 className="text-emerald-300 font-semibold mb-1">{exp.company}</h4>
 										<p className="text-muted-foreground text-sm mb-4">{exp.location}</p>
                     
 										<p className="text-muted-foreground mb-4 leading-relaxed">{exp.description}</p>

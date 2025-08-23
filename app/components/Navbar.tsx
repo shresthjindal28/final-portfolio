@@ -61,7 +61,9 @@ export default function Navbar() {
             aria-label="Home"
             className="text-2xl font-bold text-foreground"
           >
-            <span className="text-blue-400">Shresth</span>Jindal
+                      <div className="flex items-center">
+            <span className="text-emerald-400">Shresth</span>Jindal
+          </div>
           </a>
 
           {/* Desktop Navigation */}
@@ -77,10 +79,11 @@ export default function Navbar() {
                 className="text-muted-foreground hover:text-foreground transition-colors duration-200 relative group"
               >
                 {item.name}
-                <span
-                  aria-hidden
-                  className="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-400 transition-all duration-300 group-hover:w-full"
-                ></span>
+                                <div
+                  className="absolute -bottom-1 left-0 w-0 h-0.5 bg-emerald-400 transition-all duration-300 group-hover:w-full"
+                  role="presentation"
+                  aria-hidden="true"
+                />
               </a>
             ))}
           </div>
