@@ -54,17 +54,17 @@ export default function Experience() {
 	}, []);
 
 	return (
-		<section id="experience" ref={sectionRef} className="py-20 px-4 bg-gray-900/30">
+		<section id="experience" ref={sectionRef} className="py-20 px-4 bg-muted/30">
 			<div className="max-w-4xl mx-auto">
 				<div className={`transition-all duration-1000 ${
 					isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
 				}`}>
 					<div className="text-center mb-16">
-						<h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+						<h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
 							Work Experience
 						</h2>
 						<div className="w-20 h-1 bg-blue-400 mx-auto mb-4"></div>
-						<p className="text-xl text-gray-400">
+						<p className="text-xl text-muted-foreground">
 							My professional journey and key achievements
 						</p>
 					</div>
@@ -87,18 +87,18 @@ export default function Experience() {
 								<div className={`ml-16 md:ml-0 md:w-5/12 ${
 									index % 2 === 0 ? 'md:mr-auto md:pr-8' : 'md:ml-auto md:pl-8'
 								}`}>
-									<div className="bg-gray-900/60 backdrop-blur-sm rounded-xl p-6 border border-gray-800 hover:border-blue-400/30 transition-all duration-300">
+									<div className="bg-card backdrop-blur-sm rounded-xl p-6 border border-border hover:border-blue-400/30 transition-all duration-300">
 										<div className="flex flex-col md:flex-row md:justify-between md:items-start mb-2">
-											<h3 className="text-xl font-bold text-white">{exp.position}</h3>
+											<h3 className="text-xl font-bold text-foreground">{exp.position}</h3>
 											<span className="text-blue-400 font-medium text-sm bg-blue-400/10 px-3 py-1 rounded-full">
 												{exp.duration}
 											</span>
 										</div>
                     
 										<h4 className="text-blue-300 font-semibold mb-1">{exp.company}</h4>
-										<p className="text-gray-400 text-sm mb-4">{exp.location}</p>
+										<p className="text-muted-foreground text-sm mb-4">{exp.location}</p>
                     
-										<p className="text-gray-300 mb-4 leading-relaxed">{exp.description}</p>
+										<p className="text-muted-foreground mb-4 leading-relaxed">{exp.description}</p>
 									</div>
 								</div>
 							</div>

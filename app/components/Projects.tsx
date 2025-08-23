@@ -109,11 +109,11 @@ export default function Projects() {
 					isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
 				}`}>
 					<div className="text-center mb-16">
-						<h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+						<h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
 							Featured Projects
 						</h2>
 						<div className="w-20 h-1 bg-blue-400 mx-auto mb-4"></div>
-						<p className="text-xl text-gray-400 mb-8">
+						<p className="text-xl text-muted-foreground mb-8">
 							Some of my recent work and side projects
 						</p>
 
@@ -130,17 +130,17 @@ export default function Projects() {
 										isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
 									}`}
 								>
-									<div className="bg-gray-900/60 backdrop-blur-sm rounded-xl overflow-hidden border border-gray-800">
-										<div className="h-48 bg-gray-700/40 animate-pulse"></div>
+									<div className="bg-card/60 backdrop-blur-sm rounded-xl overflow-hidden border border-border">
+										<div className="h-48 bg-muted/40 animate-pulse"></div>
 										<div className="p-6">
-											<div className="h-4 w-32 bg-gray-700/40 rounded animate-pulse mb-4"></div>
+											<div className="h-4 w-32 bg-muted/40 rounded animate-pulse mb-4"></div>
 											<div className="space-y-2">
-												<div className="h-3 bg-gray-700/40 rounded w-full animate-pulse"></div>
-												<div className="h-3 bg-gray-700/40 rounded w-5/6 animate-pulse"></div>
+												<div className="h-3 bg-muted/40 rounded w-full animate-pulse"></div>
+												<div className="h-3 bg-muted/40 rounded w-5/6 animate-pulse"></div>
 											</div>
 											<div className="flex gap-3 mt-6">
-												<div className="flex-1 h-9 bg-gray-700/40 rounded animate-pulse"></div>
-												<div className="flex-1 h-9 bg-gray-700/40 rounded animate-pulse"></div>
+												<div className="flex-1 h-9 bg-muted/40 rounded animate-pulse"></div>
+												<div className="flex-1 h-9 bg-muted/40 rounded animate-pulse"></div>
 											</div>
 										</div>
 									</div>
@@ -154,7 +154,7 @@ export default function Projects() {
 										isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
 									}`}
 								>
-									<div className="bg-gray-900/60 backdrop-blur-sm rounded-xl overflow-hidden border border-gray-800 hover:border-blue-400/30 transition-all duration-300 hover:transform hover:-translate-y-2">
+									<div className="bg-card/60 backdrop-blur-sm rounded-xl overflow-hidden border border-border hover:border-blue-400/30 transition-all duration-300 hover:transform hover:-translate-y-2">
 										{/* Project image */}
 										<div className="h-48 relative overflow-hidden">
 											<Image
@@ -163,10 +163,10 @@ export default function Projects() {
 												fill
 												className="object-cover transition-transform duration-300 group-hover:scale-105"
 											/>
-											<div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent"></div>
+											<div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent"></div>
 											<div className="absolute bottom-4 left-4 right-4">
 												<div className="flex items-center justify-between">
-													<span className="text-white font-bold text-lg">{project.title}</span>
+													<span className="text-foreground font-bold text-lg">{project.title}</span>
 													{project.featured && (
 														<span className="bg-blue-500 text-white px-2 py-1 rounded-full text-xs font-bold">
 															Featured
@@ -186,7 +186,7 @@ export default function Projects() {
 												</span>
 											</div>
 
-											<p className="text-gray-300 mb-4 leading-relaxed text-sm">
+											<p className="text-muted-foreground mb-4 leading-relaxed text-sm">
 												{project.description}
 											</p>
 
@@ -194,13 +194,13 @@ export default function Projects() {
 												{project.technologies.slice(0, 3).map((tech) => (
 													<span
 														key={tech}
-														className="px-2 py-1 bg-gray-800 text-gray-300 rounded text-xs border border-gray-700"
+														className="px-2 py-1 bg-secondary text-secondary-foreground rounded text-xs border border-border"
 													>
 														{tech}
 													</span>
 												))}
 												{project.technologies.length > 3 && (
-													<span className="px-2 py-1 bg-gray-800 text-gray-400 rounded text-xs border border-gray-700">
+													<span className="px-2 py-1 bg-secondary text-muted-foreground rounded text-xs border border-border">
 														+{project.technologies.length - 3} more
 													</span>
 												)}
@@ -219,7 +219,7 @@ export default function Projects() {
 													href={project.githubUrl}
 													target="_blank"
 													rel="noopener noreferrer"
-													className="flex-1 border border-gray-600 text-gray-300 hover:border-blue-400 hover:text-blue-400 font-medium py-2 px-4 rounded-lg text-center transition-all duration-300 text-sm"
+													className="flex-1 border border-border text-muted-foreground hover:border-blue-400 hover:text-blue-400 font-medium py-2 px-4 rounded-lg text-center transition-all duration-300 text-sm"
 												>
 													GitHub
 												</a>

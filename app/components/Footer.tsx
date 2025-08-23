@@ -3,8 +3,9 @@
 export default function Footer() {
 	const year = new Date().getFullYear();
 
-	const scrollToTop = () =>
+	const scrollToTop = () => {
 		window.scrollTo({ top: 0, behavior: "smooth" });
+	};
 
 	const socialLinks = [
 		{
@@ -37,7 +38,7 @@ export default function Footer() {
 	];
 
 	return (
-		<footer className="relative bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 border-t border-gray-700">
+		<footer className="relative bg-card border-t border-border">
 			{/* Decorative gradient overlay */}
 			<div className="absolute inset-0 bg-gradient-to-r from-blue-500/5 via-purple-500/5 to-cyan-500/5 pointer-events-none" />
 			
@@ -46,8 +47,8 @@ export default function Footer() {
 				<div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
 					{/* Brand section */}
 					<div className="md:col-span-1">
-						<h2 className="text-xl font-bold text-white mb-3">Shresth Jindal</h2>
-						<p className="text-gray-400 text-sm leading-relaxed">
+						<h2 className="text-xl font-bold text-foreground mb-3">Shresth Jindal</h2>
+						<p className="text-muted-foreground text-sm leading-relaxed">
 							Full-stack developer passionate about creating 
 							exceptional digital experiences and innovative solutions.
 						</p>
@@ -55,31 +56,31 @@ export default function Footer() {
 
 					{/* Quick links */}
 					<div className="md:col-span-1">
-						<h3 className="text-sm font-semibold text-white uppercase tracking-wider mb-4">
+						<h3 className="text-sm font-semibold text-foreground uppercase tracking-wider mb-4">
 							Quick Links
 						</h3>
 						<div className="space-y-2">
 							<a
 								href="#about"
-								className="block text-gray-400 hover:text-white transition-colors duration-200 text-sm"
+								className="block text-muted-foreground hover:text-foreground transition-colors duration-200 text-sm"
 							>
 								About
 							</a>
 							<a
 								href="#experience"
-								className="block text-gray-400 hover:text-white transition-colors duration-200 text-sm"
+								className="block text-muted-foreground hover:text-foreground transition-colors duration-200 text-sm"
 							>
 								Experience
 							</a>
 							<a
 								href="#projects"
-								className="block text-gray-400 hover:text-white transition-colors duration-200 text-sm"
+								className="block text-muted-foreground hover:text-foreground transition-colors duration-200 text-sm"
 							>
 								Projects
 							</a>
 							<a
 								href="#contact"
-								className="block text-gray-400 hover:text-white transition-colors duration-200 text-sm"
+								className="block text-muted-foreground hover:text-foreground transition-colors duration-200 text-sm"
 							>
 								Contact
 							</a>
@@ -88,13 +89,13 @@ export default function Footer() {
 
 					{/* Contact & Social */}
 					<div className="md:col-span-1">
-						<h3 className="text-sm font-semibold text-white uppercase tracking-wider mb-4">
+						<h3 className="text-sm font-semibold text-foreground uppercase tracking-wider mb-4">
 							Get In Touch
 						</h3>
 						<div className="space-y-3">
 							<a
 								href="mailto:shresthjindal28@gmail.com"
-								className="flex items-center text-gray-400 hover:text-white transition-colors duration-200 text-sm group"
+								className="flex items-center text-muted-foreground hover:text-foreground transition-colors duration-200 text-sm group"
 							>
 								<svg className="w-4 h-4 mr-2 opacity-60 group-hover:opacity-100" fill="currentColor" viewBox="0 0 20 20">
 									<path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z" />
@@ -112,7 +113,7 @@ export default function Footer() {
 										target="_blank"
 										rel="noreferrer"
 										aria-label={social.name}
-										className="text-gray-400 hover:text-white hover:scale-110 transition-all duration-200 p-2 rounded-full hover:bg-gray-800/50"
+										className="text-muted-foreground hover:text-foreground hover:scale-110 transition-all duration-200 p-2 rounded-full hover:bg-muted/50"
 									>
 										{social.icon}
 									</a>
@@ -123,10 +124,10 @@ export default function Footer() {
 				</div>
 
 				{/* Divider */}
-				<div className="border-t border-gray-700 pt-6">
+				<div className="border-t border-border pt-6">
 					<div className="flex flex-col sm:flex-row items-center justify-between gap-4">
 						{/* Copyright */}
-						<div className="text-gray-300 text-sm">
+						<div className="text-muted-foreground text-sm">
 							© {year} Shresth Jindal. All rights reserved.
 						</div>
 
@@ -134,7 +135,7 @@ export default function Footer() {
 						<button
 							type="button"
 							onClick={scrollToTop}
-							className="group flex items-center space-x-2 text-gray-200 hover:text-white transition-all duration-200 text-sm px-4 py-2 rounded-full hover:bg-gray-800/50"
+							className="group flex items-center space-x-2 text-muted-foreground hover:text-foreground transition-all duration-200 text-sm px-4 py-2 rounded-full hover:bg-muted/50"
 							aria-label="Back to top"
 						>
 							<svg className="w-4 h-4 group-hover:-translate-y-0.5 transition-transform duration-200" fill="currentColor" viewBox="0 0 20 20">

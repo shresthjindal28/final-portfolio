@@ -68,11 +68,11 @@ export default function Skills() {
 					isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
 				}`}>
 					<div className="text-center mb-16">
-						<h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
+						<h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
 							Skills & Technologies
 						</h2>
 						<div className="w-20 h-1 bg-blue-400 mx-auto mb-4"></div>
-						<p className="text-xl text-gray-400 max-w-2xl mx-auto">
+						<p className="text-xl text-muted-foreground max-w-2xl mx-auto">
 							Technologies and tools I work with
 						</p>
 					</div>
@@ -82,7 +82,7 @@ export default function Skills() {
 						{techBadges.map((tech) => (
 							<div
 								key={tech.name}
-								className={`inline-flex items-center px-4 py-2 text-white font-medium text-sm shadow-lg hover:scale-105 transition-all duration-200 border border-opacity-20 border-white rounded-full bg-gray-800/50`}
+								className={`inline-flex items-center px-4 py-2 text-foreground font-medium text-sm shadow-lg hover:scale-105 transition-all duration-200 border border-border rounded-full bg-card`}
 								title={`${tech.name} - ${tech.categoryName}`}
 							>
 								<span className="text-sm mr-2">{tech.category}</span>

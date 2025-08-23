@@ -24,7 +24,7 @@ export default function About() {
 	}, []);
 
 	return (
-		<section id="about" ref={sectionRef} className="py-20 px-4 bg-black">
+		<section id="about" ref={sectionRef} className="py-20 px-4 bg-background">
 			<div className="max-w-6xl mx-auto">
 				<div
 					className={`transition-all duration-1000 ${
@@ -32,16 +32,16 @@ export default function About() {
 					}`}
 				>
 					<div className="text-center mb-16">
-						<h2 className="text-4xl md:text-5xl font-bold text-white mb-4">About Me</h2>
+						<h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">About Me</h2>
 						<div role="presentation" className="w-20 h-1 bg-blue-400 mx-auto"></div>
 					</div>
 
 					<div className="max-w-4xl mx-auto">
 						{/* About Content */}
 						<div className="text-center">
-							<h3 className="text-3xl font-bold text-white mb-8">Passionate Developer & Problem Solver</h3>
+							<h3 className="text-3xl font-bold text-foreground mb-8">Passionate Developer & Problem Solver</h3>
 
-							<div className="space-y-6 text-gray-300 leading-relaxed text-lg">
+							<div className="space-y-6 text-muted-foreground leading-relaxed text-lg">
 								<p>
 									I am a developer from Bangalore, India. I love building cool stuff and enjoy
 									learning CS. I have a great sense of <span className="text-blue-400">web designing</span> which you will notice as you go through my work. I have worked on <span className="text-blue-400">freelance projects  and interned</span> at amazing places.
@@ -57,17 +57,17 @@ export default function About() {
 
 							{/* Quick Stats */}
 							<div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12 mb-12">
-								<div className="bg-gray-800/50 rounded-xl p-6 border border-gray-700/50">
+								<div className="bg-card rounded-xl p-6 border border-border">
 									<div className="text-3xl font-bold text-blue-400 mb-2">3+</div>
-									<div className="text-gray-300">Years Experience</div>
+									<div className="text-muted-foreground">Years Experience</div>
 								</div>
-								<div className="bg-gray-800/50 rounded-xl p-6 border border-gray-700/50">
+								<div className="bg-card rounded-xl p-6 border border-border">
 									<div className="text-3xl font-bold text-blue-400 mb-2">20+</div>
-									<div className="text-gray-300">Projects Completed</div>
+									<div className="text-muted-foreground">Projects Completed</div>
 								</div>
-								<div className="bg-gray-800/50 rounded-xl p-6 border border-gray-700/50">
+								<div className="bg-card rounded-xl p-6 border border-border">
 									<div className="text-3xl font-bold text-blue-400 mb-2">5+</div>
-									<div className="text-gray-300">Technologies</div>
+									<div className="text-muted-foreground">Technologies</div>
 								</div>
 							</div>
 
