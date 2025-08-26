@@ -5,8 +5,8 @@ import { ThemeProvider } from "@/app/components/theme-provider";
 import LenisProvider from "@/app/components/lenis-provider";
 import "./globals.css";
 
-// NOTE: Update `siteUrl` below to your production URL if it's different.
-const siteUrl = "https://shresthjindal.dev";
+// NOTE: Set `siteUrl` to your production URL.
+const siteUrl = "https://www.shresthjindal.com";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     template: "%s | Shresth Jindal",
   },
   description:
-    "Shresth Jindal — Full-stack developer building modern web apps. Portfolio showcasing projects, experience, and contact information.",
+    "Shresth Jindal — Full-stack developer building modern web apps with React and Next.js. Portfolio showcasing projects, experience, and ways to get in touch.",
   keywords: [
     "Shresth Jindal",
     "software engineer",
@@ -42,8 +42,7 @@ export const metadata: Metadata = {
     },
   ],
   icons: {
-    icon: "/favicon.ico",
-    apple: "/apple-touch-icon.png",
+    icon: "/logo.png",
   },
   openGraph: {
     title: "Shresth Jindal — Software Engineer",
@@ -53,7 +52,8 @@ export const metadata: Metadata = {
     siteName: "Shresth Jindal",
     images: [
       {
-        url: `${siteUrl}/gradora.png`,
+  // Use the `logo.png` in /public as the social preview image. Replace that file in /public to change the head image.
+  url: `${siteUrl}/logo.png`,
         width: 1200,
         height: 630,
         alt: "Shresth Jindal portfolio",
@@ -67,7 +67,7 @@ export const metadata: Metadata = {
     title: "Shresth Jindal — Software Engineer",
     description:
       "Portfolio of Shresth Jindal — projects, skills, and contact information.",
-    images: [`${siteUrl}/gradora.png`],
+  images: [`${siteUrl}/logo.png`],
   },
   alternates: {
     canonical: siteUrl,
