@@ -61,45 +61,44 @@ export default function Experience() {
 				}`}>
 					<div className="text-center mb-16">
 						<h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
-							Work Experience
+							Experience
 						</h2>
 						<div className="w-20 h-1 bg-emerald-400 mx-auto mb-4"></div>
 						<p className="text-xl text-muted-foreground">
-							My professional journey and key achievements
+							Professional background and expertise
 						</p>
 					</div>
 
-					<div className="relative">
-						{/* Timeline line */}
-						<div className="absolute left-8 md:left-1/2 transform md:-translate-x-1/2 w-0.5 bg-emerald-400/30 h-full"></div>
-
+					<div className="space-y-6">
 						{experiences.map((exp, index) => (
 							<div
 								key={index}
-								className={`relative mb-12 transition-all duration-700 delay-[${index * 200}ms] ${
+								className={`transition-all duration-700 delay-[${index * 200}ms] ${
 									isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
 								}`}
 							>
-								{/* Timeline dot */}
-								<div className="absolute left-6 md:left-1/2 transform md:-translate-x-1/2 w-4 h-4 bg-emerald-400 rounded-full border-4 border-black z-10"></div>
-
-								{/* Content */}
-								<div className={`ml-16 md:ml-0 md:w-5/12 ${
-									index % 2 === 0 ? 'md:mr-auto md:pr-8' : 'md:ml-auto md:pl-8'
-								}`}>
-									<div className="bg-card backdrop-blur-sm rounded-xl p-6 border border-border hover:border-emerald-400/30 transition-all duration-300">
-										<div className="flex flex-col md:flex-row md:justify-between md:items-start mb-2">
-											<h3 className="text-xl font-bold text-foreground">{exp.position}</h3>
-											<span className="text-emerald-400 font-medium text-sm bg-emerald-400/10 px-3 py-1 rounded-full">
+								<div className="group bg-card/50 backdrop-blur-sm rounded-lg p-8  hover:bg-card/80 hover:border-emerald-400/20 transition-all duration-300">
+									<div className="flex flex-col md:flex-row md:justify-between md:items-start mb-4">
+										<div className="flex-1">
+											<h3 className="text-2xl font-semibold text-foreground mb-2 group-hover:text-emerald-400 transition-colors duration-300">
+												{exp.position}
+											</h3>
+											<div className="flex flex-col md:flex-row md:items-center gap-2 md:gap-4 text-muted-foreground">
+												<span className="font-medium text-foreground">{exp.company}</span>
+												<span className="hidden md:block text-border">•</span>
+												<span className="text-sm">{exp.location}</span>
+											</div>
+										</div>
+										<div className="mt-3 md:mt-0">
+											<span className="inline-block px-4 py-2 text-sm font-medium text-emerald-400 bg-emerald-400/10 rounded-md border border-emerald-400/20">
 												{exp.duration}
 											</span>
 										</div>
-                    
-										<h4 className="text-emerald-300 font-semibold mb-1">{exp.company}</h4>
-										<p className="text-muted-foreground text-sm mb-4">{exp.location}</p>
-                    
-										<p className="text-muted-foreground mb-4 leading-relaxed">{exp.description}</p>
 									</div>
+									
+									<p className="text-muted-foreground leading-relaxed">
+										{exp.description}
+									</p>
 								</div>
 							</div>
 						))}
