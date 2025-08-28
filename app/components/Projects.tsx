@@ -73,11 +73,14 @@ const projects: Project[] = [
 export default function Projects() {
   return (
     <section id="projects" className="py-10 px-6">
-      <h2 className="text-2xl font-bold text-white mb-6 text-center">
-        My Projects
-      </h2>
+      <div className="text-center mb-16">
+        <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
+          My Projects
+        </h2>
+        <div className="w-20 h-1 bg-emerald-400 mx-auto mb-4"></div>
+      </div>
 
-      <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+      <div className="grid sm:grid-cols-2 lg:grid-cols-2 gap-10 max-w-6xl mx-auto px-4 sm:px-6">
         {projects.map((project) => (
           <div
             key={project.title}
