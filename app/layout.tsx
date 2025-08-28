@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import { Analytics } from '@vercel/analytics/next';
+import { Analytics } from "@vercel/analytics/next";
 import { ThemeProvider } from "@/app/components/theme-provider";
 import LenisProvider from "@/app/components/lenis-provider";
 import "./globals.css";
@@ -52,8 +52,8 @@ export const metadata: Metadata = {
     siteName: "Shresth Jindal",
     images: [
       {
-  // Use the `logo.png` in /public as the social preview image. Replace that file in /public to change the head image.
-  url: `${siteUrl}/logo.png`,
+        // Use the `logo.png` in /public as the social preview image. Replace that file in /public to change the head image.
+        url: `${siteUrl}/logo.png`,
         width: 1200,
         height: 630,
         alt: "Shresth Jindal portfolio",
@@ -67,7 +67,7 @@ export const metadata: Metadata = {
     title: "Shresth Jindal — Software Engineer",
     description:
       "Portfolio of Shresth Jindal — projects, skills, and contact information.",
-  images: [`${siteUrl}/logo.png`],
+    images: [`${siteUrl}/logo.png`],
   },
   alternates: {
     canonical: siteUrl,
@@ -106,6 +106,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <link rel="canonical" href={siteUrl} />
+        <meta name="theme-color" content="#ffffff" />
+        {/* Favicon and touch icons - place your provided logo at /public/logo.png */}
+        <link rel="icon" href="/logo.png" />
+        <link rel="apple-touch-icon" sizes="180x180" href="/logo.png" />
+        <meta name="msapplication-TileImage" content="/logo.png" />
+
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
@@ -115,15 +124,13 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(siteSchema) }}
         />
         <ThemeProvider
-            attribute="class"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
-            <LenisProvider>
-              {children}
-            </LenisProvider>
-          </ThemeProvider>
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <LenisProvider>{children}</LenisProvider>
+        </ThemeProvider>
         <Analytics />
       </body>
     </html>
