@@ -1,6 +1,6 @@
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
-  siteUrl: "https://shresthjindal.com", // your domain
-  generateRobotsTxt: true, // also generate robots.txt
-  sitemapSize: 7000,       // splits large sitemaps if needed
-};
+  siteUrl: 'https://www.shresthjindal.com',  // 👈 use the www version
+  generateRobotsTxt: true,
+  sitemapSize: 5000,
+}
