@@ -3,7 +3,7 @@ User-agent: *
 Allow: /
 
 # Host
-Host: https://www.shresthjindal.com
+Host: https://shresthjindal.com
 
 # Sitemaps
-Sitemap: https://www.shresthjindal.com/sitemap.xml
+Sitemap: https://shresthjindal.com/sitemap.xml
