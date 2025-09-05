@@ -41,7 +41,7 @@ const projects: Project[] = [
     description:
       "Generate beautiful Twitter status cards with custom styling and real-time preview.",
     image: "/twitter-card.png",
-    liveUrl: "https://twitter-card-generator.vercel.app/",
+    liveUrl: "https://twitter-card.shresthjindal.com",
     githubUrl: "https://github.com/shresthjindal28/twitter-card-generator",
   },
   {
