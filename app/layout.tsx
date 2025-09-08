@@ -7,7 +7,10 @@ import "./globals.css";
 
 // ✅ Global SEO Metadata
 export const metadata: Metadata = {
-  title: "Shresth Jindal - Software Engineer",
+  title: {
+    default: "Shresth Jindal - Software Engineer",
+    template: "%s | Shresth Jindal",
+  },
   description:
     "I am a software developer, skilled in building amazing websites. Currently learning real software dev.",
   metadataBase: new URL("https://www.shresthjindal.com"),
@@ -24,7 +27,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/og-image.png", // 1200x630 recommended
+        url: "/og-image.png",
         width: 1200,
         height: 630,
         alt: "Shresth Jindal – Full Stack Developer",
@@ -48,11 +51,16 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-    {/* ✅ Favicons for all platforms */}
-   
-    <link rel="icon" type="image/svg+xml" href="/icon0.svg" />
-    <link rel="apple-touch-icon" href="/apple-icon.png" />
-    <link rel="manifest" href="/manifest.json" />
+        {/* ✅ Web App Manifest */}
+        <link rel="manifest" href="/manifest.json" />
+        <meta name="apple-mobile-web-app-title" content="Portfolio" />
+
+        {/* ✅ Favicons */}
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="icon" type="image/svg+xml" href="/icon0.svg" />
+        <link rel="apple-touch-icon" href="/apple-icon.png" />
+        <link rel="mask-icon" href="/icon0.svg" color="#000000" />
+        <link rel="alternate icon" href="/logo.png" type="image/png" sizes="32x32" />
 
         {/* ✅ Google Analytics */}
         <Script
