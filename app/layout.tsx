@@ -15,12 +15,26 @@ export const metadata: Metadata = {
     apple: "/logo.png",
   },
   openGraph: {
-    images: ["/logo.png"],
-    title: "Shresth Jindal - Software Engineer",
+    title: "Shresth Jindal – Full Stack Developer",
     description:
-      "I am a software developer, skilled in building amazing websites. Currently learning real software dev.",
-    url: "https://your-domain.com", // Replace with your actual domain
+      "I build scalable web applications with modern tools and clean code.",
+    url: "https://www.shresthjindal.com",
     type: "website",
+    images: [
+      {
+        url: "/og-image.png",
+        width: 1200,
+        height: 630,
+        alt: "Shresth Jindal – Full Stack Developer",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Shresth Jindal – Full Stack Developer",
+    description:
+      "I build scalable web applications with modern tools and clean code.",
+    images: ["/og-image.png"],
   },
 };
 
