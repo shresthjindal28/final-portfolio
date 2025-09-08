@@ -5,14 +5,16 @@ import LenisProvider from "@/app/components/lenis-provider";
 import Script from "next/script";
 import "./globals.css";
 
+// ✅ Global SEO Metadata
 export const metadata: Metadata = {
   title: "Shresth Jindal - Software Engineer",
   description:
     "I am a software developer, skilled in building amazing websites. Currently learning real software dev.",
+  metadataBase: new URL("https://www.shresthjindal.com"),
   icons: {
-    icon: "/logo.png",
-    shortcut: "/logo.png",
-    apple: "/logo.png",
+    icon: "/favicon.ico",
+    shortcut: "/favicon.ico",
+    apple: "/apple-touch-icon.png",
   },
   openGraph: {
     title: "Shresth Jindal – Full Stack Developer",
@@ -22,7 +24,7 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/og-image.png",
+        url: "/og-image.png", // 1200x630 recommended
         width: 1200,
         height: 630,
         alt: "Shresth Jindal – Full Stack Developer",
@@ -46,7 +48,13 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <link rel="icon" href="/logo.png" />
+        {/* ✅ Favicons for all platforms */}
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="icon" type="image/svg+xml" href="/icon0.svg" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        <link rel="manifest" href="/site.webmanifest" />
+
+        {/* ✅ Google Analytics */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-F9E2071HFR"
           strategy="afterInteractive"
@@ -60,7 +68,7 @@ export default function RootLayout({
           `}
         </Script>
       </head>
-      <body className={`antialiased`}>
+      <body className="antialiased">
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
