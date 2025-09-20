@@ -45,14 +45,6 @@ const projects: Project[] = [
     githubUrl: "https://github.com/shresthjindal28/twitter-card-generator",
   },
   {
-    title: "Joeaf Fruit",
-    description:
-      "An e-commerce platform for fresh fruits with modern design and seamless shopping experience.",
-    image: "/joeaf-fruit.png",
-    liveUrl: "https://www.joeaffruits.com/",
-    githubUrl: "https://github.com/shresthjindal28/joeaf_fruits",
-  },
-  {
     title: "Dandoo",
     description:
       "A cool and minimal website for blogging, distraction free. Built using MERN stack with JWT authentication. Also has a cool landing page.",
