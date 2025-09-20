@@ -15,7 +15,7 @@ const experiences: ExperienceItem[] = [
 	{
 		company: 'Dolt Technologies',
 		position: 'Full Stack Web Engineer',
-		duration: 'Feb 2025 - Present',
+		duration: 'Feb 2025 - Sep 2025',
 		location: 'San Francisco, CA (Remote)',
 		description: 'Working as a full stack developer building scalable web applications and implementing modern development practices.',
 		achievements: [],
