@@ -49,8 +49,6 @@ const projects: Project[] = [
     description:
       "A comprehensive service platform connecting users with various digital solutions and services.",
     image: "/d0lt.png",
-    liveUrl: "https://d0lt.com/",
-    githubUrl: "https://github.com/shresthjindal28/Doit-mainwebsite",
   },
   {
     title: "Joeaf Fruit",
