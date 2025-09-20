@@ -45,12 +45,6 @@ const projects: Project[] = [
     githubUrl: "https://github.com/shresthjindal28/twitter-card-generator",
   },
   {
-    title: "D0LT",
-    description:
-      "A comprehensive service platform connecting users with various digital solutions and services.",
-    image: "/d0lt.png",
-  },
-  {
     title: "Joeaf Fruit",
     description:
       "An e-commerce platform for fresh fruits with modern design and seamless shopping experience.",
