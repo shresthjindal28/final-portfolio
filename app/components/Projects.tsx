@@ -13,6 +13,14 @@ interface Project {
 
 const projects: Project[] = [
   {
+    title: "Devmaan",
+    description:
+      "A full stack web application built during internship at Devmaan. Focused on developing both frontend and backend features with modern web technologies.",
+    image: "/devmaan.png",
+    liveUrl: "https://devmaan.in",
+    githubUrl: "/privatePage",
+  },
+  {
     title: "Chating Web",
     description:
       "A real-time chat application with Firebase integration, offering seamless communication experience.",
