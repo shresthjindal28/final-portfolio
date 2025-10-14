@@ -1,6 +1,7 @@
 
 'use client';
 import { useState, useEffect, useRef } from 'react';
+import Script from 'next/script';
 
 export default function About() {
 	const [isVisible, setIsVisible] = useState(false);
@@ -23,6 +24,10 @@ export default function About() {
 		return () => observer.disconnect();
 	}, []);
 
+	const copyLink = () => {
+		navigator.clipboard.writeText(window.location.href + '#about');
+	};
+
 	return (
 		<section id="about" ref={sectionRef} className="py-20 px-4 bg-black">
 			<div className="max-w-6xl mx-auto">
@@ -31,27 +36,23 @@ export default function About() {
 						isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
 					}`}
 				>
-					<div className="text-center mb-16">
+					<div className="text-center mb-8">
 						<h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">About Me</h2>
 						<div role="presentation" className="w-20 h-1 bg-emerald-400 mx-auto"></div>
 					</div>
 
+					
+
 					<div className="max-w-4xl mx-auto">
-						{/* About Content */}
+						{/* Intro */}
 						<div className="text-center">
 							<h3 className="text-3xl font-bold text-foreground mb-8">Passionate Developer & Problem Solver</h3>
 
 							<div className="space-y-6 text-muted-foreground leading-relaxed text-lg">
 								<p>
-									I am a developer from Bangalore, India. I love building cool stuff and enjoy
-									learning CS. I have a great sense of <span className="text-emerald-400">web designing</span> which you will notice as you go through my work. I have worked on <span className="text-emerald-400">freelance projects  and interned</span> at amazing places.
-									BTW I am open to work and freelance, just{' '}
-									<a
-										href="#contact"
-										className="text-emerald-400 hover:text-emerald-300 underline cursor-pointer transition-colors duration-300"
-									>
-										contact me
-									</a>.
+									I am a freelance web developer from Bangalore, India. I build fast, SEO‑friendly websites and scalable apps using <span className="text-emerald-400">React & Next.js</span>.
+									I have worked on <span className="text-emerald-400">freelance projects and internships</span> delivering performance, accessibility, and clean developer experience.
+									I am open to freelance and contract roles — just <a href="#contact" className="text-emerald-400 hover:text-emerald-300 underline">contact me</a>.
 								</p>
 							</div>
 
@@ -67,7 +68,7 @@ export default function About() {
 								</div>
 								<div className="bg-card rounded-xl p-6 border border-border">
 									<div className="text-3xl font-bold text-emerald-400 mb-2">5+</div>
-									<div className="text-muted-foreground">Technologies</div>
+									<div className="text-muted-foreground">Core Technologies</div>
 								</div>
 							</div>
 
@@ -95,6 +96,55 @@ export default function About() {
 						</div>
 					</div>
 				</div>
+
+				{/* Structured data: FAQPage */}
+				<Script id="faq-structured-data" type="application/ld+json" strategy="afterInteractive">
+					{JSON.stringify({
+						"@context": "https://schema.org",
+						"@type": "FAQPage",
+						"mainEntity": [
+							{
+								"@type": "Question",
+								"name": "How much does a freelance web developer cost in Bangalore?",
+								"acceptedAnswer": { "@type": "Answer", "text": "Pricing depends on scope. Typical projects range from ₹40k–₹2L+. I provide fixed quotes after a discovery call." }
+							},
+							{
+								"@type": "Question",
+								"name": "How long does it take to build a website?",
+								"acceptedAnswer": { "@type": "Answer", "text": "Most websites ship in 2–6 weeks. Timelines vary by features, content, and integrations." }
+							},
+							{
+								"@type": "Question",
+								"name": "Do you provide SEO and Core Web Vitals optimization?",
+								"acceptedAnswer": { "@type": "Answer", "text": "Yes — I implement metadata, structured data, internal links, and performance patterns to improve rankings and UX." }
+							},
+							{
+								"@type": "Question",
+								"name": "Can you work with existing designs or code?",
+								"acceptedAnswer": { "@type": "Answer", "text": "Absolutely. I can integrate with your current stack or rebuild components for speed and accessibility." }
+							}
+						]
+					})}
+				</Script>
+
+				{/* Structured data: HowTo */}
+				<Script id="howto-structured-data" type="application/ld+json" strategy="afterInteractive">
+					{JSON.stringify({
+						"@context": "https://schema.org",
+						"@type": "HowTo",
+						"name": "How to hire a freelance web developer",
+						"description": "Steps to hire a freelance web developer for a fast, SEO‑friendly website.",
+						"totalTime": "P2W",
+						"estimatedCost": { "@type": "MonetaryAmount", "currency": "INR", "value": "40000-200000" },
+						"step": [
+							{ "@type": "HowToStep", "name": "Contact", "text": "Share goals and requirements.", "url": "#contact" },
+							{ "@type": "HowToStep", "name": "Discovery Call", "text": "Scope, timeline, and budget.", "url": "#process" },
+							{ "@type": "HowToStep", "name": "Proposal", "text": "Fixed scope with milestones.", "url": "#process" },
+							{ "@type": "HowToStep", "name": "Build", "text": "Design/dev with performance checks.", "url": "#process" },
+							{ "@type": "HowToStep", "name": "Launch & Optimize", "text": "Deploy, measure, iterate.", "url": "#process" }
+						]
+					})}
+				</Script>
 			</div>
 		</section>
 	);

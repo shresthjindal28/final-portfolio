@@ -90,6 +90,12 @@ export default function Footer() {
 							>
 								Contact
 							</a>
+              <a
+                href="#contact"
+                className="block text-emerald-400 hover:text-emerald-300 transition-colors duration-200 text-sm"
+              >
+                Hire a Freelance Web Developer
+              </a>
 						</div>
 					</div>
 

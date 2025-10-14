@@ -1,5 +1,6 @@
 "use client";
 import { useState, useRef, useEffect } from "react";
+import Script from "next/script";
 
 export default function Contact() {
 	const [isVisible, setIsVisible] = useState(false);
@@ -137,7 +138,7 @@ export default function Contact() {
 													aria-label={item.title}
 												>
 													{item.info}
-												</a>
+													</a>
 											) : (
 												<p className="text-muted-foreground text-sm md:text-base">{item.info}</p>
 											)}
@@ -160,7 +161,7 @@ export default function Contact() {
 										viewBox="0 0 24 24"
 										fill="currentColor"
 										aria-hidden
-									>
+										>
 										<path d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.38 7.86 10.9.57.1.78-.25.78-.55 0-.27-.01-1-.02-1.96-3.2.7-3.88-1.55-3.88-1.55-.52-1.31-1.26-1.66-1.26-1.66-1.03-.7.08-.69.08-.69 1.14.08 1.74 1.17 1.74 1.17 1.01 1.74 2.65 1.24 3.3.95.1-.74.4-1.24.72-1.53-2.55-.29-5.23-1.28-5.23-5.7 0-1.26.45-2.29 1.17-3.09-.12-.29-.51-1.48.11-3.08 0 0 .97-.31 3.18 1.18.92-.26 1.9-.39 2.88-.39.98 0 1.96.13 2.88.39 2.2-1.49 3.17-1.18 3.17-1.18.63 1.6.24 2.79.12 3.08.73.8 1.17 1.83 1.17 3.09 0 4.43-2.69 5.4-5.25 5.68.41.35.77 1.05.77 2.12 0 1.53-.01 2.76-.01 3.14 0 .3.2.66.79.55A12.01 12.01 0 0023.5 12C23.5 5.73 18.27.5 12 .5z" />
 									</svg>
 								</a>
@@ -177,7 +178,7 @@ export default function Contact() {
 										viewBox="0 0 24 24"
 										fill="currentColor"
 										aria-hidden
-									>
+										>
 										<path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5 5v-14c0-2.76-2.24-5-5-5zm-11 19h-3v-10h3v10zm-1.5-11.3c-.966 0-1.75-.784-1.75-1.75s.784-1.75 1.75-1.75 1.75.784 1.75 1.75-.784 1.75-1.75 1.75zm13.5 11.3h-3v-5.5c0-1.38-.03-3.16-1.93-3.16-1.93 0-2.23 1.5-2.23 3.05v5.61h-3v-10h2.88v1.36h.04c.4-.75 1.37-1.54 2.82-1.54 3.02 0 3.58 1.99 3.58 4.58v5.6z" />
 									</svg>
 								</a>
@@ -194,7 +195,7 @@ export default function Contact() {
 										viewBox="0 0 24 24"
 										fill="currentColor"
 										aria-hidden
-									>
+										>
 										<path d="M23 3a10.9 10.9 0 01-3.14 1.53A4.48 4.48 0 0012.09 8v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z" />
 									</svg>
 								</a>
@@ -203,21 +204,54 @@ export default function Contact() {
 							{/* Additional CTA */}
 							<div className="mt-6 md:mt-8 p-4 md:p-6 bg-emerald-500/5 border border-emerald-400/20 rounded-xl mx-4 md:mx-0">
 								<h3 className="text-foreground font-semibold mb-2 text-center md:text-left">Ready to start a project?</h3>
-								<p className="text-muted-foreground text-sm mb-4 text-center md:text-left">I&apos;m always open to discussing new opportunities and interesting projects.</p>
-								<div className="text-center md:text-left">
+								<p className="text-muted-foreground text-sm mb-4 text-center md:text-left">Hire a freelance web developer in Bangalore — let&apos;s build a fast, SEO-friendly website or web app.</p>
+								<div className="text-center md:text-left space-x-6">
 									<a
 										href="mailto:shresthjindal28@gmail.com"
 										className="inline-flex items-center text-emerald-400 hover:text-emerald-300 font-medium text-sm"
-										aria-label="Send email to Shresth Jindal"
-									>
-										Send me an email ↗
-									</a>
+										aria-label="Hire a Freelance Web Developer in Bangalore"
+										>
+											Hire a Freelance Web Developer in Bangalore ↗
+										</a>
+									<a
+										href="#projects"
+										className="inline-flex items-center text-muted-foreground hover:text-emerald-300 font-medium text-sm"
+										aria-label="View recent projects"
+										>
+											See recent projects →
+										</a>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
+
+			{/* Structured Data: ContactPage */}
+			<Script id="contact-structured-data" type="application/ld+json" strategy="afterInteractive">
+				{JSON.stringify({
+					"@context": "https://schema.org",
+					"@type": "ContactPage",
+					"url": "https://www.shresthjindal.com/#contact",
+					"name": "Contact – Freelance Web Developer in Bangalore",
+					"description": "Hire a freelance web developer in Bangalore. Email, phone, and social profiles to start your project.",
+					"about": {
+						"@type": "Person",
+						"name": "Shresth Jindal",
+						"jobTitle": "Freelance Web Developer",
+						"address": { "@type": "PostalAddress", "addressLocality": "Bangalore", "addressCountry": "India" },
+						"email": "mailto:shresthjindal28@gmail.com",
+						"contactPoint": [
+							{ "@type": "ContactPoint", "contactType": "sales", "email": "mailto:shresthjindal28@gmail.com", "telephone": "+917461835970", "areaServed": "IN" }
+						],
+						"sameAs": [
+							"https://github.com/shresthjindal28",
+							"https://www.linkedin.com/in/shresth-jindal-b074ba28b/",
+							"https://x.com/shresth_ji76019"
+						]
+					}
+				})}
+			</Script>
 		</section>
 	);
 }

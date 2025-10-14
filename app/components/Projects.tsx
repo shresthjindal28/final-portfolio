@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { ExternalLink, Github } from "lucide-react";
+import Script from "next/script";
 
 interface Project {
   title: string;
@@ -90,8 +91,9 @@ export default function Projects() {
             <div className="aspect-[21/9] relative">
               <Image
                 src={project.image}
-                alt={project.title}
+                alt={`${project.title} – portfolio project by freelance web developer`}
                 fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
                 className="object-cover transition-transform duration-500 hover:scale-105"
               />
             </div>
@@ -128,6 +130,29 @@ export default function Projects() {
           </div>
         ))}
       </div>
+
+      {/* Structured data */}
+      <ProjectsStructuredData />
     </section>
+  );
+}
+
+// Structured Data: ItemList for projects
+export function ProjectsStructuredData() {
+  const itemList = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "itemListElement": projects.map((p, index) => ({
+      "@type": "ListItem",
+      "position": index + 1,
+      "url": p.liveUrl,
+      "name": p.title,
+      "description": p.description,
+    })),
+  };
+  return (
+    <Script id="projects-structured-data" type="application/ld+json" strategy="afterInteractive">
+      {JSON.stringify(itemList)}
+    </Script>
   );
 }

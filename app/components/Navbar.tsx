@@ -1,6 +1,5 @@
 "use client";
-import { useState } from "react";
-import { ModeToggle } from "./mode-toggle-button";
+import { useState, useEffect } from "react";
 
 const NAV_ITEMS = [
   { name: "About", id: "about" },
@@ -8,11 +7,25 @@ const NAV_ITEMS = [
   { name: "Experience", id: "experience" },
   { name: "Projects", id: "projects" },
   { name: "Certificates", id: "certificates" },
+  { name: "FAQ", id: "faq" },
   { name: "Contact", id: "contact" },
 ];
 
 export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
+
+  useEffect(() => {
+    const onScroll = () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const progress = docHeight > 0 ? Math.min(100, Math.max(0, (scrollTop / docHeight) * 100)) : 0;
+      setScrollProgress(progress);
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
@@ -23,13 +36,8 @@ export default function Navbar() {
   };
 
   return (
-    // This outer div handles the positioning.
-    // It's fixed to the top and uses flexbox to center the nav pill on desktop.
     <header className="fixed top-0 left-0 right-0 z-50 flex justify-center p-4">
-      {/* This is the main nav element.
-        - On mobile (default): It's full-width with rounded corners.
-        - On desktop (`md:`): It shrinks to fit its content and becomes a pill.
-      */}
+
       <nav className="w-full md:w-auto bg-transparent backdrop-blur-md border border-border/40 rounded-xl md:rounded-full shadow-xl">
         <div className="flex items-center justify-between h-16 px-6">
           {/* Logo */}
@@ -45,7 +53,6 @@ export default function Navbar() {
           </a>
 
           {/* Desktop Navigation */}
-          {/* Added ml-6 for spacing between logo and nav items */}
           <div className="hidden md:flex items-center space-x-8 ml-22">
             {NAV_ITEMS.map((item) => (
               <a
@@ -60,12 +67,10 @@ export default function Navbar() {
                 {item.name}
               </a>
             ))}
-            {/* <ModeToggle /> */}
           </div>
 
           {/* Mobile menu button */}
           <div className="md:hidden flex items-center space-x-2">
-            {/* <ModeToggle /> */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className="p-2 text-muted-foreground hover:text-foreground"
@@ -98,8 +103,7 @@ export default function Navbar() {
         </div>
 
         {/* Mobile Navigation */}
-        {/* On mobile, this will expand below the main nav items, inside the same container. */}
-        {isMobileMenuOpen && (
+{isMobileMenuOpen && (
           <div className="md:hidden px-6 pb-4 border-t border-border/20">
             <div className="flex flex-col space-y-3 pt-3">
               {NAV_ITEMS.map((item) => (

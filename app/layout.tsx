@@ -22,16 +22,21 @@ export const metadata: Metadata = {
     "web developer Bangalore",
     "hire web developer",
     "software engineer",
-    "portfolio"
+    "portfolio",
+    // Expanded semantic coverage
+    "web developer freelancer",
+    "freelance web developer Bangalore",
+    "hire freelance web developer",
+    "React freelancer Bangalore",
+    "Next.js freelancer Bangalore",
+    "web development services Bangalore",
+    "full-stack freelancer",
+    "contract web developer",
+    "independent web developer"
   ],
   metadataBase: new URL("https://www.shresthjindal.com"),
   alternates: {
     canonical: "https://www.shresthjindal.com",
-  },
-  icons: {
-    icon: "/favicon.ico",
-    shortcut: "/favicon.ico",
-    apple: "/apple-touch-icon.png",
   },
   openGraph: {
     title: "Freelance Web Developer in Bangalore – Shresth Jindal",
@@ -110,6 +115,35 @@ export default function RootLayout({
             }
           })}
         </Script>
+        {/* ProfessionalService Structured Data to reinforce service intent */}
+        <Script id="service-structured-data" type="application/ld+json" strategy="afterInteractive">
+          {JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "ProfessionalService",
+            "name": "Freelance Web Developer",
+            "provider": {
+              "@type": "Person",
+              "name": "Shresth Jindal"
+            },
+            "areaServed": {
+              "@type": "AdministrativeArea",
+              "name": "Bangalore, India"
+            },
+            "serviceType": "Web Development, React/Next.js, SEO Optimization",
+            "url": "https://www.shresthjindal.com",
+            "sameAs": [
+              "https://github.com/shresthjindal28",
+              "https://www.linkedin.com/in/shresth-jindal-b074ba28b/",
+              "https://x.com/shresth_ji76019"
+            ],
+            "offers": {
+              "@type": "Offer",
+              "priceCurrency": "INR",
+              "price": "40000-200000",
+              "availability": "https://schema.org/InStock"
+            }
+          })}
+        </Script>
 
         {/* ✅ Google Analytics */}
         <Script
@@ -119,7 +153,7 @@ export default function RootLayout({
         <Script id="google-analytics" strategy="afterInteractive">
           {`
             window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
+            function gtag(){dataLayer.push(arguments);} 
             gtag('js', new Date());
             gtag('config', 'G-F9E2071HFR');
           `}

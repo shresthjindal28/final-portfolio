@@ -42,23 +42,23 @@ export default function Hero() {
         </div>
 
         <p className="text-base sm:text-lg text-muted-foreground mb-8 leading-relaxed max-w-xl mx-auto">
-          I help startups and businesses build fast, SEO-friendly websites and scalable web apps.
+          I help startups and businesses build fast, SEO-friendly websites and scalable web apps as a web developer freelancer specializing in React and Next.js.
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
           <button
             onClick={() => scrollTo("projects")}
             className="px-6 py-3 bg-emerald-100 text-emerald-700 font-medium rounded-full border border-emerald-200 hover:bg-emerald-200 transition-colors"
-            aria-label="View my projects"
+            aria-label="View projects by freelance web developer"
           >
-            View Work
+            View Projects
           </button>
           <button
             onClick={() => scrollTo("contact")}
             className="px-6 py-3 bg-transparent backdrop-blur-2xl text-emerald-700 font-medium rounded-full border border-emerald-200 hover:bg-emerald-100 transition-colors"
-            aria-label="Get in touch"
+            aria-label="Hire a freelance web developer in Bangalore"
           >
-            Contact
+            Hire a Freelance Web Developer
           </button>
         </div>
 
