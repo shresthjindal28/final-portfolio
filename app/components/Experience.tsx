@@ -53,7 +53,17 @@ const experiences: ExperienceItem[] = [
     "Designed and developed full-stack solutions with a focus on integrating Agentic AI features to automate complex workflows and enhance user interaction.",
   achievements: [],
   technologies: ["Next.js", "TypeScript", "Node.js", "TailwindCSS", "Agentic AI"]
-}
+},
+  {
+    company: "Tailum",
+    position: "Full Stack Developer",
+    duration: "2025",
+    location: "Remote",
+    description:
+      "Built a modern website for an organic oil company using Next.js, Tailwind CSS, and GSAP. Implemented SEO optimization and performance improvements.",
+    achievements: [],
+    technologies: ["Next.js", "TailwindCSS", "GSAP", "SEO"],
+  }
 ];
 
 // Experience component

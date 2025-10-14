@@ -6,6 +6,7 @@ const About = dynamic(() => import('./About'), { ssr: false });
 const Skills = dynamic(() => import('./Skills'), { ssr: false });
 const Experience = dynamic(() => import('./Experience'), { ssr: false });
 const Projects = dynamic(() => import('./Projects'), { ssr: false });
+const Certificates = dynamic(() => import('./Certificates'), { ssr: false });
 const Contact = dynamic(() => import('./Contact'), { ssr: false });
 const Footer = dynamic(() => import('./Footer'), { ssr: false });
 
@@ -16,6 +17,7 @@ export default function ClientOnlySections() {
       <Skills />
       <Experience />
       <Projects />
+      <Certificates />
       <Contact />
       <Footer />
     </>

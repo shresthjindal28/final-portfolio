@@ -60,6 +60,14 @@ const projects: Project[] = [
     liveUrl: "https://dandooo.netlify.app/",
     githubUrl: "https://github.com/shaikhFaris",
   },
+  {
+    title: "Tailum",
+    description:
+      "Organic oil company website built as a full-stack project using Next.js, Tailwind CSS, and GSAP. Implemented on-page SEO optimization to improve visibility.",
+    image: "/tailum.png",
+    liveUrl: "/privatePage",
+    githubUrl: "/privatePage",
+  },
 ];
 
 export default function Projects() {
