@@ -34,16 +34,15 @@ export default function Hero() {
             Hello, I&apos;m
           </p>
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight">
-            Shresth Jindal
+            Freelance Web Developer in Bangalore
           </h1>
           <h2 className="text-lg sm:text-xl lg:text-2xl text-muted-foreground font-light">
-            Full Stack Developer
+            Full Stack Developer – React, Next.js, TypeScript
           </h2>
         </div>
 
         <p className="text-base sm:text-lg text-muted-foreground mb-8 leading-relaxed max-w-xl mx-auto">
-          Building scalable web applications with modern technologies and clean
-          code.
+          I help startups and businesses build fast, SEO-friendly websites and scalable web apps.
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">

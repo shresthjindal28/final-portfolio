@@ -129,7 +129,7 @@ const LightRays: React.FC<LightRaysProps> = ({
   }, []);
 
   useEffect(() => {
-    if (!isVisible || !containerRef.current) return;
+    if (!containerRef.current) return;
 
     if (cleanupFunctionRef.current) {
       cleanupFunctionRef.current();
@@ -375,7 +375,7 @@ void main() {
       }
     };
   }, [
-    isVisible,
+    // removed isVisible to ensure Aurora initializes on mount (including mobile)
     raysOrigin,
     raysColor,
     raysSpeed,

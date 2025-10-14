@@ -79,6 +79,12 @@ export default function Footer() {
 								Projects
 							</a>
 							<a
+								href="#certificates"
+								className="block text-muted-foreground hover:text-foreground transition-colors duration-200 text-sm"
+							>
+								Certificates
+							</a>
+							<a
 								href="#contact"
 								className="block text-muted-foreground hover:text-foreground transition-colors duration-200 text-sm"
 							>
