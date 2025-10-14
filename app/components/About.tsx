@@ -24,7 +24,7 @@ export default function About() {
 	}, []);
 
 	return (
-		<section id="about" ref={sectionRef} className="py-20 px-4 bg-background">
+		<section id="about" ref={sectionRef} className="py-20 px-4 bg-black">
 			<div className="max-w-6xl mx-auto">
 				<div
 					className={`transition-all duration-1000 ${

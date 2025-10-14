@@ -23,9 +23,15 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-sm border-b border-border/20">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6">
-        <div className="flex items-center justify-between h-16">
+    // This outer div handles the positioning.
+    // It's fixed to the top and uses flexbox to center the nav pill on desktop.
+    <header className="fixed top-0 left-0 right-0 z-50 flex justify-center p-4">
+      {/* This is the main nav element.
+        - On mobile (default): It's full-width with rounded corners.
+        - On desktop (`md:`): It shrinks to fit its content and becomes a pill.
+      */}
+      <nav className="w-full md:w-auto bg-transparent backdrop-blur-md border border-border/40 rounded-xl md:rounded-full shadow-xl">
+        <div className="flex items-center justify-between h-16 px-6">
           {/* Logo */}
           <a
             href="#hero"
@@ -33,13 +39,14 @@ export default function Navbar() {
               e.preventDefault();
               scrollToSection("hero");
             }}
-            className="text-xl font-semibold"
+            className="text-xl font-semibold whitespace-nowrap"
           >
             <span className="text-emerald-500">Shresth</span>Jindal
           </a>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
+          {/* Added ml-6 for spacing between logo and nav items */}
+          <div className="hidden md:flex items-center space-x-8 ml-22">
             {NAV_ITEMS.map((item) => (
               <a
                 key={item.name}
@@ -53,12 +60,12 @@ export default function Navbar() {
                 {item.name}
               </a>
             ))}
-            <ModeToggle />
+            {/* <ModeToggle /> */}
           </div>
 
           {/* Mobile menu button */}
           <div className="md:hidden flex items-center space-x-2">
-            <ModeToggle />
+            {/* <ModeToggle /> */}
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className="p-2 text-muted-foreground hover:text-foreground"
@@ -91,9 +98,10 @@ export default function Navbar() {
         </div>
 
         {/* Mobile Navigation */}
+        {/* On mobile, this will expand below the main nav items, inside the same container. */}
         {isMobileMenuOpen && (
-          <div className="md:hidden py-4 border-t border-border/20">
-            <div className="flex flex-col space-y-3">
+          <div className="md:hidden px-6 pb-4 border-t border-border/20">
+            <div className="flex flex-col space-y-3 pt-3">
               {NAV_ITEMS.map((item) => (
                 <a
                   key={item.name}
@@ -110,7 +118,7 @@ export default function Navbar() {
             </div>
           </div>
         )}
-      </div>
-    </nav>
+      </nav>
+    </header>
   );
 }
