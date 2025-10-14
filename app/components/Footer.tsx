@@ -38,9 +38,9 @@ export default function Footer() {
 	];
 
 	return (
-		<footer className="relative bg-black border-t border-border">
+		<footer className="relative bg-background border-t border-border">
 			{/* Decorative gradient overlay */}
-			<div className="absolute inset-0 bg-black pointer-events-none" />
+			<div className="absolute inset-0 bg-background pointer-events-none" />
 			
 			<div className="relative max-w-6xl mx-auto px-4 py-12">
 				{/* Main content */}
