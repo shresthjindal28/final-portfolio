@@ -35,9 +35,7 @@ export const metadata: Metadata = {
     "independent web developer"
   ],
   metadataBase: new URL("https://www.shresthjindal.com"),
-  alternates: {
-    canonical: "https://www.shresthjindal.com",
-  },
+  // Removed global canonical so each route can set its own canonical URL
   openGraph: {
     title: "Freelance Web Developer in Bangalore – Shresth Jindal",
     description:
