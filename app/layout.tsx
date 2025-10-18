@@ -119,6 +119,11 @@ export default function RootLayout({
             "@context": "https://schema.org",
             "@type": "ProfessionalService",
             "name": "Freelance Web Developer",
+            "address": {
+              "@type": "PostalAddress",
+              "addressLocality": "Bangalore",
+              "addressCountry": "India"
+            },
             "provider": {
               "@type": "Person",
               "name": "Shresth Jindal"
