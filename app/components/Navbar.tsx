@@ -10,6 +10,12 @@ const NAV_ITEMS = [
   { name: "Contact", id: "contact" },
 ];
 
+// Additional top-level site links (service pages, blog)
+const TOP_LEVEL_LINKS = [
+  { name: "Services", href: "/web-design-services" },
+  { name: "Blog", href: "/blog" },
+];
+
 export default function Navbar() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
@@ -52,7 +58,17 @@ export default function Navbar() {
           </a>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8 ml-22">
+          <div className="hidden md:flex items-center space-x-6 ml-22">
+            {TOP_LEVEL_LINKS.map((link) => (
+              <a
+                key={link.name}
+                href={link.href}
+                className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+              >
+                {link.name}
+              </a>
+            ))}
+            <div className="h-6 w-px bg-border/40" />
             {NAV_ITEMS.map((item) => (
               <a
                 key={item.name}
@@ -102,9 +118,19 @@ export default function Navbar() {
         </div>
 
         {/* Mobile Navigation */}
-{isMobileMenuOpen && (
+        {isMobileMenuOpen && (
           <div className="md:hidden px-6 pb-4 border-t border-border/20">
             <div className="flex flex-col space-y-3 pt-3">
+              {TOP_LEVEL_LINKS.map((link) => (
+                <a
+                  key={link.name}
+                  href={link.href}
+                  className="text-sm text-muted-foreground hover:text-foreground transition-colors px-2 py-1"
+                >
+                  {link.name}
+                </a>
+              ))}
+              <div className="h-px bg-border/20 my-2" />
               {NAV_ITEMS.map((item) => (
                 <a
                   key={item.name}
