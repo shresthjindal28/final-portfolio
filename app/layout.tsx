@@ -86,10 +86,15 @@ export default function RootLayout({
             "@type": "Person",
             "name": "Shresth Jindal",
             "jobTitle": "Freelance Web Developer",
+            "image": "https://www.shresthjindal.com/og-image.png",
+            "telephone": "+917461835970",
             "address": {
               "@type": "PostalAddress",
-              "addressLocality": "Bangalore",
-              "addressCountry": "India"
+              "streetAddress": "SHRIRAM CHIRPING WOODS, 1906, Eastwood Twp",
+              "addressLocality": "Bengaluru",
+              "addressRegion": "Karnataka",
+              "postalCode": "560102",
+              "addressCountry": "IN"
             },
             "url": "https://www.shresthjindal.com",
             "email": "mailto:shresthjindal28@gmail.com",
@@ -119,18 +124,25 @@ export default function RootLayout({
             "@context": "https://schema.org",
             "@type": "ProfessionalService",
             "name": "Freelance Web Developer",
+            "image": "https://www.shresthjindal.com/og-image.png",
+            "priceRange": "₹40,000–₹2,00,000",
             "address": {
               "@type": "PostalAddress",
-              "addressLocality": "Bangalore",
-              "addressCountry": "India"
+              "streetAddress": "SHRIRAM CHIRPING WOODS, 1906, Eastwood Twp",
+              "addressLocality": "Bengaluru",
+              "addressRegion": "Karnataka",
+              "postalCode": "560102",
+              "addressCountry": "IN"
             },
             "provider": {
               "@type": "Person",
-              "name": "Shresth Jindal"
+              "name": "Shresth Jindal",
+              "telephone": "+917461835970",
+              "image": "https://www.shresthjindal.com/og-image.png"
             },
             "areaServed": {
               "@type": "AdministrativeArea",
-              "name": "Bangalore, India"
+              "name": "Bengaluru, India"
             },
             "serviceType": "Web Development, React/Next.js, SEO Optimization",
             "url": "https://www.shresthjindal.com",
