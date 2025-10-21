@@ -111,7 +111,7 @@ export default function WebDesignServices() {
       <section id="overview" className="max-w-4xl mx-auto mt-16">
   <h2 className="text-2xl font-semibold">Overview — Who This Is For</h2>
         <p className="mt-3 text-muted-foreground">
-          This service is built for founders and small teams who need a professional, high-performance website without the overhead of a large agency. Whether youre launching a new brand, replatforming an existing site, or optimising for search and conversions, I deliver sites that are fast, accessible, and designed to convert.
+          This service is built for founders and small teams who need a professional, high-performance website without the overhead of a large agency. Whether you&apos;re launching a new brand, replatforming an existing site, or optimising for search and conversions, I deliver sites that are fast, accessible, and designed to convert.
         </p>
 
         <p className="mt-4 text-muted-foreground">

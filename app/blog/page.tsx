@@ -11,6 +11,19 @@ export const metadata: Metadata = {
 const POSTS = [
   { title: 'A Developer’s Guide to On-Page SEO for React Apps', slug: 'on-page-seo-for-react' },
   { title: 'Why Next.js Is Perfect for High-Performance Websites', slug: 'why-nextjs' },
+  { title: 'Building AI Agents with LangGraph: A Practical Guide', slug: 'building-ai-agents-with-langgraph' },
+  { title: 'Production Next.js Performance Optimization Playbook', slug: 'production-nextjs-performance-optimizations' },
+  { title: 'Case Study: Dandoo Marketplace Redesign', slug: 'case-study-dandoo-marketplace-redesign' },
+  { title: 'Case Study: Devmaan Education Platform', slug: 'case-study-devmaan-education-platform' },
+  { title: 'Case Study: Gradora B2B Website Revamp', slug: 'case-study-gradora-b2b-website' },
+  { title: 'Case Study: Tailum Landing Page Conversion Boost', slug: 'case-study-tailum-landing-page' },
+  { title: 'Accessible React UI: Practical Patterns and Tools', slug: 'building-accessible-react-ui' },
+  { title: 'Ship Fast on Vercel: Real-World Tips', slug: 'ship-fast-with-vercel' },
+  { title: 'Tailwind CSS in Production: Best Practices', slug: 'tailwindcss-in-production-best-practices' },
+  { title: 'Portfolio Architecture with Next.js App Router', slug: 'portfolio-architecture-nextjs-app-router' },
+  { title: 'Analytics + SEO for Next.js Sites', slug: 'analytics-and-seo-nextjs' },
+  { title: 'Automating Workflows with GitHub Actions', slug: 'automating-workflows-with-github-actions' },
+  { title: 'Creating a Modern Contact Form in Next.js', slug: 'creating-a-modern-contact-form-nextjs' },
 ];
 
 export default function BlogIndex() {

@@ -11,6 +11,24 @@ export default function LenisProvider({ children }: LenisProviderProps) {
   const lenisRef = useRef<Lenis | null>(null);
 
   useEffect(() => {
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    if (prefersReducedMotion) {
+      // Skip initializing Lenis for users who prefer reduced motion
+      const handleScrollTo = (event: CustomEvent) => {
+        const target = event.detail.target as string;
+        const element = document.querySelector(target) as HTMLElement | null;
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      };
+
+      window.addEventListener('scrollTo', handleScrollTo as EventListener);
+      return () => {
+        window.removeEventListener('scrollTo', handleScrollTo as EventListener);
+      };
+    }
+
     // Initialize Lenis
     const lenis = new Lenis({
       duration: 1.2,
@@ -29,12 +47,16 @@ export default function LenisProvider({ children }: LenisProviderProps) {
 
     // Add global scroll-to functionality
     const scrollToElement = (target: string) => {
-      const element = document.querySelector(target) as HTMLElement;
+      const element = document.querySelector(target) as HTMLElement | null;
       if (element) {
-        lenis.scrollTo(element, {
-          offset: -80, // Account for fixed header
-          duration: 1.5,
-        });
+        if (lenisRef.current) {
+          lenisRef.current.scrollTo(element, {
+            offset: -80, // Account for fixed header
+            duration: 1.5,
+          });
+        } else {
+          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
       }
     };
 

@@ -1,7 +1,9 @@
 "use client";
 
 import { Github, Linkedin, Twitter } from "lucide-react";
-import Aurora from "./Aurora";
+import dynamic from "next/dynamic";
+
+const Aurora = dynamic(() => import("./Aurora"), { ssr: false, loading: () => null });
 
 const scrollTo = (id: string) => {
   const element = document.getElementById(id);
