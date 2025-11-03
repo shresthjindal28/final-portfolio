@@ -187,11 +187,11 @@ export default function WebDesignServices() {
         <section id="case-studies" className="max-w-4xl mx-auto mt-12">
           <h2 className="text-2xl font-semibold">Selected Case Studies</h2>
           <p className="mt-3 text-muted-foreground">
-            See how these projects improved engagement and conversions. <Link href="/#projects" className="text-emerald-500">View projects</Link> or read detailed case studies in the blog. Each case study includes the original brief, the approach taken, and measurable results such as traffic, conversion uplift, or speed improvements.
+            See how these projects improved engagement and conversions. <Link href="/#projects" className="text-emerald-500">View projects</Link>. Each case study includes the original brief, the approach taken, and measurable results such as traffic, conversion uplift, or speed improvements.
           </p>
           <ul className="mt-4 list-disc ml-6 text-muted-foreground">
             <li>
-              <strong>Tailum:</strong> Dashboard redesign that reduced user task time by 32% — <Link href="/blog/on-page-seo-for-react" className="text-emerald-500">case study</Link>. The project focused on simplifying the primary workflow, reducing clicks, and surfacing important metrics earlier in the flow.
+              <strong>Tailum:</strong> Dashboard redesign that reduced user task time by 32%. The project focused on simplifying the primary workflow, reducing clicks, and surfacing important metrics earlier in the flow.
             </li>
             <li>
               <strong>DevMaan:</strong> Landing page & conversion funnel for a SaaS MVP — improved signup rate through clearer pricing, trust signals, and faster load times.

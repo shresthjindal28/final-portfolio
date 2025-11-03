@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns:video="http://www.google.com/schemas/sitemap-video/1.1">
-<url><loc>https://www.shresthjindal.com/contact</loc><lastmod>2025-10-18T04:00:35.021Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://www.shresthjindal.com/blog</loc><lastmod>2025-10-18T04:00:35.022Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://www.shresthjindal.com/nextjs-development</loc><lastmod>2025-10-18T04:00:35.022Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://www.shresthjindal.com/website-redesign</loc><lastmod>2025-10-18T04:00:35.022Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://www.shresthjindal.com</loc><lastmod>2025-10-18T04:00:35.022Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://www.shresthjindal.com/web-design-services</loc><lastmod>2025-10-18T04:00:35.022Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
-<url><loc>https://www.shresthjindal.com/ai-agent-development</loc><lastmod>2025-10-18T04:00:35.022Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://www.shresthjindal.com/ai-agent-development</loc><lastmod>2025-11-03T13:57:14.969Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://www.shresthjindal.com/nextjs-development</loc><lastmod>2025-11-03T13:57:14.971Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://www.shresthjindal.com</loc><lastmod>2025-11-03T13:57:14.971Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://www.shresthjindal.com/projects</loc><lastmod>2025-11-03T13:57:14.971Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://www.shresthjindal.com/web-design-services</loc><lastmod>2025-11-03T13:57:14.971Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://www.shresthjindal.com/contact</loc><lastmod>2025-11-03T13:57:14.971Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://www.shresthjindal.com/project</loc><lastmod>2025-11-03T13:57:14.971Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
+<url><loc>https://www.shresthjindal.com/website-redesign</loc><lastmod>2025-11-03T13:57:14.971Z</lastmod><changefreq>daily</changefreq><priority>0.7</priority></url>
 </urlset>

@@ -26,12 +26,24 @@ export default function Certificates() {
       href: "/CertificateOfCompletion_Practical GitHub Actions.pdf",
     },
     {
-      title: "Coursera Certificate 2ZF29SHBZJ6A",
+      title: "Introduction to Front-End Development",
       href: "/Coursera 2ZF29SHBZJ6A.pdf",
     },
     {
-      title: "Coursera Certificate CSWUFXV7QGA9",
+      title: "Prompt Engineering Generative AI for Marketing & Advertising",
       href: "/Coursera CSWUFXV7QGA9.pdf",
+    },
+    {
+      title: "Jira: Basic Administration",
+      href: "/CertificateOfCompletion_Jira: Basic Administration.pdf",
+    },
+    {
+      title: "Learning Jira Software",
+      href: "/CertificateOfCompletion_Learning Jira Software.pdf",
+    },
+    {
+      title: "Agile Project Management with Jira Cloud: 1 Projects, Boards, and Issues",
+      href: "/CertificateOfCompletion_Agile Project Management with Jira Cloud.pdf",
     },
   ];
 

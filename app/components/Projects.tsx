@@ -5,102 +5,133 @@ import { ExternalLink, Github } from "lucide-react";
 import Script from "next/script";
 import { useRef, useEffect } from "react";
 import type React from "react";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
-interface Project {
-  title: string;
-  description: string;
-  image: string;
-  liveUrl: string;
-  githubUrl: string;
-}
+// --- GSAP Imports ---
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-const projects: Project[] = [
-  {
-    title: "Devmaan",
-    description:
-      "A full stack web application built during internship at Devmaan. Focused on developing both frontend and backend features with modern web technologies.",
-    image: "/devmaan.png",
-    liveUrl: "https://devmaan.in",
-    githubUrl: "/privatePage",
-  },
-  {
-    title: "Chating Web",
-    description:
-      "A real-time chat application with Firebase integration, offering seamless communication experience.",
-    image: "/chat.png",
-    liveUrl: "https://chat-app-0809.netlify.app/",
-    githubUrl: "https://github.com/shresthjindal28/Chat-app.git",
-  },
-  {
-    title: "Gradient Library",
-    description:
-      "A comprehensive UI library with beautiful gradient collections and modern design components.",
-    image: "/gradora.png",
-    liveUrl: "https://gradora.vercel.app/",
-    githubUrl: "https://github.com/shresthjindal28/gradient-library.git",
-  },
-  {
-    title: "Note App",
-    description:
-      "A powerful note-taking application with authentication and cloud storage capabilities.",
-    image: "/noteforge.png",
-    liveUrl: "https://note-app-jet-one.vercel.app/",
-    githubUrl: "https://github.com/shresthjindal28/Note-app",
-  },
-  {
-    title: "Twitter Status Card",
-    description:
-      "Generate beautiful Twitter status cards with custom styling and real-time preview.",
-    image: "/twitter-card.png",
-    liveUrl: "https://twitter-card.shresthjindal.com",
-    githubUrl: "https://github.com/shresthjindal28/twitter-card-generator",
-  },
-  {
-    title: "Dandoo",
-    description:
-      "A cool and minimal website for blogging, distraction free. Built using MERN stack with JWT authentication. Also has a cool landing page.",
-    image: "/dandoo.png",
-    liveUrl: "https://dandooo.netlify.app/",
-    githubUrl: "https://github.com/shaikhFaris",
-  },
-  {
-    title: "Tailum",
-    description:
-      "Organic oil company website built as a full-stack project using Next.js, Tailwind CSS, and GSAP. Implemented on-page SEO optimization to improve visibility.",
-    image: "/tailum.png",
-    liveUrl: "https://www.thetailum.com/",
-    githubUrl: "/privatePage",
-  },
-];
+import type { Project } from "../../lib/projects-data";
+import { projects } from "../../lib/projects-data";
+
+// Register the ScrollTrigger plugin
+gsap.registerPlugin(ScrollTrigger);
 
 export default function Projects() {
+  // --- Refs for GSAP ---
+  // Ref for the main section container (the "trigger" and "pin")
+  const sectionRef = useRef<HTMLElement | null>(null);
+  // Ref for the horizontally scrolling track
+  const trackRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    const section = sectionRef.current;
+    const track = trackRef.current;
+
+    // Ensure elements are mounted
+    if (!section || !track) return;
+
+    // --- GSAP ScrollTrigger Animation ---
+    // This animation will move the `track` horizontally
+    // as the user scrolls vertically.
+
+    // Calculate the total distance the track needs to move
+    // This is the track's total width minus the width of the viewport
+    const trackScrollWidth = () => track.scrollWidth - section.clientWidth;
+
+    // Create the GSAP tween and ScrollTrigger
+    const tween = gsap.to(track, {
+      // Animate the 'x' property to move the track horizontally
+      // We use a function-based value to ensure it's re-calculated on resize
+      x: () => `-${trackScrollWidth()}px`,
+      ease: "none", // No easing for a 1:1 scroll-linked animation
+      scrollTrigger: {
+        trigger: section, // The element that triggers the animation
+        pin: true, // Pin the `section` element while the animation is active
+        scrub: 1, // Smoothly link animation progress to scroll (1-second "catch-up")
+        start: "top top", // Start when the top of the section hits the top of the viewport
+        end: () => `+=${trackScrollWidth()}`, // End after scrolling the calculated distance
+        // markers: true, // Uncomment for debugging
+      },
+    });
+
+    // --- Cleanup ---
+    return () => {
+      tween.kill(); // Kill the tween
+      // Kill any ScrollTriggers associated with this section
+      ScrollTrigger.getAll().forEach((st) => {
+        if (st.trigger === section) {
+          st.kill();
+        }
+      });
+    };
+  }, []); // Run this effect only once on mount
+
   return (
-    <section id="projects" className="py-10 px-6">
-      <div className="text-center mb-16">
-        <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
-          My Projects
-        </h2>
-        <div className="w-20 h-1 bg-emerald-400 mx-auto mb-4"></div>
+    // The `sectionRef` is our main trigger and will be pinned.
+    // `overflow-hidden` is crucial to hide the cards outside the viewport.
+    <section
+      id="projects"
+      ref={sectionRef}
+      className="py-10 px-0 relative overflow-hidden"
+    >
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
+        <div className="text-center mb-16">
+          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
+            My Projects
+          </h2>
+          <div className="w-20 h-1 bg-emerald-400 mx-auto mb-4"></div>
+        </div>
       </div>
 
-      <div className="grid sm:grid-cols-2 lg:grid-cols-2 gap-10 max-w-6xl mx-auto px-4 sm:px-6">
-        {projects.map((project) => (
-          <InteractiveProjectCard key={project.title} project={project} />
+      {/* This 'track' div is wider than the screen and holds the cards.
+        GSAP will animate its 'x' transform.
+        `w-max-content` tells it to be as wide as its children.
+      */}
+      <div
+        ref={trackRef}
+        className="flex gap-8 items-center h-auto px-4 sm:px-6"
+        style={{ width: "max-content" }}
+      >
+        {projects.slice(0, 6).map((project: Project) => (
+          // This wrapper div defines the size of each card in the horizontal track
+          // `shrink-0` is essential to prevent flex items from shrinking
+          <div
+            key={project.title}
+            className="w-[80vw] sm:w-[45vw] lg:w-[480px] shrink-0"
+          >
+            <InteractiveProjectCard project={project} />
+          </div>
         ))}
       </div>
 
-      {/* Structured data */}
+      {/* This content is outside the pinning/scrolling "track"
+        so it will appear normally after the horizontal scroll is finished.
+        We add `position: relative` and `z-index: 10` to ensure it
+        appears *after* the pinned section (which is also `relative`).
+      */}
+      <div className="mt-16 flex justify-center relative z-10">
+        <Button asChild>
+          <Link href="/project" aria-label="See all projects">
+            See more
+          </Link>
+        </Button>
+      </div>
+
+      {/* Structured data (no changes) */}
       <ProjectsStructuredData />
     </section>
   );
 }
 
 // Structured Data: ItemList for projects
+// (This component is unchanged)
 export function ProjectsStructuredData() {
   const itemList = {
     "@context": "https://schema.org",
     "@type": "ItemList",
-    "itemListElement": projects.map((p, index) => ({
+    "itemListElement": projects.slice(0, 4).map((p: Project, index: number) => ({
       "@type": "ListItem",
       "position": index + 1,
       "url": p.liveUrl,
@@ -109,12 +140,18 @@ export function ProjectsStructuredData() {
     })),
   };
   return (
-    <Script id="projects-structured-data" type="application/ld+json" strategy="afterInteractive">
+    <Script
+      id="projects-structured-data"
+      type="application/ld+json"
+      strategy="afterInteractive"
+    >
       {JSON.stringify(itemList)}
     </Script>
   );
 }
 
+// InteractiveProjectCard
+// (This component is unchanged)
 function InteractiveProjectCard({ project }: { project: Project }) {
   const cardRef = useRef<HTMLDivElement | null>(null);
   const rafRef = useRef<number | null>(null);
@@ -134,7 +171,8 @@ function InteractiveProjectCard({ project }: { project: Project }) {
     el.style.setProperty("--mx", `${x}px`);
     el.style.setProperty("--my", `${y}px`);
 
-    el.style.transform = "perspective(900px) rotateX(var(--rx)) rotateY(var(--ry))";
+    el.style.transform =
+      "perspective(900px) rotateX(var(--rx)) rotateY(var(--ry))";
   };
 
   const handlePointerMove: React.PointerEventHandler<HTMLDivElement> = (e) => {
@@ -164,7 +202,8 @@ function InteractiveProjectCard({ project }: { project: Project }) {
     };
   }, []);
 
-  const styleVars: React.CSSProperties & Record<"--rx" | "--ry" | "--mx" | "--my", string> = {
+  const styleVars: React.CSSProperties &
+    Record<"--rx" | "--ry" | "--mx" | "--my", string> = {
     transform: "perspective(900px) rotateX(0deg) rotateY(0deg)",
     "--rx": "0deg",
     "--ry": "0deg",
@@ -191,7 +230,10 @@ function InteractiveProjectCard({ project }: { project: Project }) {
       />
 
       {/* Project image (raised for 3D parallax) */}
-      <div className="aspect-[21/9] relative" style={{ transform: "translateZ(30px)" }}>
+      <div
+        className="aspect-[21/9] relative"
+        style={{ transform: "translateZ(30px)" }}
+      >
         <Image
           src={project.image}
           alt={`${project.title} – portfolio project by freelance web developer`}

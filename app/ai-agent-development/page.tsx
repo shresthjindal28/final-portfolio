@@ -38,7 +38,7 @@ export default function AIAgentDevelopment() {
 
         <div className="mt-6">
           <a href="/contact" className="btn-primary">Book a Discovery Call</a>
-          <Link href="/blog" className="ml-4 text-emerald-500">Read AI case studies</Link>
+          <Link href="/#projects" className="ml-4 text-emerald-500">View AI-related projects</Link>
         </div>
       </section>
     </main>

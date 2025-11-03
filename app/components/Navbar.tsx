@@ -10,10 +10,9 @@ const NAV_ITEMS = [
   { name: "Contact", id: "contact" },
 ];
 
-// Additional top-level site links (service pages, blog)
+// Additional top-level site links (service pages)
 const TOP_LEVEL_LINKS = [
   { name: "Services", href: "/web-design-services" },
-  { name: "Blog", href: "/blog" },
 ];
 
 export default function Navbar() {
