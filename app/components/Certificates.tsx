@@ -35,7 +35,7 @@ export default function Certificates() {
     },
     {
       title: "Jira: Basic Administration",
-      href: "/CertificateOfCompletion_Jira: Basic Administration.pdf",
+      href: "/CertificateOfCompletion_Jira Basic Administration.pdf",
     },
     {
       title: "Learning Jira Software",
@@ -43,7 +43,7 @@ export default function Certificates() {
     },
     {
       title: "Agile Project Management with Jira Cloud: 1 Projects, Boards, and Issues",
-      href: "/CertificateOfCompletion_Agile Project Management with Jira Cloud.pdf",
+      href: "/agile",
     },
   ];
 
