@@ -1,6 +1,7 @@
 "use client";
 import { useState, useRef, useEffect } from "react";
 import Script from "next/script";
+import { Mail, Sparkles } from "lucide-react";
 
 export default function Contact() {
 	const [isVisible, setIsVisible] = useState(false);
@@ -106,10 +107,16 @@ export default function Contact() {
 						isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
 					}`}
 				>
-					<div className="text-center mb-12 md:mb-16">
-						<h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-foreground mb-4">Contact Information</h2>
-						<div role="presentation" className="w-20 h-1 bg-emerald-400 mx-auto mb-4"></div>
-						<p className="text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto px-4">Let&apos;s connect! You can reach me through any of the following channels.</p>
+					<div className="text-center mb-24">
+						<div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-400/5 border border-emerald-400/20 text-emerald-400 text-[10px] font-black tracking-[0.3em] uppercase mb-8">
+							<Mail className="w-4 h-4" />
+							Get In Touch
+						</div>
+						<h2 className="text-6xl md:text-8xl font-black text-white mb-8 tracking-tighter italic leading-none">
+							LET&apos;S<br/>
+							<span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-emerald-100 px-2">CONNECT</span>
+						</h2>
+						<div className="w-24 h-1 bg-emerald-400 mx-auto rounded-full mt-8"></div>
 					</div>
 
 					<div className="grid lg:grid-cols-1 gap-8 md:gap-12 max-w-4xl mx-auto px-4">

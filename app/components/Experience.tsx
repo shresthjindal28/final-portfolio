@@ -1,5 +1,6 @@
 "use client";
 import { useState, useRef, useEffect } from "react";
+import { Briefcase, Sparkles } from "lucide-react";
 
 // Interface for a single experience item
 interface ExperienceItem {
@@ -132,14 +133,16 @@ export default function Experience() {
           }`}
         >
           {/* Section Header */}
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
-              Where I&apos;ve Worked
+          <div className="text-center mb-24">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-400/5 border border-emerald-400/20 text-emerald-400 text-[10px] font-black tracking-[0.3em] uppercase mb-8">
+              <Briefcase className="w-4 h-4" />
+              Career Path
+            </div>
+            <h2 className="text-6xl md:text-8xl font-black text-white mb-8 tracking-tighter italic">
+              WORK<br/>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-emerald-100">HISTORY</span>
             </h2>
-            <div className="w-20 h-1 bg-emerald-400 mx-auto mb-4"></div>
-            <p className="text-lg text-muted-foreground">
-              My professional journey and roles.
-            </p>
+            <div className="w-24 h-1 bg-emerald-400 mx-auto rounded-full"></div>
           </div>
 
           <div className="flex flex-col md:flex-row gap-8 md:gap-12">

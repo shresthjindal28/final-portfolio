@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { ExternalLink, Github } from "lucide-react";
+import { ExternalLink, Github, FolderGit2, Sparkles } from "lucide-react";
 import Script from "next/script";
 import { useRef, useEffect } from "react";
 import type React from "react";
@@ -77,11 +77,23 @@ export default function Projects() {
       className="py-10 px-0 relative overflow-hidden"
     >
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
-        <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
-            My Projects
+        <div className="text-center mb-24">
+          <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-400/5 border border-emerald-400/20 text-emerald-400 text-[10px] font-black tracking-[0.3em] uppercase mb-8">
+            <FolderGit2 className="w-4 h-4" />
+            Portfolio
+          </div>
+          <h2 className="text-6xl md:text-8xl font-black text-white mb-8 tracking-tighter italic">
+            FEATURED<br/>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-emerald-100">PROJECTS</span>
           </h2>
-          <div className="w-20 h-1 bg-emerald-400 mx-auto mb-4"></div>
+          <div className="w-24 h-1 bg-emerald-400 mx-auto rounded-full"></div>
+        </div>
+        <div 
+          className="absolute inset-x-0 bottom-0 py-8 bg-gradient-to-b from-transparent to-background/80 flex justify-center backdrop-blur-sm z-20"
+        >
+          <p className="text-xs font-black text-emerald-400 tracking-[0.4em] uppercase animate-pulse">
+            Scroll Down to View Gallery
+          </p>
         </div>
       </div>
 
