@@ -111,82 +111,91 @@ export default function HackathonExperiences() {
     const pathGlow = pathGlowRef.current;
     const energyHead = energyHeadRef.current;
     
-    // Synchronized ScrollTrigger for everything
-    const trigger = {
-        trigger: timelineContainerRef.current,
-        start: "top center",
-        end: "bottom center",
-        scrub: 1,
-    };
+    // Create a GSAP context for easy cleanup
+    let ctx = gsap.context(() => {
+      ScrollTrigger.matchMedia({
+        // Desktop only: Timeline SVG animation
+        "(min-width: 768px)": function() {
+          const trigger = {
+            trigger: timelineContainerRef.current,
+            start: "top center",
+            end: "bottom center",
+            scrub: 1,
+          };
 
-    [path, pathGlow].forEach(p => {
-        if (!p) return;
-        const length = p.getTotalLength();
-        gsap.set(p, { strokeDasharray: length, strokeDashoffset: length });
-        gsap.to(p, { strokeDashoffset: 0, ease: "none", scrollTrigger: trigger });
-    });
+          [path, pathGlow].forEach(p => {
+            if (!p) return;
+            const length = p.getTotalLength();
+            gsap.set(p, { strokeDasharray: length, strokeDashoffset: length });
+            gsap.to(p, { strokeDashoffset: 0, ease: "none", scrollTrigger: trigger });
+          });
 
-    if (energyHead) {
-        gsap.to(energyHead, {
-            motionPath: {
+          if (energyHead) {
+            gsap.to(energyHead, {
+              motionPath: {
                 path: path,
                 align: path,
                 alignOrigin: [0.5, 0.5],
-            },
-            ease: "none",
-            scrollTrigger: trigger
-        });
-    }
-
-    // Item animations
-    hackathons.forEach((_, index) => {
-      const dot = dotRefs.current[index];
-      const card = cardRefs.current[index];
-      
-      if (dot) {
-        gsap.fromTo(dot, 
-          { scale: 0, opacity: 0 },
-          { 
-            scale: 1, opacity: 1, 
-            duration: 0.8,
-            ease: "back.out(2)",
-            scrollTrigger: {
-              trigger: dot,
-              start: "top 80%",
-              toggleActions: "play none none reverse"
-            }
+              },
+              ease: "none",
+              scrollTrigger: trigger
+            });
           }
-        );
-      }
-
-      if (card) {
-        const isEven = index % 2 === 0;
-        gsap.fromTo(card,
-          { 
-            x: isEven ? 60 : -60,
-            opacity: 0, 
-            rotateY: isEven ? -10 : 10,
-            filter: "blur(4px)"
-          },
-          { 
-            x: 0,
-            opacity: 1, 
-            rotateY: 0,
-            filter: "blur(0px)",
-            duration: 1,
-            ease: "power3.out",
-            scrollTrigger: {
-              trigger: card,
-              start: "top 85%",
-              toggleActions: "play none none reverse"
+        },
+        
+        // All screens: Item entrance animations
+        "all": function() {
+          hackathons.forEach((_, index) => {
+            const dot = dotRefs.current[index];
+            const card = cardRefs.current[index];
+            
+            if (dot) {
+              gsap.fromTo(dot, 
+                { scale: 0, opacity: 0 },
+                { 
+                  scale: 1, opacity: 1, 
+                  duration: 0.8,
+                  ease: "back.out(2)",
+                  scrollTrigger: {
+                    trigger: dot,
+                    start: "top 80%",
+                    toggleActions: "play none none reverse"
+                  }
+                }
+              );
             }
-          }
-        );
-      }
-    });
+
+            if (card) {
+              const isEven = index % 2 === 0;
+              gsap.fromTo(card,
+                { 
+                  x: isEven ? 60 : -60,
+                  opacity: 0, 
+                  rotateY: isEven ? -10 : 10,
+                  filter: "blur(4px)"
+                },
+                { 
+                  x: 0,
+                  opacity: 1, 
+                  rotateY: 0,
+                  filter: "blur(0px)",
+                  duration: 1,
+                  ease: "power3.out",
+                  scrollTrigger: {
+                    trigger: card,
+                    start: "top 85%",
+                    toggleActions: "play none none reverse"
+                  }
+                }
+              );
+            }
+          });
+        }
+      });
+    }, sectionRef);
 
     return () => {
-      ScrollTrigger.getAll().forEach(st => st.kill());
+      ctx.revert();
     };
   }, [isVisible, hackathons]);
 

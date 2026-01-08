@@ -36,35 +36,40 @@ export default function Projects() {
     // This animation will move the `track` horizontally
     // as the user scrolls vertically.
 
-    // Calculate the total distance the track needs to move
-    // This is the track's total width minus the width of the viewport
-    const trackScrollWidth = () => track.scrollWidth - section.clientWidth;
+    let ctx = gsap.context(() => {
+      ScrollTrigger.matchMedia({
+        // Desktop: Horizontal Scroll with Pinning
+        "(min-width: 768px)": function() {
+          // Calculate the total distance the track needs to move
+          // This is the track's total width minus the width of the viewport
+          const trackScrollWidth = () => track.scrollWidth - section.clientWidth;
 
-    // Create the GSAP tween and ScrollTrigger
-    const tween = gsap.to(track, {
-      // Animate the 'x' property to move the track horizontally
-      // We use a function-based value to ensure it's re-calculated on resize
-      x: () => `-${trackScrollWidth()}px`,
-      ease: "none", // No easing for a 1:1 scroll-linked animation
-      scrollTrigger: {
-        trigger: section, // The element that triggers the animation
-        pin: true, // Pin the `section` element while the animation is active
-        scrub: 1, // Smoothly link animation progress to scroll (1-second "catch-up")
-        start: "top top", // Start when the top of the section hits the top of the viewport
-        end: () => `+=${trackScrollWidth()}`, // End after scrolling the calculated distance
-        // markers: true, // Uncomment for debugging
-      },
-    });
+          // Create the GSAP tween and ScrollTrigger
+          gsap.to(track, {
+            // Animate the 'x' property to move the track horizontally
+            // We use a function-based value to ensure it's re-calculated on resize
+            x: () => `-${trackScrollWidth()}px`,
+            ease: "none", // No easing for a 1:1 scroll-linked animation
+            scrollTrigger: {
+              trigger: section, // The element that triggers the animation
+              pin: true, // Pin the `section` element while the animation is active
+              scrub: 1, // Smoothly link animation progress to scroll (1-second "catch-up")
+              start: "top top", // Start when the top of the section hits the top of the viewport
+              end: () => `+=${trackScrollWidth()}`, // End after scrolling the calculated distance
+              // markers: true, // Uncomment for debugging
+            },
+          });
+        },
+        // Mobile: No GSAP pinning, use native horizontal scroll
+        "(max-width: 767px)": function() {
+          // Kill any existing triggers if they exist (though matchMedia handles this)
+        }
+      });
+    }, sectionRef);
 
     // --- Cleanup ---
     return () => {
-      tween.kill(); // Kill the tween
-      // Kill any ScrollTriggers associated with this section
-      ScrollTrigger.getAll().forEach((st) => {
-        if (st.trigger === section) {
-          st.kill();
-        }
-      });
+      ctx.revert(); // Revert context which kills tweens and scrolltriggers
     };
   }, []); // Run this effect only once on mount
 
@@ -89,10 +94,13 @@ export default function Projects() {
           <div className="w-24 h-1 bg-emerald-400 mx-auto rounded-full"></div>
         </div>
         <div 
-          className="absolute inset-x-0 bottom-0 py-8 bg-gradient-to-b from-transparent to-background/80 flex justify-center backdrop-blur-sm z-20"
+          className="absolute inset-x-0 bottom-0 py-8 bg-gradient-to-b from-transparent to-background/80 flex justify-center backdrop-blur-sm z-20 pointer-events-none md:pointer-events-auto"
         >
-          <p className="text-xs font-black text-emerald-400 tracking-[0.4em] uppercase animate-pulse">
+          <p className="text-xs font-black text-emerald-400 tracking-[0.4em] uppercase animate-pulse hidden md:block">
             Scroll Down to View Gallery
+          </p>
+          <p className="text-xs font-black text-emerald-400 tracking-[0.4em] uppercase animate-pulse md:hidden">
+            Swipe to View Gallery
           </p>
         </div>
       </div>
@@ -101,21 +109,23 @@ export default function Projects() {
         GSAP will animate its 'x' transform.
         `w-max-content` tells it to be as wide as its children.
       */}
-      <div
-        ref={trackRef}
-        className="flex gap-8 items-center h-auto px-4 sm:px-6"
-        style={{ width: "max-content" }}
-      >
-        {projects.slice(0, 6).map((project: Project) => (
-          // This wrapper div defines the size of each card in the horizontal track
-          // `shrink-0` is essential to prevent flex items from shrinking
-          <div
-            key={project.title}
-            className="w-[80vw] sm:w-[45vw] lg:w-[480px] shrink-0"
-          >
-            <InteractiveProjectCard project={project} />
-          </div>
-        ))}
+      <div className="w-full overflow-x-auto md:overflow-visible no-scrollbar pb-8 md:pb-0">
+        <div
+          ref={trackRef}
+          className="flex gap-8 items-center h-auto px-4 sm:px-6"
+          style={{ width: "max-content" }}
+        >
+          {projects.slice(0, 6).map((project: Project) => (
+            // This wrapper div defines the size of each card in the horizontal track
+            // `shrink-0` is essential to prevent flex items from shrinking
+            <div
+              key={project.title}
+              className="w-[80vw] sm:w-[45vw] lg:w-[480px] shrink-0"
+            >
+              <InteractiveProjectCard project={project} />
+            </div>
+          ))}
+        </div>
       </div>
 
       {/* This content is outside the pinning/scrolling "track"
