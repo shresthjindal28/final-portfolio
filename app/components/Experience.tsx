@@ -38,7 +38,7 @@ const experiences: ExperienceItem[] = [
   {
     company: "Devmaan",
     position: "Full Stack Developer",
-    duration: "Sep 2025 - Current (Internship, 3 months)",
+    duration: "Sep 2025 - Nov 2025",
     location: "Remote",
     description:
       "Contributed to both frontend and backend development, building new features, integrating APIs, and ensuring seamless performance across the application stack.",
@@ -64,6 +64,16 @@ const experiences: ExperienceItem[] = [
       "Built a modern website for an organic oil company using Next.js, Tailwind CSS, and GSAP. Implemented SEO optimization and performance improvements.",
     achievements: [],
     technologies: ["Next.js", "TailwindCSS", "GSAP", "SEO"],
+  },
+    {
+    company: "LawVriksh",
+    position: "Frontend Developer",
+    duration: "Dec 2025 - current (6 months internship)",
+    location: "Remote",
+    description:
+      "LawVriksh is a microservices platform combining a gRPC Document Management System with GenAI that assesses risk, detects spam, scores authenticity, and generates notification templates. Shared protobuf contracts and Redis/S3/SQLAlchemy integrations power communication, storage, caching, and data processing.",
+    achievements: [],
+    technologies: ["Next.js", "GSAP", "React Query", "TypeScript", "Node.js", "TailwindCSS" ],
   }
 ];
 
