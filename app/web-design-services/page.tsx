@@ -1,8 +1,9 @@
 import type { Metadata } from 'next';
 import Script from 'next/script';
 import Link from 'next/link';
-import Aurora from '../components/Aurora';
 import { Button } from '../../components/ui/button';
+
+import BallpitBackground from './BallpitBackground';
 
 export const metadata: Metadata = {
   title: 'Web Design Services That Convert | Shresth Jindal',
@@ -80,8 +81,15 @@ export default function WebDesignServices() {
     <main aria-labelledby="web-design-hero" className="relative min-h-screen bg-background text-foreground p-8">
       {/* Decorative aurora/light rays background — pointer events none so it doesn't interfere with interactions */}
       <div aria-hidden className="pointer-events-none absolute inset-0 -z-10 overflow-hidden">
-        <div className="w-full h-full">
-          <Aurora raysOrigin="top-center" raysColor="#7dd3fc" raysSpeed={0.6} lightSpread={1.2} rayLength={1.8} pulsating fadeDistance={1.4} className="w-full h-full" />
+        <div style={{position: 'relative', overflow: 'hidden', minHeight: '500px', maxHeight: '500px', width: '100%'}}>
+          <BallpitBackground
+            count={200}
+            gravity={0.7}
+            friction={0.8}
+            wallBounce={0.95}
+            followCursor={true}
+            colors={[0x7dd3fc, 0x0ea5e9, 0x0284c7]}
+          />
         </div>
       </div>
 
