@@ -25,8 +25,6 @@ export default function Hero() {
           followCursor={true}
           colors={[0x10B981, 0x059669, 0x022c22]}
         />
-        {/* Mobile overlay to prevent touch interference and enable scrolling */}
-        <div className="absolute inset-0 z-[1] pointer-events-auto md:pointer-events-none" />
         {/* Subtle overlays to improve readability and depth */}
         <div className="absolute inset-0 bg-gradient-to-b from-background via-background/40 to-background/80 z-[2] pointer-events-none" />
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(0,0,0,0.5)_100%)] z-[3] pointer-events-none" />
