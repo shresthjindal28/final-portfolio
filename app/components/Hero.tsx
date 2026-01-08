@@ -16,7 +16,7 @@ export default function Hero() {
       id="hero"
       className="relative min-h-screen flex items-center justify-center px-4 py-20"
     >
-      <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden">
+      <div className="hidden md:block absolute inset-0 z-0 pointer-events-none overflow-hidden">
         <Ballpit
           count={80}
           gravity={0.4}
