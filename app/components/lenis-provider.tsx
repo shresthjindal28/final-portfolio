@@ -12,9 +12,10 @@ export default function LenisProvider({ children }: LenisProviderProps) {
 
   useEffect(() => {
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
 
-    if (prefersReducedMotion) {
-      // Skip initializing Lenis for users who prefer reduced motion
+    if (prefersReducedMotion || isTouchDevice) {
+      // Skip initializing Lenis for users who prefer reduced motion or on touch devices (mobile)
       const handleScrollTo = (event: CustomEvent) => {
         const target = event.detail.target as string;
         const element = document.querySelector(target) as HTMLElement | null;
@@ -29,7 +30,7 @@ export default function LenisProvider({ children }: LenisProviderProps) {
       };
     }
 
-    // Initialize Lenis
+    // Initialize Lenis (desktop only)
     const lenis = new Lenis({
       duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),

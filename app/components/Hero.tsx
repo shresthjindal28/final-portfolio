@@ -25,7 +25,7 @@ export default function Hero() {
           followCursor={true}
           colors={[0x10B981, 0x059669, 0x022c22]}
         />
-        </div>
+      </div>
 
       <div className="relative z-10 text-center max-w-4xl mx-auto">
         <div className="relative group">
