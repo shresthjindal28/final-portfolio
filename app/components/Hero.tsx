@@ -15,7 +15,9 @@ export default function Hero() {
     <section
       id="hero"
       className="relative min-h-screen flex items-center justify-center px-4 py-20"
+      style={{ touchAction: 'manipulation' }}
     >
+      {/* Desktop: Ballpit Background */}
       <div className="hidden md:block absolute inset-0 z-0 pointer-events-none overflow-hidden">
         <Ballpit
           count={80}
@@ -25,6 +27,15 @@ export default function Hero() {
           followCursor={true}
           colors={[0x10B981, 0x059669, 0x022c22]}
         />
+        {/* Subtle overlays to improve readability */}
+        <div className="absolute inset-0 bg-gradient-to-b from-background via-background/40 to-background/80 pointer-events-none" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(0,0,0,0.5)_100%)] pointer-events-none" />
+      </div>
+
+      {/* Mobile: Gradient Background */}
+      <div className="md:hidden absolute inset-0 z-0 pointer-events-none overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-emerald-950/20 via-background to-background" />
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(16,185,129,0.1)_0%,transparent_50%)]" />
       </div>
 
       <div className="relative z-10 text-center max-w-4xl mx-auto">
