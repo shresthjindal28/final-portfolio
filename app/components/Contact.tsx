@@ -99,36 +99,33 @@ export default function Contact() {
 		<section
 			id="contact"
 			ref={sectionRef}
-			className="py-12 md:py-20 px-4 "
+			className="py-24 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8"
 		>
-			<div className="max-w-6xl mx-auto">
+			<div className="w-full">
 				<div
-					className={`transition-all duration-1000 ${
-						isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-					}`}
+					className={`transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+						}`}
 				>
-					<div className="text-center mb-24">
-						<div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-400/5 border border-emerald-400/20 text-emerald-400 text-[10px] font-black tracking-[0.3em] uppercase mb-8">
+					<div className="flex flex-col items-start mb-20">
+						<div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-400/10 border border-emerald-400/20 text-emerald-400 text-xs font-semibold tracking-widest uppercase mb-6">
 							<Mail className="w-4 h-4" />
 							Get In Touch
 						</div>
-						<h2 className="text-6xl md:text-8xl font-black text-white mb-8 tracking-tighter italic leading-none">
-							LET&apos;S<br/>
-							<span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-emerald-100 px-2">CONNECT</span>
+						<h2 className="text-5xl md:text-7xl font-bold text-white tracking-tighter uppercase">
+							LET&apos;S <br className="md:hidden" />
+							<span className="text-zinc-600 italic">CONNECT.</span>
 						</h2>
-						<div className="w-24 h-1 bg-emerald-400 mx-auto rounded-full mt-8"></div>
 					</div>
 
-					<div className="grid lg:grid-cols-1 gap-8 md:gap-12 max-w-4xl mx-auto px-4">
+					<div className="grid lg:grid-cols-1 gap-8 md:gap-12 w-full">
 						{/* Contact Info */}
 						<div
-							className={`transition-all duration-700 ${
-								isVisible
-									? "opacity-100 translate-x-0"
-									: "opacity-0 -translate-x-10"
-							}`}
+							className={`transition-all duration-700 ${isVisible
+								? "opacity-100 translate-x-0"
+								: "opacity-0 -translate-x-10"
+								}`}
 						>
-							
+
 
 							<div className="grid sm:grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mb-8">
 								{contactInfo.map((item) => (
@@ -136,7 +133,7 @@ export default function Contact() {
 										<div className="w-12 h-12 bg-emerald-500/10 border border-emerald-400/20 rounded-lg flex items-center justify-center text-emerald-400 flex-shrink-0">
 											{item.icon}
 										</div>
-										<div className="text-center sm:text-left">
+										<div className="text-left">
 											<h4 className="text-foreground font-semibold text-sm md:text-base">{item.title}</h4>
 											{item.link ? (
 												<a
@@ -145,7 +142,7 @@ export default function Contact() {
 													aria-label={item.title}
 												>
 													{item.info}
-													</a>
+												</a>
 											) : (
 												<p className="text-muted-foreground text-sm md:text-base">{item.info}</p>
 											)}
@@ -155,7 +152,7 @@ export default function Contact() {
 							</div>
 
 							{/* Social Links */}
-							<div className="flex justify-center space-x-4 sm:space-x-6 mb-6 md:mb-8">
+							<div className="flex justify-start space-x-4 sm:space-x-6 mb-6 md:mb-8">
 								<a
 									href="https://github.com/shresthjindal28"
 									aria-label="GitHub"
@@ -168,7 +165,7 @@ export default function Contact() {
 										viewBox="0 0 24 24"
 										fill="currentColor"
 										aria-hidden
-										>
+									>
 										<path d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.38 7.86 10.9.57.1.78-.25.78-.55 0-.27-.01-1-.02-1.96-3.2.7-3.88-1.55-3.88-1.55-.52-1.31-1.26-1.66-1.26-1.66-1.03-.7.08-.69.08-.69 1.14.08 1.74 1.17 1.74 1.17 1.01 1.74 2.65 1.24 3.3.95.1-.74.4-1.24.72-1.53-2.55-.29-5.23-1.28-5.23-5.7 0-1.26.45-2.29 1.17-3.09-.12-.29-.51-1.48.11-3.08 0 0 .97-.31 3.18 1.18.92-.26 1.9-.39 2.88-.39.98 0 1.96.13 2.88.39 2.2-1.49 3.17-1.18 3.17-1.18.63 1.6.24 2.79.12 3.08.73.8 1.17 1.83 1.17 3.09 0 4.43-2.69 5.4-5.25 5.68.41.35.77 1.05.77 2.12 0 1.53-.01 2.76-.01 3.14 0 .3.2.66.79.55A12.01 12.01 0 0023.5 12C23.5 5.73 18.27.5 12 .5z" />
 									</svg>
 								</a>
@@ -185,7 +182,7 @@ export default function Contact() {
 										viewBox="0 0 24 24"
 										fill="currentColor"
 										aria-hidden
-										>
+									>
 										<path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5 5v-14c0-2.76-2.24-5-5-5zm-11 19h-3v-10h3v10zm-1.5-11.3c-.966 0-1.75-.784-1.75-1.75s.784-1.75 1.75-1.75 1.75.784 1.75 1.75-.784 1.75-1.75 1.75zm13.5 11.3h-3v-5.5c0-1.38-.03-3.16-1.93-3.16-1.93 0-2.23 1.5-2.23 3.05v5.61h-3v-10h2.88v1.36h.04c.4-.75 1.37-1.54 2.82-1.54 3.02 0 3.58 1.99 3.58 4.58v5.6z" />
 									</svg>
 								</a>
@@ -202,7 +199,7 @@ export default function Contact() {
 										viewBox="0 0 24 24"
 										fill="currentColor"
 										aria-hidden
-										>
+									>
 										<path d="M23 3a10.9 10.9 0 01-3.14 1.53A4.48 4.48 0 0012.09 8v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z" />
 									</svg>
 								</a>
@@ -217,16 +214,16 @@ export default function Contact() {
 										href="mailto:shresthjindal28@gmail.com"
 										className="inline-flex items-center text-emerald-400 hover:text-emerald-300 font-medium text-sm"
 										aria-label="Hire a Freelance Web Developer in Bangalore"
-										>
-											Hire a Freelance Web Developer in Bangalore ↗
-										</a>
+									>
+										Hire a Freelance Web Developer in Bangalore ↗
+									</a>
 									<a
 										href="#projects"
 										className="inline-flex items-center text-muted-foreground hover:text-emerald-300 font-medium text-sm"
 										aria-label="View recent projects"
-										>
-											See recent projects →
-										</a>
+									>
+										See recent projects →
+									</a>
 								</div>
 							</div>
 						</div>

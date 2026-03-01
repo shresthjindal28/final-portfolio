@@ -8,6 +8,24 @@ export interface Project {
 
 export const projects: Project[] = [
   {
+    title: "VeriVox LedgerDocs",
+    image: "/sentinelos.png",
+
+    description:
+      "AI-Powered PDF Intelligence Platform. Built a PDF Q&A platform using RAG, semantic search with FAISS vector embeddings, secure APIs, and real-time response streaming.",
+    liveUrl: "https://github.com/shresthjindal28/verivox-ledgerdocs",
+    githubUrl: "https://github.com/shresthjindal28/verivox-ledgerdocs",
+  },
+  {
+    title: "SentinelOS",
+    description:
+      "Offline Multi-Agent System Automation Framework. Designed a privacy-first, fully offline framework powered by a local LLM for system monitoring, file analysis, and safe cleanup.",
+    image: "/verivox.png",
+
+    liveUrl: "https://github.com/shresthjindal28/SentinelOS",
+    githubUrl: "https://github.com/shresthjindal28/SentinelOS",
+  },
+  {
     title: "Devmaan",
     description:
       "A full stack web application built during internship at Devmaan. Focused on developing both frontend and backend features with modern web technologies.",
@@ -77,6 +95,7 @@ export const projects: Project[] = [
       "A voice-based AI companion for VS Code that performs Git operations hands-free (status, commit, push, etc.).",
     image: "/extension.png",
     liveUrl: "/privatePage",
-    githubUrl: "https://github.com/shresthjindal28/ai-agent-voice-based-command",
+    githubUrl:
+      "https://github.com/shresthjindal28/ai-agent-voice-based-command",
   },
 ];

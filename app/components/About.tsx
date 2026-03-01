@@ -30,31 +30,29 @@ export default function About() {
 	};
 
 	return (
-		<section id="about" ref={sectionRef} className="py-20 px-4 bg-background">
-			<div className="max-w-6xl mx-auto">
+		<section id="about" ref={sectionRef} className="py-24 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8">
+			<div className="w-full">
 				<div
-					className={`transition-all duration-1000 ${
-						isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-					}`}
+					className={`transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+						}`}
 				>
-					<div className="text-center mb-24">
-						<div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-400/5 border border-emerald-400/20 text-emerald-400 text-[10px] font-black tracking-[0.3em] uppercase mb-8">
+					<div className="flex flex-col items-start mb-20">
+						<div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-400/10 border border-emerald-400/20 text-emerald-400 text-xs font-semibold tracking-widest uppercase mb-6">
 							<User className="w-4 h-4" />
-							WHO AM I
+							Who Am I
 						</div>
-						<h2 className="text-6xl md:text-8xl font-black text-white mb-8 tracking-tighter italic">
-							MY<br/>
-							<span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-emerald-100">STORY</span>
+						<h2 className="text-5xl md:text-7xl font-bold text-white tracking-tighter uppercase">
+							MY <br className="md:hidden" />
+							<span className="text-zinc-600 italic">STORY.</span>
 						</h2>
-						<div className="w-24 h-1 bg-emerald-400 mx-auto rounded-full"></div>
 					</div>
 
-					
 
-					<div className="max-w-4xl mx-auto">
+
+					<div className="max-w-4xl">
 						{/* Intro */}
-						<div className="text-center">
-							<h3 className="text-3xl font-bold text-foreground mb-8">Passionate Developer & Problem Solver</h3>
+						<div className="text-left">
+							<h3 className="text-3xl md:text-4xl font-bold text-foreground mb-8">Passionate Developer & Problem Solver</h3>
 
 							<div className="space-y-6 text-muted-foreground leading-relaxed text-lg">
 								<p>
@@ -83,8 +81,8 @@ export default function About() {
 							{/* Download Resume Button */}
 							<div>
 								<a
-									href="/shresth_jinadl_resume.pdf"
-									download="Shresth_Jindal_Resume.pdf"
+									href="/shresth.pdf"
+									download="shresth.pdf"
 									target="_blank"
 									rel="noopener noreferrer"
 									aria-label="Download Shresth Jindal Resume"

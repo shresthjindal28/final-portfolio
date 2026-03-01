@@ -1,8 +1,7 @@
 "use client";
 import { useState, useRef, useEffect } from "react";
-import { Briefcase, Sparkles } from "lucide-react";
+import { Briefcase } from "lucide-react";
 
-// Interface for a single experience item
 interface ExperienceItem {
   company: string;
   position: string;
@@ -13,9 +12,8 @@ interface ExperienceItem {
   technologies: string[];
 }
 
-// Array of professional experiences
 const experiences: ExperienceItem[] = [
-    {
+  {
     company: "Dolt Technologies",
     position: "Full Stack Web Engineer",
     duration: "Feb 2025 - Sep 2025",
@@ -43,18 +41,18 @@ const experiences: ExperienceItem[] = [
     description:
       "Contributed to both frontend and backend development, building new features, integrating APIs, and ensuring seamless performance across the application stack.",
     achievements: [],
-    technologies: ["Next.js", "TypeScript", "Node.js", "TailwindCSS" ],
+    technologies: ["Next.js", "TypeScript", "Node.js", "TailwindCSS"],
   },
   {
-  company: "FusionLabs",
-  position: "Full Stack Developer",
-  duration: "Sep 2025 - Current (Freelance)",
-  location: "Remote",
-  description:
-    "Designed and developed full-stack solutions with a focus on integrating Agentic AI features to automate complex workflows and enhance user interaction.",
-  achievements: [],
-  technologies: ["Next.js", "TypeScript", "Node.js", "TailwindCSS", "Agentic AI"]
-},
+    company: "FusionLabs",
+    position: "Full Stack Developer",
+    duration: "Sep 2025 - Current (Freelance)",
+    location: "Remote",
+    description:
+      "Designed and developed full-stack solutions with a focus on integrating Agentic AI features to automate complex workflows and enhance user interaction.",
+    achievements: [],
+    technologies: ["Next.js", "TypeScript", "Node.js", "TailwindCSS", "Agentic AI"],
+  },
   {
     company: "Tailum",
     position: "Full Stack Developer",
@@ -65,151 +63,99 @@ const experiences: ExperienceItem[] = [
     achievements: [],
     technologies: ["Next.js", "TailwindCSS", "GSAP", "SEO"],
   },
-    {
+  {
     company: "LawVriksh",
     position: "Frontend Developer",
-    duration: "Dec 2025 - current (6 months internship)",
+    duration: "Dec 2025 - current",
     location: "Remote",
     description:
       "LawVriksh is a microservices platform combining a gRPC Document Management System with GenAI that assesses risk, detects spam, scores authenticity, and generates notification templates. Shared protobuf contracts and Redis/S3/SQLAlchemy integrations power communication, storage, caching, and data processing.",
     achievements: [],
-    technologies: ["Next.js", "GSAP", "React Query", "TypeScript", "Node.js", "TailwindCSS" ],
-  }
+    technologies: ["Next.js", "GSAP", "React Query", "TypeScript", "Node.js", "TailwindCSS"],
+  },
 ];
 
-// Experience component
 export default function Experience() {
   const [activeTab, setActiveTab] = useState(0);
-  const [isVisible, setIsVisible] = useState(false);
   const sectionRef = useRef<HTMLElement | null>(null);
 
-  // Intersection observer to trigger animations on scroll
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setIsVisible(true);
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.1 }
-    );
-
-    const currentSectionRef = sectionRef.current;
-    if (currentSectionRef) {
-      observer.observe(currentSectionRef);
-    }
-
-    return () => {
-      if (currentSectionRef) {
-        observer.unobserve(currentSectionRef);
-      }
-    };
-  }, []);
-
-  // Effect to inject CSS for animations
-  useEffect(() => {
-    const style = document.createElement('style');
-    style.textContent = `
-      @keyframes fade-in {
-        from {
-          opacity: 0;
-          transform: translateY(10px);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0);
-        }
-      }
-      .animate-fade-in {
-        animation: fade-in 0.5s ease-in-out forwards;
-      }
-    `;
-    document.head.appendChild(style);
-
-    return () => {
-      document.head.removeChild(style);
-    };
-  }, []);
-  
   const activeExperience = experiences[activeTab];
 
   return (
-    <section id="experience" ref={sectionRef} className="py-20 px-4 min-h-screen">
-      <div className="max-w-4xl mx-auto">
-        <div
-          className={`transition-all duration-1000 ${
-            isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-          }`}
-        >
-          {/* Section Header */}
-          <div className="text-center mb-24">
-            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-400/5 border border-emerald-400/20 text-emerald-400 text-[10px] font-black tracking-[0.3em] uppercase mb-8">
-              <Briefcase className="w-4 h-4" />
-              Career Path
-            </div>
-            <h2 className="text-6xl md:text-8xl font-black text-white mb-8 tracking-tighter italic">
-              WORK<br/>
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-emerald-100">HISTORY</span>
-            </h2>
-            <div className="w-24 h-1 bg-emerald-400 mx-auto rounded-full"></div>
-          </div>
+    <section id="experience" ref={sectionRef} className="py-24 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8">
+      <div className="flex flex-col items-start mb-20">
+        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-400/10 border border-emerald-400/20 text-emerald-400 text-xs font-semibold tracking-widest uppercase mb-6">
+          <Briefcase className="w-4 h-4" />
+          Career Path
+        </div>
+        <h2 className="text-5xl md:text-7xl font-bold text-white tracking-tighter">
+          WORK <br className="md:hidden" />
+          <span className="text-zinc-600 italic">HISTORY.</span>
+        </h2>
+      </div>
 
-          <div className="flex flex-col md:flex-row gap-8 md:gap-12">
-            {/* Tab Buttons */}
-            <div className="flex md:flex-col overflow-x-auto md:overflow-x-visible -mx-4 px-4 md:-mx-0 md:px-0">
-              <div className="flex md:flex-col border-b-2 md:border-b-0 md:border-l-2 border-card">
-                {experiences.map((exp, index) => (
-                  <button
-                    key={index}
-                    onClick={() => setActiveTab(index)}
-                    className={`text-left text-sm md:text-base whitespace-nowrap px-4 py-3 transition-all duration-300 ${
-                      activeTab === index
-                        ? "text-emerald-400 bg-emerald-400/10 border-emerald-400"
-                        : "text-muted-foreground hover:bg-card/50 hover:text-foreground border-transparent"
-                    } ${index === 0 ? 'md:border-l-2' : 'md:border-l-2'} -ml-0.5`}
+      <div className="flex flex-col lg:flex-row gap-12 lg:gap-20">
+        {/* Tab Buttons */}
+        <div className="flex lg:flex-col overflow-x-auto lg:overflow-x-visible pb-4 lg:pb-0 gap-2 lg:gap-0 lg:min-w-[240px] border-b lg:border-b-0 lg:border-l border-zinc-800 no-scrollbar">
+          {experiences.map((exp, index) => (
+            <button
+              key={index}
+              onClick={() => setActiveTab(index)}
+              className={`text-left text-sm md:text-base font-medium whitespace-nowrap px-6 py-4 transition-all duration-300 relative ${activeTab === index
+                  ? "text-emerald-400 bg-emerald-400/5 lg:bg-transparent"
+                  : "text-zinc-500 hover:text-zinc-300 hover:bg-zinc-900/50"
+                }`}
+            >
+              {exp.company}
+              {/* Active Tab Indicator */}
+              {activeTab === index && (
+                <span className="absolute bottom-0 left-0 w-full h-[2px] lg:w-[2px] lg:h-full bg-emerald-400" />
+              )}
+            </button>
+          ))}
+        </div>
+
+        {/* Tab Content */}
+        <div className="flex-1 min-h-[400px]">
+          {activeExperience && (
+            <div
+              key={activeTab}
+              className="flex flex-col animate-in fade-in slide-in-from-bottom-4 duration-700 ease-out"
+            >
+              <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-6 gap-4">
+                <div>
+                  <h3 className="text-2xl md:text-3xl font-semibold text-white mb-2 tracking-tight">
+                    {activeExperience.position}
+                  </h3>
+                  <div className="flex items-center gap-3 text-zinc-400">
+                    <span className="font-medium text-emerald-400/90">{activeExperience.company}</span>
+                    <span className="text-zinc-700">•</span>
+                    <span className="text-sm">{activeExperience.location}</span>
+                  </div>
+                </div>
+                <div>
+                  <span className="inline-flex px-3 py-1 text-xs font-medium text-emerald-400/80 border border-emerald-400/20 bg-emerald-400/5 rounded-full">
+                    {activeExperience.duration}
+                  </span>
+                </div>
+              </div>
+
+              <p className="text-zinc-400 leading-relaxed mb-8 text-base md:text-lg max-w-3xl">
+                {activeExperience.description}
+              </p>
+
+              <div className="flex flex-wrap gap-3">
+                {activeExperience.technologies.map((tech, i) => (
+                  <span
+                    key={i}
+                    className="px-4 py-2 text-xs md:text-sm font-medium text-zinc-300 bg-zinc-900 border border-zinc-800 rounded-full hover:border-emerald-400/50 hover:text-emerald-400 transition-colors"
                   >
-                    {exp.company}
-                  </button>
+                    {tech}
+                  </span>
                 ))}
               </div>
             </div>
-
-            {/* Tab Content */}
-            <div className="flex-1 min-h-[350px]">
-                {activeExperience && (
-                     <div key={activeTab} className="bg-card/50 backdrop-blur-sm rounded-lg p-8 border border-transparent animate-fade-in">
-                        <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-4">
-                            <div className="flex-1">
-                                <h3 className="text-2xl font-semibold text-foreground mb-1">
-                                    {activeExperience.position}
-                                </h3>
-                                <div className="flex items-center gap-3 text-muted-foreground mb-4">
-                                    <span className="font-medium text-foreground">{activeExperience.company}</span>
-                                    <span className="text-border">•</span>
-                                    <span className="text-sm">{activeExperience.location}</span>
-                                </div>
-                            </div>
-                             <div className="mt-2 md:mt-0">
-                                <span className="inline-block px-3 py-1 text-xs font-medium text-emerald-400 bg-emerald-400/10 rounded-full">
-                                    {activeExperience.duration}
-                                </span>
-                            </div>
-                        </div>
-                        <p className="text-muted-foreground leading-relaxed mb-6">
-                            {activeExperience.description}
-                        </p>
-                        <div className="flex flex-wrap gap-2">
-                            {activeExperience.technologies.map((tech, i) => (
-                                <span key={i} className="px-3 py-1 text-sm text-foreground bg-card rounded-md">
-                                    {tech}
-                                </span>
-                            ))}
-                        </div>
-                    </div>
-                )}
-            </div>
-          </div>
+          )}
         </div>
       </div>
     </section>

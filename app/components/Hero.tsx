@@ -51,10 +51,10 @@ export default function Hero() {
               Available for Projects
             </div>
 
-            <h1 className="text-5xl sm:text-6xl lg:text-8xl font-black tracking-tight text-white leading-[1.1]">
+            <h1 className="text-5xl sm:text-6xl lg:text-8xl font-black tracking-tight text-white leading-[1.1] uppercase">
               Freelance Web <br className="hidden sm:block" />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 via-emerald-200 to-teal-400">
-                Developer
+              <span className="text-zinc-600 italic">
+                Developer.
               </span>
             </h1>
 
@@ -74,7 +74,7 @@ export default function Hero() {
               onClick={() => scrollTo("projects")}
               className="group relative px-8 py-4 bg-emerald-500 hover:bg-emerald-400 text-white font-bold rounded-2xl transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] shadow-lg shadow-emerald-500/25 overflow-hidden"
             >
-              <span className="relative z-10">View Portfolio</span>
+              <span className="relative z-10">View Projects</span>
               <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/10 to-white/0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
             </button>
 
