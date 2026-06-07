@@ -7,35 +7,35 @@ import { ArrowLeft, Github, CheckCircle } from "lucide-react";
 import TrackedLink from "@/app/components/TrackedLink";
 
 export const metadata: Metadata = {
-  title: "Google Drive Clone Case Study | Shresth Jindal",
+  title: "Aero3 Clinical AI Copilot Case Study | Shresth Jindal",
   description:
-    "Explore how Shresth Jindal built a full-featured Google Drive clone using React, Next.js, Express, and MongoDB storage.",
+    "Explore how Shresth Jindal built Aero3, an AI clinical copilot designed to generate structured SOAP notes from consultations and automate healthcare documentation.",
   alternates: {
-    canonical: "https://www.shresthjindal.com/projects/google-drive-clone",
+    canonical: "https://www.shresthjindal.com/projects/aero3",
   },
   robots: {
     index: true,
     follow: true,
   },
   openGraph: {
-    title: "Google Drive Clone Case Study | Shresth Jindal",
-    description: "Explore how Shresth Jindal built a full-featured Google Drive clone using React, Next.js, Express, and MongoDB storage.",
-    url: "https://www.shresthjindal.com/projects/google-drive-clone",
-    images: [{ url: "https://www.shresthjindal.com/og-image.png", alt: "Google Drive Clone Case Study Shresth Jindal" }],
+    title: "Aero3 Clinical AI Copilot Case Study | Shresth Jindal",
+    description: "Explore how Shresth Jindal built Aero3, an AI clinical copilot designed to generate structured SOAP notes from consultations and automate healthcare documentation.",
+    url: "https://www.shresthjindal.com/projects/aero3",
+    images: [{ url: "https://www.shresthjindal.com/projects/aero3/opengraph-image", alt: "Aero3 Clinical AI Copilot Case Study Shresth Jindal" }],
     type: "article",
   },
 };
 
-export default function GoogleDriveCloneCaseStudy() {
-  const GITHUB_URL = "https://github.com/shresthjindal28/Note-app";
+export default function Aero3CaseStudy() {
+  const GITHUB_URL = "https://github.com/shresthjindal28/aero3";
 
   const SCHEMA = {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
-    "name": "Google Drive Clone",
-    "applicationCategory": "UtilitiesApplication",
+    "name": "Aero3 AI Clinical Copilot",
+    "applicationCategory": "HealthApplication",
     "operatingSystem": "All",
-    "programmingLanguage": ["TypeScript", "JavaScript"],
+    "programmingLanguage": ["TypeScript", "Python", "JavaScript"],
     "downloadUrl": GITHUB_URL,
     "author": {
       "@type": "Person",
@@ -43,7 +43,7 @@ export default function GoogleDriveCloneCaseStudy() {
       "url": "https://www.shresthjindal.com",
     },
     "description":
-      "Full cloud storage replica supporting nested folder paths, file upload structures, and sharing permissions.",
+      "AI clinical copilot helping healthcare professionals generate structured SOAP notes and extract medical insights from patient consultations.",
   };
 
   const BREADCRUMB_SCHEMA = {
@@ -52,7 +52,7 @@ export default function GoogleDriveCloneCaseStudy() {
     "itemListElement": [
       { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.shresthjindal.com" },
       { "@type": "ListItem", "position": 2, "name": "Projects", "item": "https://www.shresthjindal.com/#projects" },
-      { "@type": "ListItem", "position": 3, "name": "Google Drive Clone", "item": "https://www.shresthjindal.com/projects/google-drive-clone" }
+      { "@type": "ListItem", "position": 3, "name": "Aero3", "item": "https://www.shresthjindal.com/projects/aero3" }
     ]
   };
 
@@ -81,15 +81,15 @@ export default function GoogleDriveCloneCaseStudy() {
         <Section className="py-10 md:py-12">
           <div className="max-w-3xl">
             <span className="font-caption text-xs font-semibold text-accent block mb-2">
-              Cloud Storage Project
+              Healthcare AI Assistant
             </span>
             <h1 className="font-h1 uppercase tracking-tight text-foreground mb-4">
-              Google Drive <br />
-              <span className="text-primary italic">Clone.</span>
+              Aero3 <br />
+              <span className="text-primary italic">Clinical copilot.</span>
             </h1>
             <p className="text-muted-foreground font-body-large mt-4 max-w-xl font-light">
-              A responsive cloud-storage dashboard replicating directory nesting, secure uploads, 
-              and folder permissions.
+              An AI-powered clinical assistant built to reduce healthcare documentation overhead, 
+              generating structured SOAP notes and medical entities directly from patient consultations.
             </p>
           </div>
         </Section>
@@ -101,9 +101,9 @@ export default function GoogleDriveCloneCaseStudy() {
             <div className="space-y-4">
               <h2 className="font-h3 text-foreground border-b border-border pb-3">The Problem</h2>
               <p className="text-muted-foreground font-body-base leading-relaxed font-light">
-                Replicating file system hierarchies inside a relational or non-relational database 
-                is difficult. Representing parents, children, and nesting paths dynamically without 
-                causing query recursion bottlenecks requires careful model structuring.
+                Healthcare professionals spend a significant portion of their workday compiling, organizing, 
+                and entering clinical notes (SOAP records) into EHR databases. This documentation overhead 
+                causes severe clinical fatigue and detracts from active patient care.
               </p>
             </div>
 
@@ -111,9 +111,10 @@ export default function GoogleDriveCloneCaseStudy() {
             <div className="space-y-4">
               <h2 className="font-h3 text-foreground border-b border-border pb-3">The Solution</h2>
               <p className="text-muted-foreground font-body-base leading-relaxed font-light">
-                Built a Node/Express middleware using MongoDB documents to save folders as nodes with 
-                path parent pointers. Utilized React states to manage drag-and-drop file inputs, 
-                streamlining file chunk processing before uploading to a secure object storage.
+                Aero3 is a clinical AI copilot that assists doctors during patient visits. By taking audio recordings 
+                or transcripts of consultations, the system generates clean, structured Subjective, Objective, Assessment, 
+                and Plan (SOAP) clinical summaries. It handles medical entity extraction and structures medical logs 
+                automatically, allowing doctors to focus on clinical decisions.
               </p>
             </div>
 
@@ -122,15 +123,16 @@ export default function GoogleDriveCloneCaseStudy() {
               <h2 className="font-h3 text-foreground border-b border-border pb-3">Core Features</h2>
               <ul className="space-y-4">
                 {[
-                  { title: "Dynamic Directory Paths", desc: "Generates breadcrumb link tracks dynamically by querying parent document arrays." },
-                  { title: "Drag & Drop Uploads", desc: "Handles multi-file inputs seamlessly, providing upload progress status overlays." },
-                  { title: "Sharing Permissions", desc: "Allows users to generate shared links or restrict read/write folder access rules." }
+                  { title: "Clinical AI Transcription Processing", desc: "Processes multilingual patient-doctor consultation recordings and transcripts using local or remote language models." },
+                  { title: "Structured SOAP Note Generation", desc: "Translates conversational transcripts into medical Subjective, Objective, Assessment, and Plan summaries." },
+                  { title: "Medical Entity Extraction", desc: "Recognizes symptoms, anatomical regions, prescribed medications, and clinical parameters." },
+                  { title: "EHR Integration Concepts (Future Scope)", desc: "Designed to map structured note summaries directly to standard Electronic Health Record API payloads." }
                 ].map((item) => (
                   <li key={item.title} className="flex items-start gap-3">
                     <CheckCircle className="text-accent shrink-0 mt-1" size={18} />
                     <div>
                       <h4 className="font-body-large font-bold text-foreground">{item.title}</h4>
-                      <p className="text-muted-foreground text-sm font-body-base mt-1 leading-relaxed">
+                      <p className="text-muted-foreground text-sm font-body-base mt-1 leading-relaxed font-light">
                         {item.desc}
                       </p>
                     </div>
@@ -148,11 +150,15 @@ export default function GoogleDriveCloneCaseStudy() {
               <div className="space-y-3 text-xs font-body-base text-muted-foreground">
                 <div>
                   <span className="font-bold text-foreground block">Stack</span>
-                  <span>React, Next.js, Node.js, MongoDB, Express</span>
+                  <span>Next.js, FastAPI, Google Gemini, Python</span>
                 </div>
                 <div>
-                  <span className="font-bold text-foreground block">File Storage</span>
-                  <span>AWS S3 / Local Mock</span>
+                  <span className="font-bold text-foreground block">Category</span>
+                  <span>Clinical AI Assistant (SOAP)</span>
+                </div>
+                <div>
+                  <span className="font-bold text-foreground block">Project Class</span>
+                  <span>Prototype / Research Project</span>
                 </div>
               </div>
 
@@ -162,7 +168,7 @@ export default function GoogleDriveCloneCaseStudy() {
                   target="_blank"
                   rel="noopener noreferrer"
                   eventName="project_github_clicked"
-                  params={{ project: "google-drive-clone" }}
+                  params={{ project: "aero3" }}
                   className="w-full inline-flex items-center justify-center gap-2 px-4 py-3 bg-primary text-primary-foreground font-body-small font-semibold rounded-xl shadow-md transition-transform hover:scale-[1.01] active:scale-[0.99]"
                 >
                   <Github size={16} />

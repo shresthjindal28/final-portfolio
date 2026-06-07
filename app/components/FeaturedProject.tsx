@@ -206,7 +206,7 @@ export default function FeaturedProject() {
               {/* Product Actions */}
               <div className="mt-8 flex flex-wrap gap-4 items-center">
                 <a
-                  href="https://github.com/shresthjindal28/verivox-ledgerdocs"
+                  href="https://github.com/shresthjindal28/VeriVox-LedgerDocs"
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={() => trackAiPdfGithubClicked()}

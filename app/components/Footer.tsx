@@ -14,8 +14,8 @@ export default function Footer() {
 
   const caseStudies = [
     { name: "AI PDF Assistant", href: "/projects/ai-pdf" },
-    { name: "Emergency Response", href: "/projects/offline-emergency-response" },
-    { name: "Lawvriksh Internship", href: "/experience/lawvriksh" },
+    { name: "Aero3 (Clinical AI)", href: "/projects/aero3" },
+    { name: "SentinelOS (Offline)", href: "/projects/offline-emergency-response" },
   ];
 
   const services = [

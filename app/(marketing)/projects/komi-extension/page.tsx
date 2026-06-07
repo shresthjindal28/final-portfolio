@@ -7,35 +7,35 @@ import { ArrowLeft, Github, CheckCircle } from "lucide-react";
 import TrackedLink from "@/app/components/TrackedLink";
 
 export const metadata: Metadata = {
-  title: "Employee Management System Case Study | Shresth Jindal",
+  title: "Komi Extension Case Study | Shresth Jindal",
   description:
-    "Explore how Shresth Jindal built a full-stack Employee Management dashboard with Express, MongoDB, and secure role-based access configurations.",
+    "Explore how Shresth Jindal built Komi Extension, an always-on, wake-word activated voice DevOps copilot for Git & GitHub automation powered by Google Gemini.",
   alternates: {
-    canonical: "https://www.shresthjindal.com/projects/employee-management-system",
+    canonical: "https://www.shresthjindal.com/projects/komi-extension",
   },
   robots: {
     index: true,
     follow: true,
   },
   openGraph: {
-    title: "Employee Management System Case Study | Shresth Jindal",
-    description: "Explore how Shresth Jindal built a full-stack Employee Management dashboard with Express, MongoDB, and secure role-based access configurations.",
-    url: "https://www.shresthjindal.com/projects/employee-management-system",
-    images: [{ url: "https://www.shresthjindal.com/og-image.png", alt: "Employee Management System Case Study Shresth Jindal" }],
+    title: "Komi Extension Case Study | Shresth Jindal",
+    description: "Explore how Shresth Jindal built Komi Extension, an always-on, wake-word activated voice DevOps copilot for Git & GitHub automation powered by Google Gemini.",
+    url: "https://www.shresthjindal.com/projects/komi-extension",
+    images: [{ url: "https://www.shresthjindal.com/projects/komi-extension/opengraph-image", alt: "Komi Extension Case Study Shresth Jindal" }],
     type: "article",
   },
 };
 
-export default function EmployeeManagementCaseStudy() {
-  const GITHUB_URL = "https://github.com/shresthjindal28/Employee-Management-System";
+export default function KomiExtensionCaseStudy() {
+  const GITHUB_URL = "https://github.com/shresthjindal28/Komi-extension";
 
   const SCHEMA = {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
-    "name": "Employee Management System",
-    "applicationCategory": "BusinessApplication",
+    "name": "Komi Extension",
+    "applicationCategory": "DeveloperApplication",
     "operatingSystem": "All",
-    "programmingLanguage": ["JavaScript"],
+    "programmingLanguage": ["JavaScript", "Node.js"],
     "downloadUrl": GITHUB_URL,
     "author": {
       "@type": "Person",
@@ -43,7 +43,7 @@ export default function EmployeeManagementCaseStudy() {
       "url": "https://www.shresthjindal.com",
     },
     "description":
-      "Full stack operations dashboard for assigning department tasks and configuring role permissions.",
+      "Always-on, wake-word activated, voice + command-palette DevOps copilot for VS Code, automating Git & GitHub workflows.",
   };
 
   const BREADCRUMB_SCHEMA = {
@@ -52,7 +52,7 @@ export default function EmployeeManagementCaseStudy() {
     "itemListElement": [
       { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.shresthjindal.com" },
       { "@type": "ListItem", "position": 2, "name": "Projects", "item": "https://www.shresthjindal.com/#projects" },
-      { "@type": "ListItem", "position": 3, "name": "Employee Management System", "item": "https://www.shresthjindal.com/projects/employee-management-system" }
+      { "@type": "ListItem", "position": 3, "name": "Komi Extension", "item": "https://www.shresthjindal.com/projects/komi-extension" }
     ]
   };
 
@@ -81,15 +81,15 @@ export default function EmployeeManagementCaseStudy() {
         <Section className="py-10 md:py-12">
           <div className="max-w-3xl">
             <span className="font-caption text-xs font-semibold text-accent block mb-2">
-              Operations Control Dashboard
+              VS Code DevOps Extension
             </span>
             <h1 className="font-h1 uppercase tracking-tight text-foreground mb-4">
-              Employee Management <br />
-              <span className="text-primary italic">System.</span>
+              Komi Extension <br />
+              <span className="text-primary italic">Voice DevOps.</span>
             </h1>
             <p className="text-muted-foreground font-body-large mt-4 max-w-xl font-light">
-              A business management dashboard controlling company organizational structures, 
-              task tracking, and employee permissions.
+              An always-on, wake-word activated DevOps companion for Git & GitHub operations, 
+              connecting natural speech controls directly to code editors.
             </p>
           </div>
         </Section>
@@ -101,9 +101,8 @@ export default function EmployeeManagementCaseStudy() {
             <div className="space-y-4">
               <h2 className="font-h3 text-foreground border-b border-border pb-3">The Problem</h2>
               <p className="text-muted-foreground font-body-base leading-relaxed font-light">
-                Managing company employee allocations, dynamic task boards, and configuring 
-                role-based access control (RBAC) securely requires high-fidelity database schemas 
-                and reliable validation checks.
+                Context-switching between writing code, running Git terminal commands, creating repositories, 
+                and verifying remote push statuses breaks developer concentration and increases cognitive load.
               </p>
             </div>
 
@@ -111,9 +110,10 @@ export default function EmployeeManagementCaseStudy() {
             <div className="space-y-4">
               <h2 className="font-h3 text-foreground border-b border-border pb-3">The Solution</h2>
               <p className="text-muted-foreground font-body-base leading-relaxed font-light">
-                Developed a React frontend connected to a MERN stack backend. Created relational MongoDB 
-                schemas with employee profile fields, linked to department tasks, and secured endpoints 
-                using stateless JSON Web Token (JWT) validation middlewares.
+                Komi Extension embeds a standalone voice automation capture loop inside a VS Code editor extension. 
+                Utilizing wake-word listening, transcription models (Google Gemini), and schema-enforced JSON action 
+                contracts, the extension translates spoken intents (e.g. &quot;push my changes&quot;, &quot;create repository&quot;) 
+                into shell operations and API calls without requiring terminal interaction.
               </p>
             </div>
 
@@ -122,15 +122,16 @@ export default function EmployeeManagementCaseStudy() {
               <h2 className="font-h3 text-foreground border-b border-border pb-3">Core Features</h2>
               <ul className="space-y-4">
                 {[
-                  { title: "Stateless Auth (JWT)", desc: "Secures database access routes by validating token payloads on the server." },
-                  { title: "Task Assignment Board", desc: "Allows department managers to assign tasks to employees and track metrics." },
-                  { title: "Role-Based Routing", desc: "Restricts client views and API operations based on permissions (Admin, Manager, Staff)." }
+                  { title: "Wake-Word & Passive Voice Loop", desc: "Monitors passive audio inputs using a wake word timer threshold, keeping a high-sensitivity action window open for commands." },
+                  { title: "Gemini Schema-Enforced Reasoning", desc: "Parses transcripts using structured JSON tool-call schema rules to eliminate incorrect action executions." },
+                  { title: "Git & GitHub API Automation", desc: "Automates workspace repository initialization, file staging, commit sequences, and GitHub API repository creation." },
+                  { title: "VS Code Panel & Status Bar UI", desc: "Provides interactive buttons, masked environment Secret indicators, status indicators, and tree views inside the host editor." }
                 ].map((item) => (
                   <li key={item.title} className="flex items-start gap-3">
                     <CheckCircle className="text-accent shrink-0 mt-1" size={18} />
                     <div>
                       <h4 className="font-body-large font-bold text-foreground">{item.title}</h4>
-                      <p className="text-muted-foreground text-sm font-body-base mt-1 leading-relaxed">
+                      <p className="text-muted-foreground text-sm font-body-base mt-1 leading-relaxed font-light">
                         {item.desc}
                       </p>
                     </div>
@@ -148,11 +149,15 @@ export default function EmployeeManagementCaseStudy() {
               <div className="space-y-3 text-xs font-body-base text-muted-foreground">
                 <div>
                   <span className="font-bold text-foreground block">Stack</span>
-                  <span>React, Node.js, Express, MongoDB, Tailwind CSS</span>
+                  <span>VS Code Extension API, JavaScript, Node.js, Google Gemini API</span>
                 </div>
                 <div>
-                  <span className="font-bold text-foreground block">Authentication</span>
-                  <span>JWT Stateless Middleware</span>
+                  <span className="font-bold text-foreground block">Category</span>
+                  <span>DevOps Automation Tool</span>
+                </div>
+                <div>
+                  <span className="font-bold text-foreground block">Project Class</span>
+                  <span>Personal Utility / Tooling Project</span>
                 </div>
               </div>
 
@@ -162,7 +167,7 @@ export default function EmployeeManagementCaseStudy() {
                   target="_blank"
                   rel="noopener noreferrer"
                   eventName="project_github_clicked"
-                  params={{ project: "employee-management-system" }}
+                  params={{ project: "komi-extension" }}
                   className="w-full inline-flex items-center justify-center gap-2 px-4 py-3 bg-primary text-primary-foreground font-body-small font-semibold rounded-xl shadow-md transition-transform hover:scale-[1.01] active:scale-[0.99]"
                 >
                   <Github size={16} />

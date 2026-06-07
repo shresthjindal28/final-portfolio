@@ -173,24 +173,46 @@ export function CommandMenu() {
             <CommandItem
               onSelect={() =>
                 runCommand(() => {
-                  trackCommandMenuNavigation("/projects/google-drive-clone");
-                  router.push("/projects/google-drive-clone");
+                  trackCommandMenuNavigation("/projects/aero3");
+                  router.push("/projects/aero3");
                 })
               }
             >
               <FolderGit2 className="mr-2 h-4 w-4 text-muted-foreground" />
-              <span>Google Drive Clone</span>
+              <span>Aero3 (Clinical AI)</span>
             </CommandItem>
             <CommandItem
               onSelect={() =>
                 runCommand(() => {
-                  trackCommandMenuNavigation("/projects/uber-clone");
-                  router.push("/projects/uber-clone");
+                  trackCommandMenuNavigation("/projects/offline-emergency-response");
+                  router.push("/projects/offline-emergency-response");
                 })
               }
             >
               <FolderGit2 className="mr-2 h-4 w-4 text-muted-foreground" />
-              <span>Uber Clone</span>
+              <span>SentinelOS (Emergency Response)</span>
+            </CommandItem>
+            <CommandItem
+              onSelect={() =>
+                runCommand(() => {
+                  trackCommandMenuNavigation("/projects/p2p-chat-app");
+                  router.push("/projects/p2p-chat-app");
+                })
+              }
+            >
+              <FolderGit2 className="mr-2 h-4 w-4 text-muted-foreground" />
+              <span>P2P Chat App</span>
+            </CommandItem>
+            <CommandItem
+              onSelect={() =>
+                runCommand(() => {
+                  trackCommandMenuNavigation("/projects/komi-extension");
+                  router.push("/projects/komi-extension");
+                })
+              }
+            >
+              <FolderGit2 className="mr-2 h-4 w-4 text-muted-foreground" />
+              <span>Komi Extension (Voice DevOps)</span>
             </CommandItem>
             <CommandItem
               onSelect={() =>
@@ -202,17 +224,6 @@ export function CommandMenu() {
             >
               <FolderGit2 className="mr-2 h-4 w-4 text-muted-foreground" />
               <span>Employee Management System</span>
-            </CommandItem>
-            <CommandItem
-              onSelect={() =>
-                runCommand(() => {
-                  trackCommandMenuNavigation("/projects/offline-emergency-response");
-                  router.push("/projects/offline-emergency-response");
-                })
-              }
-            >
-              <FolderGit2 className="mr-2 h-4 w-4 text-muted-foreground" />
-              <span>Offline Emergency Response System</span>
             </CommandItem>
           </CommandGroup>
           <CommandGroup heading="Socials">

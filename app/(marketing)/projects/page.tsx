@@ -54,14 +54,16 @@ export default function AllProjectsPage() {
             let slug = "project";
             if (titleLower.includes("sentinel")) slug = "offline-emergency-response";
             else if (titleLower.includes("devmaan")) slug = "devmaan";
-            else if (titleLower.includes("chating")) slug = "chating-web";
+            else if (titleLower.includes("aero3")) slug = "aero3";
+            else if (titleLower.includes("p2p")) slug = "p2p-chat-app";
+            else if (titleLower.includes("komi")) slug = "komi-extension";
+            else if (titleLower.includes("employee")) slug = "employee-management-system";
             else if (titleLower.includes("gradient")) slug = "gradient-library";
             else if (titleLower.includes("note")) slug = "note-app";
             else if (titleLower.includes("twitter")) slug = "twitter-status-card";
             else if (titleLower.includes("dandoo")) slug = "dandoo";
             else if (titleLower.includes("tailum")) slug = "tailum";
             else if (titleLower.includes("fusionlabs")) slug = "fusionlabsai";
-            else if (titleLower.includes("voice")) slug = "vs-code-voice-ai-extension";
             
             const liveEventName = isAiPdf ? "ai_pdf_demo_clicked" : "project_demo_clicked";
             const githubEventName = isAiPdf ? "ai_pdf_github_clicked" : "project_github_clicked";

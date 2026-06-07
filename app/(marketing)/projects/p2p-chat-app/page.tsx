@@ -7,33 +7,33 @@ import { ArrowLeft, Github, CheckCircle } from "lucide-react";
 import TrackedLink from "@/app/components/TrackedLink";
 
 export const metadata: Metadata = {
-  title: "Uber Clone Case Study | Shresth Jindal",
+  title: "P2P Chat App Case Study | Shresth Jindal",
   description:
-    "Explore how Shresth Jindal built a real-time Uber Clone with Mapbox routing maps, GPS trackers, and geolocation coordinate systems.",
+    "Explore how Shresth Jindal built a real-time messaging platform exploring WebSockets, Redis, authentication workflows, and modern backend architecture.",
   alternates: {
-    canonical: "https://www.shresthjindal.com/projects/uber-clone",
+    canonical: "https://www.shresthjindal.com/projects/p2p-chat-app",
   },
   robots: {
     index: true,
     follow: true,
   },
   openGraph: {
-    title: "Uber Clone Case Study | Shresth Jindal",
-    description: "Explore how Shresth Jindal built a real-time Uber Clone with Mapbox routing maps, GPS trackers, and geolocation coordinate systems.",
-    url: "https://www.shresthjindal.com/projects/uber-clone",
-    images: [{ url: "https://www.shresthjindal.com/og-image.png", alt: "Uber Clone Case Study Shresth Jindal" }],
+    title: "P2P Chat App Case Study | Shresth Jindal",
+    description: "Explore how Shresth Jindal built a real-time messaging platform exploring WebSockets, Redis, authentication workflows, and modern backend architecture.",
+    url: "https://www.shresthjindal.com/projects/p2p-chat-app",
+    images: [{ url: "https://www.shresthjindal.com/projects/p2p-chat-app/opengraph-image", alt: "P2P Chat App Case Study Shresth Jindal" }],
     type: "article",
   },
 };
 
-export default function UberCloneCaseStudy() {
-  const GITHUB_URL = "https://github.com/shresthjindal28/Chat-app.git";
+export default function P2PChatAppCaseStudy() {
+  const GITHUB_URL = "https://github.com/shresthjindal28/p2p-chat-app";
 
   const SCHEMA = {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
-    "name": "Uber Clone",
-    "applicationCategory": "TravelApplication",
+    "name": "P2P Chat App",
+    "applicationCategory": "CommunicationApplication",
     "operatingSystem": "All",
     "programmingLanguage": ["TypeScript", "JavaScript"],
     "downloadUrl": GITHUB_URL,
@@ -43,7 +43,7 @@ export default function UberCloneCaseStudy() {
       "url": "https://www.shresthjindal.com",
     },
     "description":
-      "Real-time location ride booking client integrating Mapbox vector maps routing interfaces and driver coordinate syncing.",
+      "A real-time messaging platform built to explore scalable communication systems, WebSockets, and Redis backend architecture.",
   };
 
   const BREADCRUMB_SCHEMA = {
@@ -52,7 +52,7 @@ export default function UberCloneCaseStudy() {
     "itemListElement": [
       { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.shresthjindal.com" },
       { "@type": "ListItem", "position": 2, "name": "Projects", "item": "https://www.shresthjindal.com/#projects" },
-      { "@type": "ListItem", "position": 3, "name": "Uber Ride Clone", "item": "https://www.shresthjindal.com/projects/uber-clone" }
+      { "@type": "ListItem", "position": 3, "name": "P2P Chat App", "item": "https://www.shresthjindal.com/projects/p2p-chat-app" }
     ]
   };
 
@@ -81,14 +81,15 @@ export default function UberCloneCaseStudy() {
         <Section className="py-10 md:py-12">
           <div className="max-w-3xl">
             <span className="font-caption text-xs font-semibold text-accent block mb-2">
-              Geolocational Mobile Concept
+              Real-Time Messaging Platform
             </span>
             <h1 className="font-h1 uppercase tracking-tight text-foreground mb-4">
-              Uber Ride <br />
-              <span className="text-primary italic">Clone.</span>
+              P2P Chat App <br />
+              <span className="text-primary italic">Real-time chat.</span>
             </h1>
             <p className="text-muted-foreground font-body-large mt-4 max-w-xl font-light">
-              A geolocation-enabled dashboard tracking coordinates, path route lines, and ride booking flows.
+              A real-time messaging application designed to explore WebSockets synchronization, 
+              scalable messaging architecture, authentication workflows, and Redis caching.
             </p>
           </div>
         </Section>
@@ -100,8 +101,8 @@ export default function UberCloneCaseStudy() {
             <div className="space-y-4">
               <h2 className="font-h3 text-foreground border-b border-border pb-3">The Problem</h2>
               <p className="text-muted-foreground font-body-base leading-relaxed font-light">
-                Syncing driver location updates with passenger clients, displaying route geometry, 
-                and updating ride ETA details in real time requires robust, lightweight state synchronization.
+                Syncing real-time messages across thousands of concurrent chat rooms without high database 
+                polling cost or message dropouts requires solid pub/sub routing and low latency network sockets.
               </p>
             </div>
 
@@ -109,9 +110,9 @@ export default function UberCloneCaseStudy() {
             <div className="space-y-4">
               <h2 className="font-h3 text-foreground border-b border-border pb-3">The Solution</h2>
               <p className="text-muted-foreground font-body-base leading-relaxed font-light">
-                Created a React Native client integrating Mapbox GL. Connected coordinate listeners that 
-                trigger geometry line generation when pickup and destination markers are set, 
-                calculating dynamic travel times.
+                Built a Node.js and Express backend that leverages Socket.io WebSockets connections. 
+                Integrates Redis as a key-value store and message broker for scaling chat state, 
+                and secures endpoints using JWT-based token exchanges and OAuth login interfaces.
               </p>
             </div>
 
@@ -120,15 +121,16 @@ export default function UberCloneCaseStudy() {
               <h2 className="font-h3 text-foreground border-b border-border pb-3">Core Features</h2>
               <ul className="space-y-4">
                 {[
-                  { title: "Vector Routing Maps", desc: "Embeds Mapbox maps displaying direct routing paths between markers." },
-                  { title: "Location Auto-Complete", desc: "Integrates Mapbox Geocoding API to suggest address locations as users type." },
-                  { title: "Fare Calculations", desc: "Computes estimates based on geographic distance and estimated travel durations." }
+                  { title: "Real-Time Message Sync", desc: "Coordinates low-latency WebSockets connections for active conversation syncing." },
+                  { title: "Redis Pub/Sub Message Broker", desc: "Integrates Redis caching to manage state synchronization across multiple server nodes." },
+                  { title: "Authentication & OAuth", desc: "Secures user profiles and session channels with token-based JWT and Google OAuth logic." },
+                  { title: "Media & File Sharing", desc: "Supports sharing file nodes, user images, and audio voice messages across active chat rooms." }
                 ].map((item) => (
                   <li key={item.title} className="flex items-start gap-3">
                     <CheckCircle className="text-accent shrink-0 mt-1" size={18} />
                     <div>
                       <h4 className="font-body-large font-bold text-foreground">{item.title}</h4>
-                      <p className="text-muted-foreground text-sm font-body-base mt-1 leading-relaxed">
+                      <p className="text-muted-foreground text-sm font-body-base mt-1 leading-relaxed font-light">
                         {item.desc}
                       </p>
                     </div>
@@ -146,11 +148,15 @@ export default function UberCloneCaseStudy() {
               <div className="space-y-3 text-xs font-body-base text-muted-foreground">
                 <div>
                   <span className="font-bold text-foreground block">Stack</span>
-                  <span>React Native, TypeScript, Node.js, Express</span>
+                  <span>React, Node.js, WebSockets, Redis, MongoDB</span>
                 </div>
                 <div>
-                  <span className="font-bold text-foreground block">Geolocation Client</span>
-                  <span>Mapbox GL / Address API</span>
+                  <span className="font-bold text-foreground block">Category</span>
+                  <span>Real-Time Messaging Client</span>
+                </div>
+                <div>
+                  <span className="font-bold text-foreground block">Project Class</span>
+                  <span>Research Project / Proof of Concept</span>
                 </div>
               </div>
 
@@ -160,7 +166,7 @@ export default function UberCloneCaseStudy() {
                   target="_blank"
                   rel="noopener noreferrer"
                   eventName="project_github_clicked"
-                  params={{ project: "uber-clone" }}
+                  params={{ project: "p2p-chat-app" }}
                   className="w-full inline-flex items-center justify-center gap-2 px-4 py-3 bg-primary text-primary-foreground font-body-small font-semibold rounded-xl shadow-md transition-transform hover:scale-[1.01] active:scale-[0.99]"
                 >
                   <Github size={16} />

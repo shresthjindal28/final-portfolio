@@ -22,44 +22,44 @@ interface ProjectItem {
 
 const otherProjects: ProjectItem[] = [
   {
-    title: "Offline Emergency Response",
+    title: "Aero3",
     description:
-      "A privacy-first, fully offline framework powered by a local LLM for system diagnostics, file verification, and failover automation during emergencies.",
-    impact: "Provides 100% offline local orchestration with zero API dependency.",
-    technologies: ["FastAPI", "TypeScript", "Llama.cpp", "Shell scripting"],
+      "An AI clinical copilot designed to reduce healthcare documentation overhead. The system assists healthcare professionals by generating structured SOAP notes from consultations and medical language understanding.",
+    impact: "Automates structured SOAP note generation from audio transcripts.",
+    technologies: ["Next.js", "FastAPI", "Google Gemini", "Tailwind CSS"],
+    githubUrl: "https://github.com/shresthjindal28/aero3",
+    liveUrl: "/projects/aero3",
+    slug: "aero3",
+  },
+  {
+    title: "SentinelOS",
+    description:
+      "Offline emergency and disaster response platform designed to operate without internet connectivity. Provides emergency guidance, hazard awareness, first-aid support, and decision assistance.",
+    impact: "Provides 100% offline emergency workflows and rule-based decision engines.",
+    technologies: ["Next.js", "TypeScript", "LlamaIndex", "Local LLM"],
     githubUrl: "https://github.com/shresthjindal28/SentinelOS",
     liveUrl: "/projects/offline-emergency-response",
     slug: "offline-emergency-response",
   },
   {
-    title: "Google Drive Clone",
+    title: "P2P Chat App",
     description:
-      "Full cloud-storage mockup featuring nested folder structures, multi-file upload management, drag-and-drop actions, and shared user permissions.",
-    impact: "Implements high-fidelity folder serialization schemas in MongoDB.",
-    technologies: ["React", "Next.js", "Node.js", "Express.js", "MongoDB", "S3 Storage"],
-    githubUrl: "https://github.com/shresthjindal28/Note-app",
-    liveUrl: "/projects/google-drive-clone",
-    slug: "google-drive-clone",
+      "A real-time messaging platform built to explore scalable communication systems, authentication workflows, media sharing, voice notes, and modern backend architecture.",
+    impact: "Coordinates real-time message sync with low latency socket connections.",
+    technologies: ["React", "Node.js", "WebSockets", "Redis", "OAuth"],
+    githubUrl: "https://github.com/shresthjindal28/p2p-chat-app",
+    liveUrl: "/projects/p2p-chat-app",
+    slug: "p2p-chat-app",
   },
   {
-    title: "Uber Clone",
+    title: "Komi Extension",
     description:
-      "Real-time location ride booking app integrating Mapbox routing client, geolocation markers, and active ride state syncing.",
-    impact: "Simulates route vector math calculations dynamically.",
-    technologies: ["React Native", "TypeScript", "Node.js", "Express.js", "Mapbox"],
-    githubUrl: "https://github.com/shresthjindal28/Chat-app.git",
-    liveUrl: "/projects/uber-clone",
-    slug: "uber-clone",
-  },
-  {
-    title: "Employee Management",
-    description:
-      "Full-stack company operations panel for allocating tasks, tracking department metrics, and configuring user RBAC roles.",
-    impact: "Reduces authorization lookups using stateless JWT validation checks.",
-    technologies: ["React", "Node.js", "Express.js", "MongoDB", "Tailwind CSS"],
-    githubUrl: "https://github.com/shresthjindal28",
-    liveUrl: "/projects/employee-management-system",
-    slug: "employee-management-system",
+      "Always-on, wake-word activated, voice + command-palette DevOps copilot for Git & GitHub automation powered by Google Gemini.",
+    impact: "Translates natural language intent into structured local Git and remote API commands.",
+    technologies: ["VS Code API", "Node.js", "Google Gemini", "Git CLI"],
+    githubUrl: "https://github.com/shresthjindal28/Komi-extension",
+    liveUrl: "/projects/komi-extension",
+    slug: "komi-extension",
   },
 ];
 
