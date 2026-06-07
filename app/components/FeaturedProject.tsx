@@ -102,7 +102,7 @@ export default function FeaturedProject() {
             <Sparkles size={14} className="animate-pulse" />
             <span>Flagship Release</span>
           </div>
-          <h2 className="font-h1 uppercase tracking-tight text-foreground">
+          <h2 className="font-h2 tracking-tight text-foreground">
             Flagship <br className="md:hidden" />
             <span className="text-primary italic">Product.</span>
           </h2>

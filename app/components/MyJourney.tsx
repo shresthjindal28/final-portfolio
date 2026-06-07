@@ -59,7 +59,7 @@ export default function MyJourney() {
             <Milestone size={14} />
             <span>Story of Growth</span>
           </div>
-          <h2 className="font-h1 uppercase tracking-tight text-foreground">
+          <h2 className="font-h2 tracking-tight text-foreground">
             My Developer <br className="md:hidden" />
             <span className="text-primary italic">Journey.</span>
           </h2>

@@ -76,7 +76,7 @@ export default function Projects() {
             <FolderGit2 size={14} />
             <span>Product Archive</span>
           </div>
-          <h2 className="font-h1 uppercase tracking-tight text-foreground">
+          <h2 className="font-h2 tracking-tight text-foreground">
             Other Things <br className="md:hidden" />
             <span className="text-primary italic">I&apos;ve Built.</span>
           </h2>

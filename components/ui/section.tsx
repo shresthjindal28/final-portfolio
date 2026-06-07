@@ -12,7 +12,7 @@ export const Section = React.forwardRef<HTMLElement, SectionProps>(
       <Component
         ref={ref}
         className={cn(
-          "py-16 md:py-24 lg:py-32 w-full relative overflow-hidden",
+          "py-16 md:py-24 lg:py-32 w-full relative",
           {
             "border-b border-border": divider,
           },

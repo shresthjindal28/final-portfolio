@@ -1,200 +1,154 @@
 "use client";
 
-import React, { useRef } from "react";
-import { motion, useScroll, useSpring } from "framer-motion";
-import { Briefcase, ArrowRight, Award, Calendar, MapPin } from "lucide-react";
+import React from "react";
+import { motion, useReducedMotion } from "framer-motion";
+import { Briefcase, ArrowRight, Calendar, FileText, ArrowUpRight, ShieldCheck } from "lucide-react";
 import Link from "next/link";
 import { Container } from "@/components/ui/container";
 import { Section } from "@/components/ui/section";
 import { useSectionInView } from "@/hooks/use-section-in-view";
 import { EASE_PREMIUM } from "@/lib/animations";
-
-interface ExperienceItem {
-  company: string;
-  position: string;
-  duration: string;
-  location: string;
-  description: string;
-  technologies: string[];
-  featured?: boolean;
-  slug?: string;
-  certificateUrl?: string;
-}
-
-const experiences: ExperienceItem[] = [
-  {
-    company: "Lawvriksh Private Limited",
-    position: "Full Stack Intern",
-    duration: "Dec 2025 - Jun 2026",
-    location: "Remote / Bangalore, India",
-    description:
-      "Developed multiple core pages of the SaaS platform and connected the FastAPI backend with the Next.js frontend. Collaborated with the product team to define technical requirements and assisted with onboarding new hires.",
-    technologies: ["Next.js", "React", "TypeScript", "FastAPI", "Python", "Tailwind CSS", "Git"],
-    featured: true,
-    slug: "lawvriksh",
-  },
-  {
-    company: "Devmaan",
-    position: "Full Stack Developer",
-    duration: "Sep 2025 - Nov 2025",
-    location: "Remote / Noida, India",
-    description:
-      "Architected both frontend layouts and backend APIs for a full-stack SaaS platform. Implemented secure authentication flows, optimized database schemas, and structured responsive components.",
-    technologies: ["Next.js", "TypeScript", "Node.js", "Express.js", "MongoDB", "Tailwind CSS"],
-  },
-  {
-    company: "Dolt Technologies",
-    position: "Full Stack Web Engineer",
-    duration: "Feb 2025 - Sep 2025",
-    location: "Remote / San Francisco, CA",
-    description:
-      "Maintained scalable full-stack web applications, developing structured database schemas, REST APIs, and UI animations. Focused on bridging backend reliability and smooth frontend interaction.",
-    technologies: ["React", "TypeScript", "Node.js", "MongoDB", "Express.js", "Docker", "GSAP"],
-  },
-];
+import { trackLawvrikshCaseStudyViewed, trackLawvrikshPdfDownloaded } from "@/lib/analytics";
 
 export default function Experience() {
   const { ref: sectionRef } = useSectionInView({ sectionId: "experience" });
-  const timelineRef = useRef<HTMLDivElement | null>(null);
-
-  // Track scroll position to draw the timeline line
-  const { scrollYProgress } = useScroll({
-    target: timelineRef,
-    offset: ["start center", "end center"],
-  });
-
-  const scaleY = useSpring(scrollYProgress, { stiffness: 100, damping: 30 });
+  const shouldReduceMotion = useReducedMotion();
 
   return (
     <Section id="experience" ref={sectionRef} className="border-t border-border bg-background">
       <Container variant="default">
         {/* Section Header */}
-        <div className="flex flex-col items-start mb-20">
+        <div className="flex flex-col items-start mb-16">
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-accent/10 border border-accent/20 text-accent font-body-small mb-6">
             <Briefcase size={14} />
-            <span>Career Path</span>
+            <span>Featured Career Highlight</span>
           </div>
-          <h2 className="font-h1 uppercase tracking-tight text-foreground">
+          <h2 className="font-h2 tracking-tight text-foreground">
             Featured <br className="md:hidden" />
             <span className="text-primary italic">Experience.</span>
           </h2>
           <p className="text-muted-foreground font-body-large mt-4 max-w-2xl font-light">
-            Highlighting internships and contract software engineering roles demonstrating 
-            impact, technical execution, and professional growth.
+            Deep dive into a professional full-stack role demonstrating shipping real-world product workflows and production systems engineering.
           </p>
         </div>
 
-        {/* Timeline wrapper */}
-        <div ref={timelineRef} className="relative max-w-4xl mx-auto pl-6 md:pl-0">
-          {/* Animated vertical timeline bar */}
-          <div className="absolute left-0 md:left-1/2 top-0 bottom-0 w-[2px] bg-border -translate-x-1/2 hidden md:block">
-            <motion.div
-              style={{ scaleY, originY: 0 }}
-              className="w-full h-full bg-accent"
-            />
+        {/* Large Editorial Card */}
+        <motion.div
+          initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.8, ease: EASE_PREMIUM }}
+          className="relative w-full rounded-3xl border border-border/80 dark:border-border/30 bg-card/40 dark:bg-card/20 p-8 md:p-12 shadow-xl backdrop-blur-sm overflow-hidden group flex flex-col gap-10"
+        >
+          {/* Subtle overlay decorative grid inside card */}
+          <div className="absolute inset-0 bg-gradient-to-br from-accent/[0.02] to-transparent pointer-events-none" />
+
+          {/* Two-Column Grid */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 relative z-10 border-b border-border/40 pb-8">
+            {/* Left Column (span 5) */}
+            <div className="lg:col-span-5 flex flex-col items-start gap-4">
+              <span className="text-xs font-caption text-accent font-bold uppercase tracking-widest">
+                Current Role
+              </span>
+              <h3 className="text-2xl md:text-3xl font-bold tracking-tight text-foreground leading-none">
+                Lawvriksh
+              </h3>
+              <div className="flex flex-col gap-1.5 mt-2">
+                <span className="text-lg font-body-base text-foreground font-bold">
+                  Full Stack Intern
+                </span>
+                <span className="text-sm font-body-small text-muted-foreground flex items-center gap-2">
+                  <Calendar size={14} />
+                  Dec 2025 – Jun 2026
+                </span>
+              </div>
+
+              {/* Verification Badge */}
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-600 dark:text-emerald-400 font-body-small text-xs font-semibold mt-4">
+                <ShieldCheck size={14} />
+                <span>Experience Letter Available</span>
+              </div>
+            </div>
+
+            {/* Right Column (span 7) */}
+            <div className="lg:col-span-7 flex flex-col justify-center">
+              <p className="font-body-large text-foreground/90 text-base md:text-lg leading-relaxed font-light">
+                Stepped directly into a fast-paced environment to build and deploy critical capabilities for a production document intelligence SaaS platform. Collaborated in an agile workflow, taking ownership of customer-facing dashboards and integrating complex Next.js features with high-throughput FastAPI endpoints. Gained deep exposure to developer operations, automated code delivery pipelines, and professional team workflows.
+              </p>
+            </div>
           </div>
 
-          <div className="absolute left-[3px] top-0 bottom-0 w-[2px] bg-border md:hidden">
-            <motion.div
-              style={{ scaleY, originY: 0 }}
-              className="w-full h-full bg-accent"
-            />
+          {/* Spanning Row: Three Info Blocks */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative z-10">
+            {/* Block 1: Responsibilities */}
+            <div className="flex flex-col gap-3">
+              <h4 className="text-xs font-caption text-muted-foreground uppercase tracking-widest font-semibold flex items-center gap-1.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-accent" />
+                Responsibilities
+              </h4>
+              <ul className="text-sm font-body-base text-foreground/85 leading-relaxed space-y-2 list-disc pl-4 font-light">
+                <li>Shipped key responsive pages and web layouts for SaaS customers.</li>
+                <li>Wired frontend data providers with FastAPI backend services.</li>
+                <li>Assisted product managers in specifying requirements and onboarding new developers.</li>
+              </ul>
+            </div>
+
+            {/* Block 2: Technologies */}
+            <div className="flex flex-col gap-3">
+              <h4 className="text-xs font-caption text-muted-foreground uppercase tracking-widest font-semibold flex items-center gap-1.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-accent" />
+                Technologies
+              </h4>
+              <div className="flex flex-wrap gap-2">
+                {["Next.js", "React", "TypeScript", "FastAPI", "Python", "Tailwind CSS", "Git"].map((tech) => (
+                  <span
+                    key={tech}
+                    className="px-2.5 py-1 text-[11px] font-body-small font-medium bg-secondary/20 border border-border text-foreground/95 rounded-md"
+                  >
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            {/* Block 3: What I Learned */}
+            <div className="flex flex-col gap-3">
+              <h4 className="text-xs font-caption text-muted-foreground uppercase tracking-widest font-semibold flex items-center gap-1.5">
+                <span className="w-1.5 h-1.5 rounded-full bg-accent" />
+                What I Learned
+              </h4>
+              <ul className="text-sm font-body-base text-foreground/85 leading-relaxed space-y-2 list-disc pl-4 font-light">
+                <li>Executing robust type-safe code delivery using strict TypeScript configurations.</li>
+                <li>Bridging API contracts safely between async backend engines and web clients.</li>
+                <li>Participating in structured team reviews and production code deployment sequences.</li>
+              </ul>
+            </div>
           </div>
 
-          {/* Timeline Nodes */}
-          <div className="space-y-16 md:space-y-24">
-            {experiences.map((exp, index) => {
-              const isEven = index % 2 === 0;
+          {/* Bottom Actions Row */}
+          <div className="flex flex-wrap gap-4 items-center border-t border-border/40 pt-8 mt-4 relative z-10">
+            <Link
+              href="/experience/lawvriksh"
+              onClick={() => trackLawvrikshCaseStudyViewed()}
+              className="group inline-flex items-center gap-2 px-6 py-3.5 bg-primary hover:bg-primary/95 text-primary-foreground font-body-small font-semibold rounded-xl transition-all duration-200 active:scale-[0.98]"
+            >
+              <span>View Case Study</span>
+              <ArrowRight size={15} className="group-hover:translate-x-0.5 transition-transform" />
+            </Link>
 
-              return (
-                <div
-                  key={exp.company}
-                  className={`flex flex-col md:flex-row relative ${
-                    isEven ? "md:flex-row-reverse" : ""
-                  }`}
-                >
-                  {/* Timeline bullet dot */}
-                  <div className="absolute left-[-23px] md:left-1/2 w-4 h-4 rounded-full border-2 border-accent bg-background z-10 -translate-x-1/2 top-2" />
-
-                  {/* Left spacer for desktop alignment */}
-                  <div className="w-full md:w-1/2 md:px-8 hidden md:block" />
-
-                  {/* Experience Card */}
-                  <div className="w-full md:w-1/2 md:px-8">
-                    <motion.div
-                      initial={{ opacity: 0, y: 30 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true, margin: "-100px" }}
-                      transition={{ duration: 0.8, ease: EASE_PREMIUM }}
-                      className={`relative p-6 md:p-8 bg-card border rounded-2xl transition-all duration-300 ${
-                        exp.featured
-                          ? "border-accent/40 shadow-xl shadow-accent/5 ring-1 ring-accent/20"
-                          : "border-border hover:border-accent/30"
-                      }`}
-                    >
-                      {/* Featured badge */}
-                      {exp.featured && (
-                        <span className="absolute top-4 right-4 inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-accent/10 text-accent text-[10px] font-caption">
-                          <Award size={10} />
-                          <span>Flagship Role</span>
-                        </span>
-                      )}
-
-                      {/* Header */}
-                      <div className="mb-4">
-                        <span className="font-caption text-accent text-xs font-semibold block mb-1">
-                          {exp.position}
-                        </span>
-                        <h3 className="font-h3 text-foreground mb-2">{exp.company}</h3>
-
-                        <div className="flex flex-wrap gap-x-4 gap-y-1 text-xs text-muted-foreground font-body-small">
-                          <span className="flex items-center gap-1">
-                            <Calendar size={12} />
-                            {exp.duration}
-                          </span>
-                          <span className="flex items-center gap-1">
-                            <MapPin size={12} />
-                            {exp.location}
-                          </span>
-                        </div>
-                      </div>
-
-                      {/* Description */}
-                      <p className="text-muted-foreground text-sm font-body-base leading-relaxed mb-6">
-                        {exp.description}
-                      </p>
-
-                      {/* Tech stack */}
-                      <div className="flex flex-wrap gap-2 mb-6">
-                        {exp.technologies.map((tech) => (
-                          <span
-                            key={tech}
-                            className="px-2.5 py-1 text-[11px] font-body-small font-medium bg-secondary/10 border border-border text-foreground/80 rounded-md"
-                          >
-                            {tech}
-                          </span>
-                        ))}
-                      </div>
-
-                      {/* Action buttons */}
-                      {exp.slug && (
-                        <div className="flex flex-wrap gap-3 border-t border-border pt-6 mt-4">
-                          <Link
-                            href={`/experience/${exp.slug}`}
-                            className="inline-flex items-center gap-1.5 text-xs font-body-small font-semibold text-accent hover:text-accent/80 transition-colors"
-                          >
-                            <span>Read Case Study</span>
-                            <ArrowRight size={14} />
-                          </Link>
-                        </div>
-                      )}
-                    </motion.div>
-                  </div>
-                </div>
-              );
-            })}
+            <a
+              href="/experiance_certificate/Experience_Letter_Shresth_Jindal_Lawvriksh_Private_Limited.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => trackLawvrikshPdfDownloaded()}
+              className="group inline-flex items-center gap-2 px-6 py-3.5 bg-card hover:bg-secondary/40 text-foreground font-body-small font-semibold rounded-xl border border-border transition-all duration-200 active:scale-[0.98]"
+            >
+              <FileText size={15} className="text-muted-foreground group-hover:text-foreground transition-colors" />
+              <span>View Experience Letter</span>
+              <ArrowUpRight size={14} className="opacity-60 group-hover:opacity-100 transition-opacity" />
+            </a>
           </div>
-        </div>
+        </motion.div>
       </Container>
     </Section>
   );

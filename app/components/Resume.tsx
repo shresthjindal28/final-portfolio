@@ -30,7 +30,7 @@ export default function Resume() {
             <FileText size={14} />
             <span>Qualifications</span>
           </div>
-          <h2 className="font-h1 uppercase tracking-tight text-foreground">
+          <h2 className="font-h2 tracking-tight text-foreground">
             Curriculum <br className="md:hidden" />
             <span className="text-primary italic">Vitae.</span>
           </h2>

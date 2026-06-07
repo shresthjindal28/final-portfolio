@@ -53,7 +53,7 @@ export default function CurrentlyBuilding() {
             <Hammer size={14} />
             <span>Active Roadmap</span>
           </div>
-          <h2 className="font-h1 uppercase tracking-tight text-foreground">
+          <h2 className="font-h2 tracking-tight text-foreground">
             Currently <br className="md:hidden" />
             <span className="text-primary italic">Building.</span>
           </h2>
