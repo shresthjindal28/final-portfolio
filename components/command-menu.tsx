@@ -20,6 +20,12 @@ import {
   Twitter,
   Laptop,
 } from "lucide-react";
+import {
+  trackCommandMenuOpened,
+  trackCommandMenuNavigation,
+  trackGithubClicked,
+  trackLinkedinClicked,
+} from "@/lib/analytics";
 
 export function CommandMenu() {
   const [open, setOpen] = React.useState(false);
@@ -29,7 +35,11 @@ export function CommandMenu() {
     const down = (e: KeyboardEvent) => {
       if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
         e.preventDefault();
-        setOpen((open) => !open);
+        setOpen((open) => {
+          const next = !open;
+          if (next) trackCommandMenuOpened();
+          return next;
+        });
       }
     };
     document.addEventListener("keydown", down);
@@ -41,11 +51,16 @@ export function CommandMenu() {
     command();
   }, []);
 
+  const openMenu = () => {
+    setOpen(true);
+    trackCommandMenuOpened();
+  };
+
   return (
     <>
       {/* Keyboard shortcut trigger hint floating on screen */}
       <button
-        onClick={() => setOpen(true)}
+        onClick={openMenu}
         className="fixed bottom-6 right-6 z-40 hidden md:flex items-center gap-2 px-3 py-2 rounded-full border border-border bg-card/80 backdrop-blur-md shadow-lg hover:border-accent transition-colors text-xs text-muted-foreground font-sans font-medium"
       >
         <span className="text-[10px] bg-muted px-1.5 py-0.5 rounded border border-border">⌘</span>
@@ -62,6 +77,7 @@ export function CommandMenu() {
             <CommandItem
               onSelect={() =>
                 runCommand(() => {
+                  trackCommandMenuNavigation("/");
                   router.push("/");
                   setTimeout(() => {
                     document.getElementById("hero")?.scrollIntoView({ behavior: "smooth" });
@@ -75,6 +91,7 @@ export function CommandMenu() {
             <CommandItem
               onSelect={() =>
                 runCommand(() => {
+                  trackCommandMenuNavigation("/experience/lawvriksh");
                   router.push("/experience/lawvriksh");
                 })
               }
@@ -85,6 +102,7 @@ export function CommandMenu() {
             <CommandItem
               onSelect={() =>
                 runCommand(() => {
+                  trackCommandMenuNavigation("/#experience");
                   router.push("/");
                   setTimeout(() => {
                     document.getElementById("experience")?.scrollIntoView({ behavior: "smooth" });
@@ -98,6 +116,7 @@ export function CommandMenu() {
             <CommandItem
               onSelect={() =>
                 runCommand(() => {
+                  trackCommandMenuNavigation("/#projects");
                   router.push("/");
                   setTimeout(() => {
                     document.getElementById("projects")?.scrollIntoView({ behavior: "smooth" });
@@ -111,6 +130,7 @@ export function CommandMenu() {
             <CommandItem
               onSelect={() =>
                 runCommand(() => {
+                  trackCommandMenuNavigation("/#resume");
                   router.push("/");
                   setTimeout(() => {
                     document.getElementById("resume")?.scrollIntoView({ behavior: "smooth" });
@@ -124,6 +144,7 @@ export function CommandMenu() {
             <CommandItem
               onSelect={() =>
                 runCommand(() => {
+                  trackCommandMenuNavigation("/#contact");
                   router.push("/");
                   setTimeout(() => {
                     document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
@@ -139,6 +160,7 @@ export function CommandMenu() {
             <CommandItem
               onSelect={() =>
                 runCommand(() => {
+                  trackCommandMenuNavigation("/projects/ai-pdf");
                   router.push("/projects/ai-pdf");
                 })
               }
@@ -149,25 +171,45 @@ export function CommandMenu() {
           </CommandGroup>
           <CommandGroup heading="Other Projects">
             <CommandItem
-              onSelect={() => runCommand(() => router.push("/projects/google-drive-clone"))}
+              onSelect={() =>
+                runCommand(() => {
+                  trackCommandMenuNavigation("/projects/google-drive-clone");
+                  router.push("/projects/google-drive-clone");
+                })
+              }
             >
               <FolderGit2 className="mr-2 h-4 w-4 text-muted-foreground" />
               <span>Google Drive Clone</span>
             </CommandItem>
             <CommandItem
-              onSelect={() => runCommand(() => router.push("/projects/uber-clone"))}
+              onSelect={() =>
+                runCommand(() => {
+                  trackCommandMenuNavigation("/projects/uber-clone");
+                  router.push("/projects/uber-clone");
+                })
+              }
             >
               <FolderGit2 className="mr-2 h-4 w-4 text-muted-foreground" />
               <span>Uber Clone</span>
             </CommandItem>
             <CommandItem
-              onSelect={() => runCommand(() => router.push("/projects/employee-management-system"))}
+              onSelect={() =>
+                runCommand(() => {
+                  trackCommandMenuNavigation("/projects/employee-management-system");
+                  router.push("/projects/employee-management-system");
+                })
+              }
             >
               <FolderGit2 className="mr-2 h-4 w-4 text-muted-foreground" />
               <span>Employee Management System</span>
             </CommandItem>
             <CommandItem
-              onSelect={() => runCommand(() => router.push("/projects/offline-emergency-response"))}
+              onSelect={() =>
+                runCommand(() => {
+                  trackCommandMenuNavigation("/projects/offline-emergency-response");
+                  router.push("/projects/offline-emergency-response");
+                })
+              }
             >
               <FolderGit2 className="mr-2 h-4 w-4 text-muted-foreground" />
               <span>Offline Emergency Response System</span>
@@ -176,7 +218,10 @@ export function CommandMenu() {
           <CommandGroup heading="Socials">
             <CommandItem
               onSelect={() =>
-                runCommand(() => window.open("https://github.com/shresthjindal28", "_blank"))
+                runCommand(() => {
+                  trackGithubClicked("command_menu");
+                  window.open("https://github.com/shresthjindal28", "_blank");
+                })
               }
             >
               <Github className="mr-2 h-4 w-4 text-muted-foreground" />
@@ -184,9 +229,10 @@ export function CommandMenu() {
             </CommandItem>
             <CommandItem
               onSelect={() =>
-                runCommand(() =>
-                  window.open("https://www.linkedin.com/in/shresth-jindal-b074ba28b/", "_blank")
-                )
+                runCommand(() => {
+                  trackLinkedinClicked("command_menu");
+                  window.open("https://www.linkedin.com/in/shresth-jindal-b074ba28b/", "_blank");
+                })
               }
             >
               <Linkedin className="mr-2 h-4 w-4 text-muted-foreground" />

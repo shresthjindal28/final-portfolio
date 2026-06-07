@@ -4,6 +4,8 @@ import Link from "next/link";
 import { Container } from "@/components/ui/container";
 import { Section } from "@/components/ui/section";
 import { ArrowLeft, FileText, Download, Calendar, MapPin, CheckCircle, ExternalLink, ShieldCheck, Award } from "lucide-react";
+import AnalyticsOnMount from "@/app/components/AnalyticsOnMount";
+import TrackedLink from "@/app/components/TrackedLink";
 
 export const metadata: Metadata = {
   title: "Full Stack Intern Case Study @ Lawvriksh | Shresth Jindal",
@@ -15,6 +17,13 @@ export const metadata: Metadata = {
   robots: {
     index: true,
     follow: true,
+  },
+  openGraph: {
+    title: "Full Stack Intern Case Study @ Lawvriksh | Shresth Jindal",
+    description: "Explore Shresth Jindal's internship contributions at Lawvriksh Private Limited, focusing on Next.js development and FastAPI backend integration.",
+    url: "https://www.shresthjindal.com/experience/lawvriksh",
+    images: [{ url: "https://www.shresthjindal.com/og-image.png", alt: "Lawvriksh Case Study Shresth Jindal" }],
+    type: "article",
   },
 };
 
@@ -57,6 +66,7 @@ export default function LawvrikshCaseStudy() {
       <Script id="lawvriksh-schema" type="application/ld+json" strategy="afterInteractive">
         {JSON.stringify(CASE_STUDY_SCHEMA)}
       </Script>
+      <AnalyticsOnMount eventName="lawvriksh_case_study_viewed" />
 
       <Container variant="default">
         {/* Back Link */}
@@ -212,25 +222,27 @@ export default function LawvrikshCaseStudy() {
 
               {/* Action Buttons */}
               <div className="space-y-3">
-                <a
+                <TrackedLink
                   href={certificateUrl}
                   target="_blank"
                   rel="noopener noreferrer"
+                  eventName="lawvriksh_pdf_downloaded"
                   className="w-full inline-flex items-center justify-center gap-2 px-4 py-3 bg-primary text-primary-foreground font-body-small font-semibold rounded-xl shadow-md transition-transform hover:scale-[1.01] active:scale-[0.99]"
                 >
                   <FileText size={16} />
                   <span>View Full Letter</span>
                   <ExternalLink size={14} className="ml-1 opacity-70" />
-                </a>
+                </TrackedLink>
 
-                <a
+                <TrackedLink
                   href={certificateUrl}
                   download="Experience_Letter_Shresth_Jindal_Lawvriksh.pdf"
+                  eventName="lawvriksh_pdf_downloaded"
                   className="w-full inline-flex items-center justify-center gap-2 px-4 py-3 bg-card border border-border hover:bg-secondary/10 text-foreground font-body-small font-semibold rounded-xl transition-colors"
                 >
                   <Download size={16} />
                   <span>Download PDF</span>
-                </a>
+                </TrackedLink>
               </div>
 
               {/* Certificate visual preview */}

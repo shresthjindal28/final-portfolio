@@ -1,251 +1,300 @@
 "use client";
-import { useState, useEffect } from "react";
-import Script from "next/script";
-import { Mail, Sparkles } from "lucide-react";
+
+import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Mail, Sparkles, Send, Copy, Check, MessageSquare, Calendar, Github, Linkedin, ArrowRight } from "lucide-react";
 import { useSectionInView } from "@/hooks/use-section-in-view";
+import {
+  trackEmailClicked,
+  trackLinkedinClicked,
+  trackGithubClicked,
+  trackContactSubmitted,
+  trackContactSubmissionFailed
+} from "@/lib/analytics";
 
-export default function Contact() {
-	const { ref: sectionRef, isInView } = useSectionInView({ sectionId: "contact" });
-	const [isVisible, setIsVisible] = useState(false);
+export default function Contact({ isSubpage = false }: { isSubpage?: boolean } = {}) {
+  const { ref: sectionRef } = useSectionInView({ sectionId: "contact" });
 
-	useEffect(() => {
-		if (isInView) {
-			setIsVisible(true);
-		}
-	}, [isInView]);
+  // Form states
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+  const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
+  
+  // Copy state
+  const [copied, setCopied] = useState(false);
 
-	const contactInfo = [
-		{
-			icon: (
-				<svg
-					className="w-6 h-6"
-					fill="none"
-					stroke="currentColor"
-					viewBox="0 0 24 24"
-				>
-					<path
-						strokeLinecap="round"
-						strokeLinejoin="round"
-						strokeWidth="2"
-						d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-					></path>
-				</svg>
-			),
-			title: "Email",
-			info: "shresthjindal28@gmail.com",
-			link: "mailto:shresthjindal28@gmail.com",
-		},
-		{
-			icon: (
-				<svg
-					className="w-6 h-6"
-					fill="none"
-					stroke="currentColor"
-					viewBox="0 0 24 24"
-				>
-					<path
-						strokeLinecap="round"
-						strokeLinejoin="round"
-						strokeWidth="2"
-						d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"
-					></path>
-					<path
-						strokeLinecap="round"
-						strokeLinejoin="round"
-						strokeWidth="2"
-						d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"
-					></path>
-				</svg>
-			),
-			title: "Location",
-			info: "Bangalore, India",
-			link: null,
-		},
-		{
-			icon: (
-				<svg
-					className="w-6 h-6"
-					fill="none"
-					stroke="currentColor"
-					viewBox="0 0 24 24"
-				>
-					<path
-						strokeLinecap="round"
-						strokeLinejoin="round"
-						strokeWidth="2"
-						d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
-					></path>
-				</svg>
-			),
-			title: "Phone",
-			info: "+91 7461835970",
-			link: "tel:+917461835970",
-		},
-	];
+  const copyEmail = () => {
+    navigator.clipboard.writeText("shresthjindal28@gmail.com");
+    setCopied(true);
+    trackEmailClicked("contact_card");
+    setTimeout(() => setCopied(false), 2000);
+  };
 
-	// Social links are rendered directly below
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!name || !email || !message) {
+      trackContactSubmissionFailed("missing_fields");
+      return;
+    }
+    
+    setStatus("submitting");
 
-	return (
-		<section
-			id="contact"
-			ref={sectionRef}
-			className="py-24 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8"
-		>
-			<div className="w-full">
-				<div
-					className={`transition-all duration-1000 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-						}`}
-				>
-					<div className="flex flex-col items-start mb-20">
-						<div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-emerald-400/10 border border-emerald-400/20 text-emerald-400 text-xs font-semibold tracking-widest uppercase mb-6">
-							<Mail className="w-4 h-4" />
-							Get In Touch
-						</div>
-						<h2 className="text-5xl md:text-7xl font-bold text-white tracking-tighter uppercase">
-							LET&apos;S <br className="md:hidden" />
-							<span className="text-zinc-600 italic">CONNECT.</span>
-						</h2>
-					</div>
+    // Simulate database write / mail API lag
+    setTimeout(() => {
+      setStatus("success");
+      trackContactSubmitted();
+      setName("");
+      setEmail("");
+      setMessage("");
+    }, 1500);
+  };
 
-					<div className="grid lg:grid-cols-1 gap-8 md:gap-12 w-full">
-						{/* Contact Info */}
-						<div
-							className={`transition-all duration-700 ${isVisible
-								? "opacity-100 translate-x-0"
-								: "opacity-0 -translate-x-10"
-								}`}
-						>
+  return (
+    <section
+      id="contact"
+      ref={sectionRef}
+      className="py-24 max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 bg-background"
+    >
+      {/* Premium Dark Forest Container Card */}
+      <div className="w-full bg-[#0F1617] text-white border border-[#223A3E] rounded-3xl p-8 md:p-12 relative overflow-hidden shadow-2xl">
+        {/* Subtle grid background */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#1b2b2e_1px,transparent_1px),linear-gradient(to_bottom,#1b2b2e_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] opacity-30 pointer-events-none" />
 
+        <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+          
+          {/* LEFT COLUMN: Value Proposition & Outreach actions */}
+          <div className="lg:col-span-5 space-y-8">
+            <div>
+              {/* Header Badge */}
+              <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#2A9D8F]/10 border border-[#2A9D8F]/20 text-[#2A9D8F] text-xs font-mono mb-6">
+                <Sparkles size={14} className="animate-pulse" />
+                <span>Let&apos;s Build Something</span>
+              </div>
+              
+              {isSubpage && (
+                <h1 className="sr-only">Contact Shresth Jindal - Freelance Full Stack Developer</h1>
+              )}
+              
+              <h2 className="font-h1 uppercase tracking-tight text-[#F8F3E9] leading-none mb-6">
+                Let&apos;s build <br />
+                <span className="text-[#2A9D8F] italic">something.</span>
+              </h2>
+              
+              <p className="text-[#9BB3B6] font-body-large font-light leading-relaxed max-w-md">
+                Have a project in mind, an open full-stack role, or looking to hire a freelance 
+                developer? Let&apos;s connect to build high-performance web products.
+              </p>
+            </div>
 
-							<div className="grid sm:grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mb-8">
-								{contactInfo.map((item) => (
-									<div key={item.title} className="flex flex-col sm:flex-row items-center sm:items-start space-y-2 sm:space-y-0 sm:space-x-4 p-4 bg-card/50 rounded-lg border border-border hover:border-emerald-400/30 transition-colors duration-200">
-										<div className="w-12 h-12 bg-emerald-500/10 border border-emerald-400/20 rounded-lg flex items-center justify-center text-emerald-400 flex-shrink-0">
-											{item.icon}
-										</div>
-										<div className="text-left">
-											<h4 className="text-foreground font-semibold text-sm md:text-base">{item.title}</h4>
-											{item.link ? (
-												<a
-													href={item.link}
-													className="text-muted-foreground hover:text-emerald-400 transition-colors duration-200 text-sm md:text-base break-all"
-													aria-label={item.title}
-												>
-													{item.info}
-												</a>
-											) : (
-												<p className="text-muted-foreground text-sm md:text-base">{item.info}</p>
-											)}
-										</div>
-									</div>
-								))}
-							</div>
+            {/* Availability status */}
+            <div className="flex items-center gap-3 bg-[#142022] border border-[#223A3E] p-4 rounded-2xl max-w-sm">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400"></span>
+              </span>
+              <span className="text-xs font-mono text-[#D2E2E4] font-light">
+                Available for projects starting <span className="font-bold text-[#2A9D8F]">Q3 2026</span>
+              </span>
+            </div>
 
-							{/* Social Links */}
-							<div className="flex justify-start space-x-4 sm:space-x-6 mb-6 md:mb-8">
-								<a
-									href="https://github.com/shresthjindal28"
-									aria-label="GitHub"
-									target="_blank"
-									rel="noopener noreferrer"
-									className="text-muted-foreground hover:text-foreground transition-colors duration-200 p-2 rounded-lg hover:bg-muted/50"
-								>
-									<svg
-										className="w-5 h-5 sm:w-6 sm:h-6"
-										viewBox="0 0 24 24"
-										fill="currentColor"
-										aria-hidden
-									>
-										<path d="M12 .5C5.73.5.5 5.73.5 12c0 5.08 3.29 9.38 7.86 10.9.57.1.78-.25.78-.55 0-.27-.01-1-.02-1.96-3.2.7-3.88-1.55-3.88-1.55-.52-1.31-1.26-1.66-1.26-1.66-1.03-.7.08-.69.08-.69 1.14.08 1.74 1.17 1.74 1.17 1.01 1.74 2.65 1.24 3.3.95.1-.74.4-1.24.72-1.53-2.55-.29-5.23-1.28-5.23-5.7 0-1.26.45-2.29 1.17-3.09-.12-.29-.51-1.48.11-3.08 0 0 .97-.31 3.18 1.18.92-.26 1.9-.39 2.88-.39.98 0 1.96.13 2.88.39 2.2-1.49 3.17-1.18 3.17-1.18.63 1.6.24 2.79.12 3.08.73.8 1.17 1.83 1.17 3.09 0 4.43-2.69 5.4-5.25 5.68.41.35.77 1.05.77 2.12 0 1.53-.01 2.76-.01 3.14 0 .3.2.66.79.55A12.01 12.01 0 0023.5 12C23.5 5.73 18.27.5 12 .5z" />
-									</svg>
-								</a>
+            {/* Quick Connect Cards */}
+            <div className="space-y-3.5 max-w-sm">
+              {/* Email Click-to-copy card */}
+              <button
+                onClick={copyEmail}
+                className="w-full flex items-center justify-between p-3.5 bg-[#142022] border border-[#223A3E] hover:border-[#2A9D8F]/40 hover:bg-[#1C3236] rounded-xl text-left transition-all duration-200 group"
+              >
+                <div className="flex items-center gap-3 truncate">
+                  <div className="w-8 h-8 rounded-lg bg-[#264653] border border-[#223A3E] flex items-center justify-center text-[#2A9D8F]">
+                    <Mail size={14} />
+                  </div>
+                  <div className="truncate">
+                    <span className="text-[9px] font-mono text-[#6A888C] block uppercase font-bold">Email Address</span>
+                    <span className="text-xs font-mono text-white truncate block">shresthjindal28@gmail.com</span>
+                  </div>
+                </div>
+                <div className="text-[#6A888C] group-hover:text-white shrink-0 ml-2">
+                  {copied ? <Check size={14} className="text-[#2A9D8F]" /> : <Copy size={14} />}
+                </div>
+              </button>
 
-								<a
-									href="https://www.linkedin.com/in/shresth-jindal-b074ba28b/"
-									aria-label="LinkedIn"
-									target="_blank"
-									rel="noopener noreferrer"
-									className="text-muted-foreground hover:text-emerald-400 transition-colors duration-200 p-2 rounded-lg hover:bg-muted/50"
-								>
-									<svg
-										className="w-5 h-5 sm:w-6 sm:h-6"
-										viewBox="0 0 24 24"
-										fill="currentColor"
-										aria-hidden
-									>
-										<path d="M19 0h-14c-2.76 0-5 2.24-5 5v14c0 2.76 2.24 5 5 5h14c2.76 0 5-2.24 5 5v-14c0-2.76-2.24-5-5-5zm-11 19h-3v-10h3v10zm-1.5-11.3c-.966 0-1.75-.784-1.75-1.75s.784-1.75 1.75-1.75 1.75.784 1.75 1.75-.784 1.75-1.75 1.75zm13.5 11.3h-3v-5.5c0-1.38-.03-3.16-1.93-3.16-1.93 0-2.23 1.5-2.23 3.05v5.61h-3v-10h2.88v1.36h.04c.4-.75 1.37-1.54 2.82-1.54 3.02 0 3.58 1.99 3.58 4.58v5.6z" />
-									</svg>
-								</a>
+              {/* WhatsApp direct card */}
+              <a
+                href="https://wa.me/917461835970"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-full flex items-center justify-between p-3.5 bg-[#142022] border border-[#223A3E] hover:border-[#2A9D8F]/40 hover:bg-[#1C3236] rounded-xl text-left transition-all duration-200 group"
+              >
+                <div className="flex items-center gap-3">
+                  <div className="w-8 h-8 rounded-lg bg-[#264653] border border-[#223A3E] flex items-center justify-center text-[#2A9D8F]">
+                    <MessageSquare size={14} />
+                  </div>
+                  <div>
+                    <span className="text-[9px] font-mono text-[#6A888C] block uppercase font-bold">Instant Chat</span>
+                    <span className="text-xs font-mono text-white block">WhatsApp Message</span>
+                  </div>
+                </div>
+                <ArrowRight size={14} className="text-[#6A888C] group-hover:text-white group-hover:translate-x-0.5 transition-transform" />
+              </a>
 
-								<a
-									href="https://x.com/shresth_ji76019"
-									aria-label="Twitter"
-									target="_blank"
-									rel="noopener noreferrer"
-									className="text-muted-foreground hover:text-emerald-400 transition-colors duration-200 p-2 rounded-lg hover:bg-muted/50"
-								>
-									<svg
-										className="w-5 h-5 sm:w-6 sm:h-6"
-										viewBox="0 0 24 24"
-										fill="currentColor"
-										aria-hidden
-									>
-										<path d="M23 3a10.9 10.9 0 01-3.14 1.53A4.48 4.48 0 0012.09 8v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z" />
-									</svg>
-								</a>
-							</div>
+              {/* Call direct */}
+              <a
+                href="tel:+917461835970"
+                className="w-full flex items-center justify-between p-3.5 bg-[#142022] border border-[#223A3E] hover:border-[#2A9D8F]/40 hover:bg-[#1C3236] rounded-xl text-left transition-all duration-200 group"
+              >
+                <div className="flex items-center gap-3">
+                  <div className="w-8 h-8 rounded-lg bg-[#264653] border border-[#223A3E] flex items-center justify-center text-[#2A9D8F]">
+                    <Calendar size={14} />
+                  </div>
+                  <div>
+                    <span className="text-[9px] font-mono text-[#6A888C] block uppercase font-bold">Direct Call</span>
+                    <span className="text-xs font-mono text-white block">+91 74618 35970</span>
+                  </div>
+                </div>
+                <ArrowRight size={14} className="text-[#6A888C] group-hover:text-white group-hover:translate-x-0.5 transition-transform" />
+              </a>
+            </div>
 
-							{/* Additional CTA */}
-							<div className="mt-6 md:mt-8 p-4 md:p-6 bg-emerald-500/5 border border-emerald-400/20 rounded-xl mx-4 md:mx-0">
-								<h3 className="text-foreground font-semibold mb-2 text-center md:text-left">Ready to start a project?</h3>
-								<p className="text-muted-foreground text-sm mb-4 text-center md:text-left">Hire a freelance web developer in Bangalore — let&apos;s build a fast, SEO-friendly website or web app.</p>
-								<div className="text-center md:text-left space-x-6">
-									<a
-										href="mailto:shresthjindal28@gmail.com"
-										className="inline-flex items-center text-emerald-400 hover:text-emerald-300 font-medium text-sm"
-										aria-label="Hire a Freelance Web Developer in Bangalore"
-									>
-										Hire a Freelance Web Developer in Bangalore ↗
-									</a>
-									<a
-										href="#projects"
-										className="inline-flex items-center text-muted-foreground hover:text-emerald-300 font-medium text-sm"
-										aria-label="View recent projects"
-									>
-										See recent projects →
-									</a>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
+            {/* Social Grid */}
+            <div className="flex items-center gap-3 pt-4 border-t border-[#223A3E] max-w-sm">
+              <a
+                href="https://www.linkedin.com/in/shresth-jindal-b074ba28b/"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => trackLinkedinClicked("contact_card")}
+                className="flex-1 inline-flex items-center justify-center gap-2 p-2.5 bg-[#142022] hover:bg-[#1C3236] border border-[#223A3E] hover:border-[#2A9D8F]/40 text-xs font-mono rounded-xl text-white transition-colors"
+              >
+                <Linkedin size={14} />
+                <span>LinkedIn</span>
+              </a>
+              <a
+                href="https://github.com/shresthjindal28"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => trackGithubClicked("contact_card")}
+                className="flex-1 inline-flex items-center justify-center gap-2 p-2.5 bg-[#142022] hover:bg-[#1C3236] border border-[#223A3E] hover:border-[#2A9D8F]/40 text-xs font-mono rounded-xl text-white transition-colors"
+              >
+                <Github size={14} />
+                <span>GitHub</span>
+              </a>
+            </div>
 
-			{/* Structured Data: ContactPage */}
-			<Script id="contact-structured-data" type="application/ld+json" strategy="afterInteractive">
-				{JSON.stringify({
-					"@context": "https://schema.org",
-					"@type": "ContactPage",
-					"url": "https://www.shresthjindal.com/#contact",
-					"name": "Contact – Freelance Web Developer in Bangalore",
-					"description": "Hire a freelance web developer in Bangalore. Email, phone, and social profiles to start your project.",
-					"about": {
-						"@type": "Person",
-						"name": "Shresth Jindal",
-						"jobTitle": "Freelance Web Developer",
-						"address": { "@type": "PostalAddress", "addressLocality": "Bangalore", "addressCountry": "India" },
-						"email": "mailto:shresthjindal28@gmail.com",
-						"contactPoint": [
-							{ "@type": "ContactPoint", "contactType": "sales", "email": "mailto:shresthjindal28@gmail.com", "telephone": "+917461835970", "areaServed": "IN" }
-						],
-						"sameAs": [
-							"https://github.com/shresthjindal28",
-							"https://www.linkedin.com/in/shresth-jindal-b074ba28b/",
-							"https://x.com/shresth_ji76019"
-						]
-					}
-				})}
-			</Script>
-		</section>
-	);
+          </div>
+
+          {/* RIGHT COLUMN: Minimal premium contact form */}
+          <div className="lg:col-span-7 bg-[#0B1011] border border-[#223A3E] rounded-2xl p-6 md:p-8 w-full shadow-inner">
+            <AnimatePresence mode="wait">
+              {status === "success" ? (
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.98 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.98 }}
+                  className="py-12 text-center space-y-4"
+                >
+                  <div className="w-12 h-12 rounded-full bg-[#2A9D8F]/20 border border-[#2A9D8F]/40 text-[#2A9D8F] flex items-center justify-center mx-auto mb-2">
+                    <Check size={24} />
+                  </div>
+                  <h3 className="font-h3 text-white uppercase font-bold tracking-tight">
+                    Message Sent
+                  </h3>
+                  <p className="text-xs font-mono text-[#9BB3B6] max-w-xs mx-auto leading-relaxed">
+                    Thank you! Your message was submitted successfully. I will get back to you within 24 hours.
+                  </p>
+                  <button
+                    onClick={() => setStatus("idle")}
+                    className="mt-6 px-4 py-2 border border-[#223A3E] hover:border-[#2A9D8F]/40 text-xs font-mono rounded-xl text-[#9BB3B6] hover:text-white transition-colors"
+                  >
+                    Send another message
+                  </button>
+                </motion.div>
+              ) : (
+                <motion.form
+                  key="contact-form"
+                  onSubmit={handleSubmit}
+                  className="space-y-6"
+                >
+                  <div className="space-y-1">
+                    <h3 className="font-h4 text-[#F8F3E9] uppercase font-bold tracking-tight">
+                      Outreach Form
+                    </h3>
+                    <p className="text-[10px] font-mono text-[#6A888C] font-light">
+                      Fill out the fields below to initiate communication.
+                    </p>
+                  </div>
+
+                  <div className="space-y-4">
+                    {/* Name */}
+                    <div className="space-y-1.5">
+                      <label htmlFor="name" className="text-[10px] font-mono text-[#6A888C] uppercase tracking-wider block font-bold">
+                        Full Name
+                      </label>
+                      <input
+                        id="name"
+                        type="text"
+                        required
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                        placeholder="John Doe"
+                        className="w-full bg-[#0F1617] border border-[#223A3E] focus:border-[#2A9D8F] text-[#F8F3E9] rounded-xl px-4 py-3 text-xs font-mono outline-none transition-colors"
+                      />
+                    </div>
+
+                    {/* Email */}
+                    <div className="space-y-1.5">
+                      <label htmlFor="email" className="text-[10px] font-mono text-[#6A888C] uppercase tracking-wider block font-bold">
+                        Email Address
+                      </label>
+                      <input
+                        id="email"
+                        type="email"
+                        required
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        placeholder="john@example.com"
+                        className="w-full bg-[#0F1617] border border-[#223A3E] focus:border-[#2A9D8F] text-[#F8F3E9] rounded-xl px-4 py-3 text-xs font-mono outline-none transition-colors"
+                      />
+                    </div>
+
+                    {/* Message */}
+                    <div className="space-y-1.5">
+                      <label htmlFor="message" className="text-[10px] font-mono text-[#6A888C] uppercase tracking-wider block font-bold">
+                        Message Body
+                      </label>
+                      <textarea
+                        id="message"
+                        required
+                        rows={4}
+                        value={message}
+                        onChange={(e) => setMessage(e.target.value)}
+                        placeholder="Describe your project requirements or role specifications..."
+                        className="w-full bg-[#0F1617] border border-[#223A3E] focus:border-[#2A9D8F] text-[#F8F3E9] rounded-xl px-4 py-3 text-xs font-mono outline-none transition-colors resize-none"
+                      />
+                    </div>
+                  </div>
+
+                  {/* Submit Button */}
+                  <button
+                    type="submit"
+                    disabled={status === "submitting"}
+                    className="w-full flex items-center justify-center gap-2 py-3 bg-[#2A9D8F] hover:bg-[#2A9D8F]/95 text-white text-xs font-mono rounded-xl transition-all duration-200 active:scale-[0.99] disabled:opacity-50"
+                  >
+                    {status === "submitting" ? (
+                      <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                    ) : (
+                      <>
+                        <Send size={12} />
+                        <span>Submit Message</span>
+                      </>
+                    )}
+                  </button>
+                </motion.form>
+              )}
+            </AnimatePresence>
+          </div>
+
+        </div>
+      </div>
+    </section>
+  );
 }

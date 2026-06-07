@@ -7,6 +7,7 @@ import Link from "next/link";
 import { Container } from "@/components/ui/container";
 import { Section } from "@/components/ui/section";
 import { useSectionInView } from "@/hooks/use-section-in-view";
+import { trackAiPdfGithubClicked } from "@/lib/analytics";
 
 // Interactive Typewriter response simulator
 const SIMULATED_STREAMING_WORDS = [
@@ -208,6 +209,7 @@ export default function FeaturedProject() {
                   href="https://github.com/shresthjindal28/verivox-ledgerdocs"
                   target="_blank"
                   rel="noopener noreferrer"
+                  onClick={() => trackAiPdfGithubClicked()}
                   className="flex items-center gap-1.5 px-4 py-2.5 bg-[#142022] border border-[#223A3E] hover:border-[#2A9D8F]/40 hover:bg-[#1C3236] text-white text-xs font-mono rounded-xl transition-all duration-200"
                 >
                   <Github size={14} />

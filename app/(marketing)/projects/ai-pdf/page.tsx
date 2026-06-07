@@ -4,6 +4,7 @@ import Link from "next/link";
 import { Container } from "@/components/ui/container";
 import { Section } from "@/components/ui/section";
 import { ArrowLeft, Github, CheckCircle } from "lucide-react";
+import TrackedLink from "@/app/components/TrackedLink";
 
 export const metadata: Metadata = {
   title: "AI PDF Assistant (VeriVox LedgerDocs) Case Study | Shresth Jindal",
@@ -15,6 +16,13 @@ export const metadata: Metadata = {
   robots: {
     index: true,
     follow: true,
+  },
+  openGraph: {
+    title: "AI PDF Assistant (VeriVox LedgerDocs) Case Study | Shresth Jindal",
+    description: "Explore how Shresth Jindal built a secure, offline RAG system for PDF document QA using FAISS embeddings, FastAPI, and Next.js.",
+    url: "https://www.shresthjindal.com/projects/ai-pdf",
+    images: [{ url: "https://www.shresthjindal.com/og-image.png", alt: "AI PDF Assistant Case Study Shresth Jindal" }],
+    type: "article",
   },
 };
 
@@ -182,15 +190,16 @@ export default function AIPDFAssistantCaseStudy() {
               </div>
 
               <div className="space-y-3 pt-4 border-t border-border">
-                <a
+                <TrackedLink
                   href={GITHUB_URL}
                   target="_blank"
                   rel="noopener noreferrer"
+                  eventName="ai_pdf_github_clicked"
                   className="w-full inline-flex items-center justify-center gap-2 px-4 py-3 bg-primary text-primary-foreground font-body-small font-semibold rounded-xl shadow-md transition-transform hover:scale-[1.01] active:scale-[0.99]"
                 >
                   <Github size={16} />
                   <span>GitHub Repository</span>
-                </a>
+                </TrackedLink>
               </div>
             </div>
           </div>

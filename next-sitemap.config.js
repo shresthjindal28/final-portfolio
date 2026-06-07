@@ -18,5 +18,6 @@ module.exports = {
     '/sitemap.xml',
     '/sitemap-0.xml',
     '/privatePage',
+    '/project',
   ],
 }

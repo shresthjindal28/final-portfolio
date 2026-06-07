@@ -2,7 +2,6 @@ import { MetadataRoute } from 'next';
 
 const baseUrl = 'https://www.shresthjindal.com';
 
-// Keep in sync with app routes and any dynamic sources (CMS/MDX)
 const staticPages = [
   '/',
   '/web-design-services',
@@ -10,8 +9,14 @@ const staticPages = [
   '/nextjs-development',
   '/ai-agent-development',
   '/projects',
+  '/projects/ai-pdf',
+  '/projects/google-drive-clone',
+  '/projects/uber-clone',
+  '/projects/employee-management-system',
+  '/projects/offline-emergency-response',
+  '/experience/lawvriksh',
+  '/insights',
   '/contact',
-  '/privatePage',
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {

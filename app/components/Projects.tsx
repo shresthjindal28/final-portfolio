@@ -8,6 +8,7 @@ import { Container } from "@/components/ui/container";
 import { Section } from "@/components/ui/section";
 import { useSectionInView } from "@/hooks/use-section-in-view";
 import { EASE_PREMIUM } from "@/lib/animations";
+import { trackProjectGithubClicked } from "@/lib/analytics";
 
 interface ProjectItem {
   title: string;
@@ -146,6 +147,7 @@ export default function Projects() {
                     href={project.githubUrl}
                     target="_blank"
                     rel="noopener noreferrer"
+                    onClick={() => trackProjectGithubClicked(project.slug)}
                     className="inline-flex items-center gap-1 text-xs font-body-small font-semibold text-muted-foreground hover:text-foreground transition-colors"
                   >
                     <Github size={12} />

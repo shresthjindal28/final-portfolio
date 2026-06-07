@@ -15,6 +15,19 @@ export const metadata: Metadata = {
     index: true,
     follow: true,
   },
+  openGraph: {
+    title: "Insights & Engineering Articles | Shresth Jindal",
+    description:
+      "Technical articles, deep dives into full-stack development, Next.js optimization, and engineering learnings by Shresth Jindal.",
+    url: "https://www.shresthjindal.com/insights",
+    images: [
+      {
+        url: "https://www.shresthjindal.com/og-image.png",
+        alt: "Insights & Engineering Articles Shresth Jindal",
+      },
+    ],
+    type: "website",
+  },
 };
 
 export default function InsightsPage() {
@@ -32,10 +45,22 @@ export default function InsightsPage() {
     },
   };
 
+  const BREADCRUMB_SCHEMA = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.shresthjindal.com" },
+      { "@type": "ListItem", "position": 2, "name": "Insights", "item": "https://www.shresthjindal.com/insights" }
+    ]
+  };
+
   return (
     <main className="min-h-screen pt-24 pb-12 bg-background text-foreground">
       <Script id="insights-schema" type="application/ld+json" strategy="afterInteractive">
         {JSON.stringify(COLLECTION_SCHEMA)}
+      </Script>
+      <Script id="insights-breadcrumb-schema" type="application/ld+json" strategy="afterInteractive">
+        {JSON.stringify(BREADCRUMB_SCHEMA)}
       </Script>
 
       <Section>

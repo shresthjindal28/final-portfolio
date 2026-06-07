@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import Script from 'next/script';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
+import TrackedLink from '@/app/components/TrackedLink';
 
 import BallpitBackground from './BallpitBackground';
 
@@ -77,6 +78,15 @@ export default function WebDesignServices() {
     }
   };
 
+  const BREADCRUMB_SCHEMA = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.shresthjindal.com" },
+      { "@type": "ListItem", "position": 2, "name": "Web Design Services", "item": "https://www.shresthjindal.com/web-design-services" }
+    ]
+  };
+
   return (
     <main aria-labelledby="web-design-hero" className="relative min-h-screen bg-background text-foreground p-8">
       {/* Decorative aurora/light rays background — pointer events none so it doesn't interfere with interactions */}
@@ -97,6 +107,9 @@ export default function WebDesignServices() {
       {/* JSON-LD for this specific service page */}
       <Script id="web-design-service-schema" type="application/ld+json" strategy="afterInteractive">
         {JSON.stringify(SERVICE_SCHEMA)}
+      </Script>
+      <Script id="web-design-breadcrumb-schema" type="application/ld+json" strategy="afterInteractive">
+        {JSON.stringify(BREADCRUMB_SCHEMA)}
       </Script>
 
       <section id="hero" className="max-w-4xl mx-auto text-center py-12">
@@ -253,7 +266,7 @@ export default function WebDesignServices() {
                 <Link href="/contact">Book a Free Consultation</Link>
               </Button>
               <Button asChild variant="ghost">
-                <a className="ml-0" href="mailto:shresthjindal28@gmail.com">Email me</a>
+                <TrackedLink className="ml-0" href="mailto:shresthjindal28@gmail.com" eventName="email_clicked" params={{ context: "web_design_services" }}>Email me</TrackedLink>
               </Button>
           </div>
         </section>

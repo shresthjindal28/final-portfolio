@@ -8,12 +8,18 @@ import { Section } from "@/components/ui/section";
 import { useSectionInView } from "@/hooks/use-section-in-view";
 import { Dialog, DialogContent } from "@radix-ui/react-dialog";
 import { EASE_PREMIUM } from "@/lib/animations";
+import { trackResumeViewed, trackResumeDownloaded } from "@/lib/analytics";
 
 export default function Resume() {
   const { ref: sectionRef } = useSectionInView({ sectionId: "resume" });
   const shouldReduceMotion = useReducedMotion();
   const [open, setOpen] = useState(false);
   const resumeUrl = "/shresth_jinadl_resume.pdf";
+
+  const handleViewResume = () => {
+    setOpen(true);
+    trackResumeViewed();
+  };
 
   return (
     <Section id="resume" ref={sectionRef} className="border-t border-border bg-background">
@@ -61,7 +67,7 @@ export default function Resume() {
             {/* Action buttons column */}
             <div className="w-full md:w-auto flex flex-col gap-3 shrink-0">
               <button
-                onClick={() => setOpen(true)}
+                onClick={handleViewResume}
                 className="w-full md:w-56 inline-flex items-center justify-center gap-2 px-5 py-3.5 bg-primary text-primary-foreground font-body-small font-semibold rounded-xl shadow-md transition-transform hover:scale-[1.01] active:scale-[0.99]"
               >
                 <Eye size={16} />
@@ -71,6 +77,7 @@ export default function Resume() {
               <a
                 href={resumeUrl}
                 download="Shresth_Jindal_Resume.pdf"
+                onClick={() => trackResumeDownloaded()}
                 className="w-full md:w-56 inline-flex items-center justify-center gap-2 px-5 py-3.5 bg-card border border-border hover:bg-secondary/10 text-foreground font-body-small font-semibold rounded-xl transition-colors"
               >
                 <Download size={16} />
@@ -114,6 +121,7 @@ export default function Resume() {
                 <a
                   href={resumeUrl}
                   download="Shresth_Jindal_Resume.pdf"
+                  onClick={() => trackResumeDownloaded()}
                   className="inline-flex items-center gap-1.5 px-4 py-2 bg-primary text-primary-foreground text-xs font-body-small font-semibold rounded-lg shadow-sm"
                 >
                   <Download size={14} />

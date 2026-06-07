@@ -3,7 +3,8 @@ import Script from "next/script";
 import Link from "next/link";
 import { Container } from "@/components/ui/container";
 import { Section } from "@/components/ui/section";
-import { ArrowLeft, Github, ExternalLink, Users, CheckCircle } from "lucide-react";
+import { ArrowLeft, Github, CheckCircle } from "lucide-react";
+import TrackedLink from "@/app/components/TrackedLink";
 
 export const metadata: Metadata = {
   title: "Employee Management System Case Study | Shresth Jindal",
@@ -15,6 +16,13 @@ export const metadata: Metadata = {
   robots: {
     index: true,
     follow: true,
+  },
+  openGraph: {
+    title: "Employee Management System Case Study | Shresth Jindal",
+    description: "Explore how Shresth Jindal built a full-stack Employee Management dashboard with Express, MongoDB, and secure role-based access configurations.",
+    url: "https://www.shresthjindal.com/projects/employee-management-system",
+    images: [{ url: "https://www.shresthjindal.com/og-image.png", alt: "Employee Management System Case Study Shresth Jindal" }],
+    type: "article",
   },
 };
 
@@ -38,10 +46,23 @@ export default function EmployeeManagementCaseStudy() {
       "Full stack operations dashboard for assigning department tasks and configuring role permissions.",
   };
 
+  const BREADCRUMB_SCHEMA = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.shresthjindal.com" },
+      { "@type": "ListItem", "position": 2, "name": "Projects", "item": "https://www.shresthjindal.com/#projects" },
+      { "@type": "ListItem", "position": 3, "name": "Employee Management System", "item": "https://www.shresthjindal.com/projects/employee-management-system" }
+    ]
+  };
+
   return (
     <main className="min-h-screen pt-24 pb-12 bg-background text-foreground">
       <Script id="project-schema" type="application/ld+json" strategy="afterInteractive">
         {JSON.stringify(SCHEMA)}
+      </Script>
+      <Script id="breadcrumb-schema" type="application/ld+json" strategy="afterInteractive">
+        {JSON.stringify(BREADCRUMB_SCHEMA)}
       </Script>
 
       <Container variant="default">
@@ -136,15 +157,17 @@ export default function EmployeeManagementCaseStudy() {
               </div>
 
               <div className="space-y-3 pt-4 border-t border-border">
-                <a
+                <TrackedLink
                   href={GITHUB_URL}
                   target="_blank"
                   rel="noopener noreferrer"
+                  eventName="project_github_clicked"
+                  params={{ project: "employee-management-system" }}
                   className="w-full inline-flex items-center justify-center gap-2 px-4 py-3 bg-primary text-primary-foreground font-body-small font-semibold rounded-xl shadow-md transition-transform hover:scale-[1.01] active:scale-[0.99]"
                 >
                   <Github size={16} />
                   <span>GitHub Profile</span>
-                </a>
+                </TrackedLink>
               </div>
             </div>
           </div>

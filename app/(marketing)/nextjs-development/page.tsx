@@ -29,10 +29,22 @@ const SCHEMA = {
 };
 
 export default function NextJsDevelopment() {
+  const BREADCRUMB_SCHEMA = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://www.shresthjindal.com" },
+      { "@type": "ListItem", "position": 2, "name": "Next.js Development", "item": "https://www.shresthjindal.com/nextjs-development" }
+    ]
+  };
+
   return (
     <main className="min-h-screen bg-background text-foreground p-8">
       <Script id="nextjs-service-schema" type="application/ld+json" strategy="afterInteractive">
         {JSON.stringify(SCHEMA)}
+      </Script>
+      <Script id="nextjs-breadcrumb-schema" type="application/ld+json" strategy="afterInteractive">
+        {JSON.stringify(BREADCRUMB_SCHEMA)}
       </Script>
 
       <section className="max-w-4xl mx-auto">
