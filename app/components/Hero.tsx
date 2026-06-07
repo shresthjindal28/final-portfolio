@@ -1,117 +1,329 @@
 "use client";
 
-import { Github, Linkedin, Twitter } from "lucide-react";
-import dynamic from "next/dynamic";
+import React, { useEffect, useState, useRef } from "react";
+import { motion, useMotionValue, useSpring, useTransform, animate, useInView, useReducedMotion } from "framer-motion";
+import { Briefcase, Award, Code, ArrowRight } from "lucide-react";
+import { Container } from "@/components/ui/container";
+import { EASE_PREMIUM } from "@/lib/animations";
+import { useSectionInView } from "@/hooks/use-section-in-view";
 
-const Ballpit = dynamic(() => import("./Ballpit"), { ssr: false, loading: () => null });
+// Reusable animated counter component with reduced motion support
+function AnimatedCounter({ value, duration = 2 }: { value: number; duration?: number }) {
+  const [count, setCount] = useState(0);
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const shouldReduceMotion = useReducedMotion();
 
-const scrollTo = (id: string) => {
-  const element = document.getElementById(id);
-  if (element) element.scrollIntoView({ behavior: "smooth" });
-};
+  useEffect(() => {
+    if (shouldReduceMotion) {
+      setCount(value);
+      return;
+    }
+    if (isInView) {
+      const controls = animate(0, value, {
+        duration,
+        ease: "easeOut",
+        onUpdate: (latest) => setCount(Math.floor(latest)),
+      });
+      return () => controls.stop();
+    }
+  }, [value, duration, isInView, shouldReduceMotion]);
+
+  return <span ref={ref}>{shouldReduceMotion ? value : count}</span>;
+}
 
 export default function Hero() {
+  const { ref: sectionRef } = useSectionInView({ sectionId: "hero" });
+  const shouldReduceMotion = useReducedMotion();
+  
+  // Spotlight tracking variables
+  const containerRef = useRef<HTMLElement | null>(null);
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  // Smooth springs for cursor spotlight movement
+  const spotlightX = useSpring(mouseX, { damping: 50, stiffness: 300 });
+  const spotlightY = useSpring(mouseY, { damping: 50, stiffness: 300 });
+
+  // Spotlight background gradients (bypass on reduced motion)
+  const spotlightBg = useTransform(
+    [spotlightX, spotlightY],
+    ([x, y]) => shouldReduceMotion
+      ? "none"
+      : `radial-gradient(400px circle at ${x}px ${y}px, var(--spotlight-color), transparent 80%)`
+  );
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    if (shouldReduceMotion) return;
+    if (!containerRef.current) return;
+    const rect = containerRef.current.getBoundingClientRect();
+    mouseX.set(e.clientX - rect.left);
+    mouseY.set(e.clientY - rect.top);
+  };
+
+  const scrollTo = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
+  const name = "Shresth Jindal";
+  const subtitleWords = "Crafting Scalable Full Stack Web Experiences".split(" ");
+
+  // Stagger variants
+  const letterVariants = {
+    hidden: { y: 60, opacity: 0 },
+    show: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        duration: 0.8,
+        ease: EASE_PREMIUM,
+      },
+    },
+  };
+
+  const wordVariants = {
+    hidden: { y: 20, opacity: 0 },
+    show: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        duration: 0.6,
+        ease: EASE_PREMIUM,
+      },
+    },
+  };
+
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex items-center justify-center px-4 py-20"
-      style={{ touchAction: 'manipulation' }}
+      ref={(el) => {
+        sectionRef.current = el;
+        containerRef.current = el;
+      }}
+      onMouseMove={handleMouseMove}
+      className="relative min-h-screen flex flex-col justify-between pt-32 pb-12 overflow-hidden bg-background text-foreground"
+      style={{
+        ["--spotlight-color" as string]: "rgba(42, 157, 143, 0.08)",
+      }}
     >
-      {/* Desktop: Ballpit Background */}
-      <div className="hidden md:block absolute inset-0 z-0 pointer-events-none overflow-hidden">
-        <Ballpit
-          count={80}
-          gravity={0.4}
-          friction={0.98}
-          wallBounce={0.9}
-          followCursor={true}
-          colors={[0x10B981, 0x059669, 0x022c22]}
+      {/* 1. Option A Background: CSS Mesh Gradient (bypass on reduced motion) */}
+      <div className="absolute inset-0 -z-20 overflow-hidden pointer-events-none">
+        <div className="absolute inset-0 bg-background" />
+        {!shouldReduceMotion && (
+          <>
+            {/* Drifting radial gradient 1 */}
+            <div className="absolute top-[-20%] left-[-10%] w-[80vw] h-[80vw] rounded-full bg-accent/5 dark:bg-accent/3 blur-[120px] animate-mesh-drift-1" />
+            {/* Drifting radial gradient 2 */}
+            <div className="absolute bottom-[-10%] right-[-10%] w-[70vw] h-[70vw] rounded-full bg-primary/5 dark:bg-primary/5 blur-[120px] animate-mesh-drift-2" />
+          </>
+        )}
+      </div>
+
+      {/* 2. Cursor follow spotlight layer */}
+      {!shouldReduceMotion && (
+        <motion.div
+          className="absolute inset-0 -z-10 pointer-events-none"
+          style={{ background: spotlightBg }}
         />
-        {/* Subtle overlays to improve readability */}
-        <div className="absolute inset-0 bg-gradient-to-b from-background via-background/40 to-background/80 pointer-events-none" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_0%,rgba(0,0,0,0.5)_100%)] pointer-events-none" />
-      </div>
+      )}
 
-      {/* Mobile: Gradient Background */}
-      <div className="md:hidden absolute inset-0 z-0 pointer-events-none overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-emerald-950/20 via-background to-background" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(16,185,129,0.1)_0%,transparent_50%)]" />
-      </div>
+      {/* 3. Tactical Paper Noise Filter Overlay */}
+      <div className="absolute inset-0 -z-10 pointer-events-none opacity-[0.02] dark:opacity-[0.035] bg-[url('/icon0.svg')] bg-repeat bg-[size:400px_400px] mix-blend-overlay" />
 
-      <div className="relative z-10 text-center max-w-4xl mx-auto">
-        <div className="relative group">
-          {/* Glassmorphism Card */}
-          {/* <div className="relative bg-background/5 backdrop-blur-3xl border border-white/5 p-8 sm:p-12 md:p-16 rounded-[3rem] shadow-[0_0_80px_-20px_rgba(16,185,129,0.1)] animate-in fade-in slide-in-from-bottom-8 duration-1000"> */}
-          <div className="space-y-4 mb-10">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-semibold tracking-widest uppercase mb-4">
+      {/* Main Content Area */}
+      <div className="flex-1 flex items-center">
+        <Container variant="default">
+          <div className="max-w-4xl">
+            {/* Availability Badge */}
+            <motion.div
+              initial={shouldReduceMotion ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6, ease: EASE_PREMIUM }}
+              className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-accent/10 border border-accent/20 text-accent font-body-small mb-8"
+            >
               <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                {!shouldReduceMotion && (
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75"></span>
+                )}
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-accent"></span>
               </span>
-              Available for Projects
-            </div>
+              <span>Available for Projects</span>
+            </motion.div>
 
-            <h1 className="text-5xl sm:text-6xl lg:text-8xl font-black tracking-tight text-white leading-[1.1] uppercase">
-              Freelance Web <br className="hidden sm:block" />
-              <span className="text-zinc-600 italic">
-                Developer.
-              </span>
+            {/* Character-by-character Heading Reveal */}
+            <h1 
+              aria-label={name}
+              className="font-display leading-[0.95] uppercase tracking-tighter text-foreground mb-6 select-none"
+            >
+              {shouldReduceMotion ? (
+                <span>{name}</span>
+              ) : (
+                <motion.span
+                  aria-hidden="true"
+                  initial="hidden"
+                  animate="show"
+                  variants={{
+                    show: {
+                      transition: {
+                        staggerChildren: 0.04,
+                      },
+                    },
+                  }}
+                  className="flex flex-wrap overflow-hidden"
+                >
+                  {name.split(" ").map((word, wordIdx) => (
+                    <span key={wordIdx} className="flex overflow-hidden mr-4">
+                      {word.split("").map((char, charIdx) => (
+                        <motion.span
+                          key={charIdx}
+                          variants={letterVariants}
+                          className="inline-block origin-bottom"
+                        >
+                          {char}
+                        </motion.span>
+                      ))}
+                    </span>
+                  ))}
+                </motion.span>
+              )}
             </h1>
 
-            <h2 className="text-xl sm:text-2xl text-emerald-100/60 font-medium tracking-wide">
-              Full Stack Specialist • Bangalore, India
-            </h2>
-          </div>
-
-          <p className="text-lg sm:text-xl text-zinc-300 mb-12 leading-relaxed max-w-2xl mx-auto font-light">
-            I partner with startups and businesses to build high-performance,
-            <span className="text-white font-normal"> SEO-optimized websites</span> and
-            <span className="text-white font-normal"> scalable web applications</span> using React and Next.js.
-          </p>
-
-          <div className="flex flex-col sm:flex-row gap-6 justify-center mb-12">
-            <button
-              onClick={() => scrollTo("projects")}
-              className="group relative px-8 py-4 bg-emerald-500 hover:bg-emerald-400 text-white font-bold rounded-2xl transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] shadow-lg shadow-emerald-500/25 overflow-hidden"
-            >
-              <span className="relative z-10">View Projects</span>
-              <div className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/10 to-white/0 -translate-x-full group-hover:translate-x-full transition-transform duration-1000" />
-            </button>
-
-            <button
-              onClick={() => scrollTo("contact")}
-              className="px-8 py-4 bg-white/5 hover:bg-white/10 text-white font-bold rounded-2xl border border-white/5 backdrop-blur-md transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] hover:border-white/10"
-            >
-              Start a Project
-            </button>
-          </div>
-          <div className="w-full flex item-center justify-center">
-            <div className="flex justify-center gap-10 w-[70%] md:w-[30%] bg-transparent border backdrop-blur py-3 rounded-full">
-              {[
-                { icon: Github, href: "https://github.com/shresthjindal28", label: "GitHub" },
-                { icon: Linkedin, href: "https://www.linkedin.com/in/shresth-jindal-b074ba28b/", label: "LinkedIn" },
-                { icon: Twitter, href: "https://x.com/shresth_ji76019", label: "Twitter" }
-              ].map((social, i) => (
-                <a
-                  key={i}
-                  href={social.href}
-                  aria-label={social.label}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-white hover:text-emerald-400 transition-all duration-300 transform hover:scale-125"
+            {/* Word-by-word Subtitle Reveal */}
+            <div className="font-h3 text-primary/80 dark:text-foreground/90 font-medium tracking-tight mb-8">
+              {shouldReduceMotion ? (
+                <span>Crafting Scalable Full Stack Web Experiences</span>
+              ) : (
+                <motion.div
+                  initial="hidden"
+                  animate="show"
+                  variants={{
+                    show: {
+                      transition: {
+                        staggerChildren: 0.08,
+                        delayChildren: 0.5,
+                      },
+                    },
+                  }}
+                  className="flex flex-wrap gap-x-2"
                 >
-                  <social.icon size={22} strokeWidth={1.5} />
-                </a>
-              ))}
+                  {subtitleWords.map((word, idx) => (
+                    <span key={idx} className="overflow-hidden inline-block">
+                      <motion.span variants={wordVariants} className="inline-block">
+                        {word}
+                      </motion.span>
+                    </span>
+                  ))}
+                </motion.div>
+              )}
+            </div>
+
+            {/* Description Fade Mask */}
+            <motion.p
+              initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.9, ease: EASE_PREMIUM }}
+              className="font-body-large text-muted-foreground max-w-2xl mb-10 leading-relaxed font-light"
+            >
+              I partner with startups and founders to design and build high-performance,
+              <span className="text-foreground font-medium"> SEO-first applications</span> and
+              <span className="text-foreground font-medium"> scalable architectures</span> using React,
+              Next.js, and TypeScript. Focused on craftsmanship, performance, and impact.
+            </motion.p>
+
+            {/* Credibility Indicators Strip */}
+            <motion.div
+              initial={shouldReduceMotion ? { opacity: 1 } : { opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8, delay: 1.1 }}
+              className="flex flex-wrap gap-y-3 gap-x-8 text-sm text-muted-foreground font-body-small mb-12 border-t border-border/40 pt-6 max-w-3xl"
+            >
+              <div className="flex items-center gap-2">
+                <Briefcase size={16} className="text-accent" />
+                <span>Full Stack Intern @ Lawvriksh</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Code size={16} className="text-accent" />
+                <span>Full Stack Specialist</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <Award size={16} className="text-accent" />
+                <span>Open to Opportunities</span>
+              </div>
+            </motion.div>
+
+            {/* CTAs */}
+            <motion.div
+              initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 15 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 1.2, ease: EASE_PREMIUM }}
+              className="flex flex-wrap gap-4"
+            >
+              <button
+                onClick={() => scrollTo("experience")}
+                className="group flex items-center gap-2 px-6 py-3.5 bg-primary hover:bg-primary/95 text-primary-foreground font-body-small rounded-xl shadow-lg shadow-primary/10 transition-all duration-200 active:scale-[0.98]"
+              >
+                <span>Explore Experience</span>
+                <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+              </button>
+
+              <button
+                onClick={() => scrollTo("contact")}
+                className="px-6 py-3.5 bg-card hover:bg-secondary/20 text-foreground font-body-small rounded-xl border border-border transition-all duration-200 active:scale-[0.98]"
+              >
+                Let&apos;s Build Something
+              </button>
+            </motion.div>
+          </div>
+        </Container>
+      </div>
+
+      {/* Trust Strip & Stats Indicator (Directly below Hero) */}
+      <motion.div
+        initial={shouldReduceMotion ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.8, delay: 1.4 }}
+        className="w-full border-t border-border/40 mt-16 pt-8"
+      >
+        <Container variant="default">
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
+            <div className="flex flex-col">
+              <span className="font-display text-4xl text-primary leading-none">
+                <AnimatedCounter value={1} />
+              </span>
+              <span className="text-xs font-caption text-muted-foreground mt-2">
+                Internship Experience
+              </span>
+            </div>
+            <div className="flex flex-col">
+              <span className="font-display text-4xl text-primary leading-none flex items-center">
+                <AnimatedCounter value={5} />+
+              </span>
+              <span className="text-xs font-caption text-muted-foreground mt-2">
+                Major Projects Completed
+              </span>
+            </div>
+            <div className="flex flex-col">
+              <span className="font-display text-4xl text-primary leading-none flex items-center">
+                <AnimatedCounter value={10} />+
+              </span>
+              <span className="text-xs font-caption text-muted-foreground mt-2">
+                Core Technologies
+              </span>
+            </div>
+            <div className="flex flex-col">
+              <span className="font-display text-4xl text-primary leading-none flex items-center">
+                <AnimatedCounter value={100} />%
+              </span>
+              <span className="text-xs font-caption text-muted-foreground mt-2">
+                Focus on Craftsmanship
+              </span>
             </div>
           </div>
-
-        </div>
-
-        {/* Decorative background glow */}
-        <div className="absolute -inset-4 bg-emerald-500/5 blur-3xl rounded-[3rem] -z-10 group-hover:bg-emerald-500/10 transition-colors duration-1000" />
-        {/* </div> */}
-      </div>
+        </Container>
+      </motion.div>
     </section>
   );
 }

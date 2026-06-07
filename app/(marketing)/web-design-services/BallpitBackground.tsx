@@ -2,7 +2,7 @@
 
 import dynamic from 'next/dynamic';
 
-const Ballpit = dynamic(() => import('../components/Ballpit'), {
+const Ballpit = dynamic(() => import('../../components/Ballpit'), {
   ssr: false,
   loading: () => null,
 });

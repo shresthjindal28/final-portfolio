@@ -3,7 +3,38 @@ import { Analytics } from "@vercel/analytics/next";
 import { ThemeProvider } from "@/app/components/theme-provider";
 import LenisProvider from "@/app/components/lenis-provider";
 import Script from "next/script";
+import { Geist } from "next/font/google";
+import localFont from "next/font/local";
+import { CommandMenu } from "@/components/command-menu";
+import Navbar from "@/app/components/Navbar";
+import Footer from "@/app/components/Footer";
 import "./globals.css";
+
+const geistSans = Geist({
+  variable: "--font-geist-sans",
+  subsets: ["latin"],
+});
+
+const cabinetGrotesk = localFont({
+  src: [
+    {
+      path: "../public/fonts/CabinetGrotesk-Bold.woff2",
+      weight: "700",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/CabinetGrotesk-ExtraBold.woff2",
+      weight: "800",
+      style: "normal",
+    },
+    {
+      path: "../public/fonts/CabinetGrotesk-Black.woff2",
+      weight: "900",
+      style: "normal",
+    },
+  ],
+  variable: "--font-cabinet-grotesk",
+});
 
 // ✅ Global SEO Metadata
 export const metadata: Metadata = {
@@ -66,7 +97,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark" suppressHydrationWarning>
+    <html lang="en" className={`${geistSans.variable} ${cabinetGrotesk.variable}`} suppressHydrationWarning>
       <head>
         {/* ✅ Web App Manifest */}
         <link rel="manifest" href="/manifest.json" />
@@ -177,11 +208,15 @@ export default function RootLayout({
       <body className="antialiased">
         <ThemeProvider
           attribute="class"
-          defaultTheme="dark"
+          defaultTheme="light"
           enableSystem={false}
-          disableTransitionOnChange
         >
-          <LenisProvider>{children}</LenisProvider>
+          <LenisProvider>
+            <Navbar />
+            {children}
+            <Footer />
+            <CommandMenu />
+          </LenisProvider>
         </ThemeProvider>
         <Analytics />
       </body>

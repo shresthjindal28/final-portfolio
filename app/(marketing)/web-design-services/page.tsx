@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import Script from 'next/script';
 import Link from 'next/link';
-import { Button } from '../../components/ui/button';
+import { Button } from '@/components/ui/button';
 
 import BallpitBackground from './BallpitBackground';
 

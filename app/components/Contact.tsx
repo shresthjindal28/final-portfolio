@@ -1,28 +1,18 @@
 "use client";
-import { useState, useRef, useEffect } from "react";
+import { useState, useEffect } from "react";
 import Script from "next/script";
 import { Mail, Sparkles } from "lucide-react";
+import { useSectionInView } from "@/hooks/use-section-in-view";
 
 export default function Contact() {
+	const { ref: sectionRef, isInView } = useSectionInView({ sectionId: "contact" });
 	const [isVisible, setIsVisible] = useState(false);
-	const sectionRef = useRef<HTMLElement | null>(null);
 
 	useEffect(() => {
-		const observer = new IntersectionObserver(
-			([entry]) => {
-				if (entry.isIntersecting) {
-					setIsVisible(true);
-				}
-			},
-			{ threshold: 0.1 }
-		);
-
-		if (sectionRef.current) {
-			observer.observe(sectionRef.current);
+		if (isInView) {
+			setIsVisible(true);
 		}
-
-		return () => observer.disconnect();
-	}, []);
+	}, [isInView]);
 
 	const contactInfo = [
 		{
